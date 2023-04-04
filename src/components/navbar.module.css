@@ -1,0 +1,48 @@
+.navbarContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 1.7%;
+    height: 10vh;
+    overflow: hidden;
+    padding: 3%;
+    box-sizing: border-box;
+    font-weight: 600;
+    background-color: #041c1b;
+}
+
+.logo {
+    background-color: #35dea0;
+    width: 2.5%;
+    height: 30px;
+}
+
+.searchBar {
+    flex-grow: 1;
+    background-color: rgb(246, 244, 244);
+    border-radius: 5px;
+    height: 30px;
+}
+
+.regLinks {
+    padding: .8% 1%;
+    border-radius: 8px;
+    transition: all .1s linear;
+}
+
+.regLinks:hover {
+    color: #F2F5F8;
+    background-color: #0b3735;
+}
+
+.register {
+    padding: .8% 1%;
+    border-radius: 8px;
+    transition: all .1s linear;
+    background-color: #0cb678;
+    color: white;
+}
+
+.register:hover {
+    background-color: #0e8157;
+}
