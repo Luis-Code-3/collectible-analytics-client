@@ -8,3 +8,10 @@ a {
   text-decoration: none;
   color: #A3A6A8;
 }
+
+/* .sticky-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+} */

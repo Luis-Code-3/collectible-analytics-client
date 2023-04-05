@@ -1,0 +1,234 @@
+.sectionOne {
+    width: 100%;
+    height: 84vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #041c1b;
+}
+
+.secOneBox {
+    /* border: 2px solid white; */
+    width: 70%;
+    height: 92%;
+}
+
+.topSecOne {
+    /* border: 1px solid blue; */
+    width: 100%;
+    display: flex;
+}
+
+.topSecOneLeft {
+    width: 50%;
+    /* border: 1px solid purple; */
+}
+
+.uselessButtons {
+    width: 100%;
+    gap: 2%;
+    display: flex;
+}
+
+.uselessButtons div {
+    background-color: #0d91ab;
+    font-size: 120%;
+    font-weight: 900;
+    border-radius: 7px;
+}
+
+.leftbtn {
+    padding: 3% 7%;
+}
+
+.rightbtn {
+    padding: 3% 13%;
+}
+
+.searchAndBtn {
+    width: 100%;
+    gap: 2%;
+    display: flex;
+    margin-top: 2.5%;
+}
+
+.searchBar {
+    background-color: white;
+    width: 73.2%;
+    height: 7vh;
+    border-radius: 7px;
+}
+
+.searchAndBtn button {
+    padding: 3% 4%;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    background-color: #0cb678;
+    font-weight: 600;
+    font-size: 100%;
+}
+
+.topSecOneRight {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3%;
+}
+
+.topSecOneRight h1 {
+    font-size: 240%;
+    font-weight: 900;
+}
+
+.topSecOneRight h1 span {
+    color: #0cb678;
+}
+
+.topSecOneRight p {
+    text-align: center;
+    width: 60%;
+    color: #A3A6A8;
+    font-size: 90%;
+    font-weight: 500;
+
+}
+
+.bottomSecOne {
+    /* border: 1px solid red; */
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.imageBox {
+    width: 49.3%;
+    height: 26vh;
+    margin-top: 1.5%;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.spImage:hover {
+    background-color: #041c1b;
+}
+
+.spImage {
+    position: absolute;
+    width: 100%;
+}
+
+.manImage {
+    position: absolute;
+    width: 100%;
+    top: -5%;
+}
+
+.pokeImage {
+    position: absolute;
+    width: 100%;
+    top: -20%;
+}
+
+.vidImage {
+    position: absolute;
+    width: 100%;
+    top: -5%;
+}
+
+
+
+
+/* SECTION 2 */
+
+
+.sectionTwo {
+    width: 100%;
+    height: 78vh;
+    background-color: #f9fdff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.secTwoTop {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5em;
+    margin-bottom: 2%;
+}
+
+.maintain {
+    color: #0cb678;
+    font-weight: 700;
+}
+
+.secTwoTop h1 {
+    color: #041c1b;
+    font-weight: 800;
+    font-size: 200%;
+}
+
+.description {
+    color: #A3A6A8;
+    text-align: center;
+    width: 50%;
+}
+
+.secTwoBottom {
+    width: 75%;
+    display: grid;
+    gap: 1em;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.secTwoBottom div {
+    background-color: #f0f6fa;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .5em;
+    text-align: center;
+    padding: 10%;
+    height: 7em;
+}
+
+.secTwoBottom h4 {
+    color: black;
+}
+
+.secTwoBottom p {
+    color: #A3A6A8;
+}
+
+
+
+/* SECTION 3 */
+
+.sectionThree {
+    width: 100%;
+    height: 85vh;
+    background-color: #041c1b;
+}
+
+
+
+
+/* SECTION 4 */
+
+.sectionFour {
+    width: 100%;
+    height: 34vh;
+    background-color: #f9fdff;
+}
+
+
+

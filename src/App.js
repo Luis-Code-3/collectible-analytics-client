@@ -18,7 +18,9 @@ import VideoConsoleInfo from './pages/videogames/VideoConsoleInfo';
 function App() {
   return (
     <div className="App">
-      <Navbar/>
+      <div className='sticky-nav'>
+        <Navbar/>
+      </div>
       <Routes>
         <Route path='/' element={<Home/>}/>
 
