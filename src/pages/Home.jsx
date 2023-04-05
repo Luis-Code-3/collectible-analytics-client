@@ -4,6 +4,7 @@ import pokemonImage from "../images/p1.jpg"
 import sportImage from "../images/p2.jpg"
 import videoImage from "../images/p4.png"
 import mangaImage from "../images/p3.png"
+import charizard from "../images/charizard.png"
 
 
 function Home() {
@@ -88,10 +89,33 @@ function Home() {
         </section>
 
         <section className={styles.sectionThree}>
+          <p>LEVEL UP YOUR COLLECTING</p>
+          <h1>COLLECTING WITH PRO TOOLS</h1>
+          <div className={styles.secThreeBottom}>
+            <div className={styles.secThreeBottomLeft}>
+              <ul>
+                <li><span className={styles.bold}>Track 10,000+ collectibles</span> on our website, we feature cards, video games, manga, and more</li>
+                <li><span className={styles.bold}>Search Through 10M+ Sales History</span> and determine the value for collectibles in your collection or future purchases</li>
+                <li><span className={styles.bold}>Create a customized watchlist</span> to track collectibles you want to add to your collection</li>
+                <li><span className={styles.bold}>Sort through graded and ungraded sales</span> data for various collectibles</li>
+                <li><span className={styles.bold}>Find fair market value</span> for collectibles you are interested in or you are wanting to sell</li>
+                <li><span className={styles.bold}>and so much more</span>... don't miss out..</li>
+              </ul>
+              <button>Start your free trial</button>
+            </div>
+            <div className={styles.fourImageBox}>
+              <img src={charizard} alt="analytics"/>
+            </div>
+          </div>
         
         </section>
 
         <section className={styles.sectionFour}>
+          <h1>JOIN OUR NEWSLETTER</h1>
+          <div className={styles.secFourBottom}>
+            <div className={styles.newsletter}></div>
+            <button>Subscribe</button>
+          </div>
   
         </section>
       </>
