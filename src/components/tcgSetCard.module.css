@@ -1,0 +1,43 @@
+.cardContainer {
+    /* border: 1px solid white; */
+    border-radius: 5px;
+    overflow: hidden;
+    height: 30vh;
+    color: white;
+    transition: all .1s linear;
+    border: 1px solid #070b0b;
+}
+
+.cardContainer:hover {
+    border: 1px solid #80f1f1;
+}
+
+.cardContainer:hover .titleBox {
+    background-color: #424b4b;
+}
+
+.imageBox {
+    /* border: 1px solid blue; */
+    background-color: #202525;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageBox img {
+    width: 70%;
+    height: auto;
+}
+
+.titleBox {
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #070b0b;
+}
+
+.titleBox p {
+    font-weight: 600;
+}

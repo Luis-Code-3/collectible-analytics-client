@@ -1,0 +1,112 @@
+.tcgMainSection {
+    background-color: #0c1314;
+    box-sizing: border-box;
+    padding: 5% 7%;
+}
+
+.topDiv {
+    border: 1px solid white;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.textNav {
+    width: 49%;
+    border: 1px solid blue;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    gap: 5%;
+}
+
+.textNav h1 {
+    font-size: 250%;
+    line-height: 1;
+}
+
+.textNav h1 span {
+    color: #70dba3;
+}
+
+.buttonBox {
+    width: 75%;
+    display: flex;
+    gap: 2.5%;
+}
+
+.buttonBox button {
+    border: none;
+    color: white;
+    background-color: #39957A;
+    font-size: 110%;
+    font-weight: 700;
+    padding: 3% 8%;
+    border-radius: 10px;
+    transition: all .1s linear;
+}
+
+.buttonBox button:hover {
+    background-color: #317863;
+    cursor: pointer;
+}
+
+.filterBox {
+    width: 100%;
+    display: flex;
+    gap: 2.5%;
+}
+
+.filterBox input {
+    border: none;
+    background-color: #3e4848;
+    border-radius: 10px;
+    flex-grow: 1;
+    color: white;
+    font-size: 130%;
+}
+
+.filterBox button {
+    border: none;
+    font-size: 120%;
+    font-weight: 700;
+    color: white;
+    background-color: #0daba0;
+    padding: 3.5% 3%;
+    border-radius: 10px;
+    transition: all .1s linear;
+}
+
+.filterBox button:hover {
+    background-color: #148e86;
+    cursor: pointer;
+}
+
+.imageBox {
+    width: 49%;
+    height: 30vh;
+    border: 1px solid green;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.imageBox img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: -10%;
+}
+
+
+/* BOTTOM DIV */
+
+.bottomDiv {
+    border: 1px solid red;
+    margin-top: 3%;
+    width: 100%;
+    display: grid;
+    grid-gap: 1em;
+    /* grid-template-columns: repeat(5, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+}
