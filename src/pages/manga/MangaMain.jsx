@@ -11,26 +11,32 @@ function MangaMain() {
       [
         {
           volumeName: "Attack On Titan",
+          volumeId: "12453",
           volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3599837-01.jpg"
         },
         {
           volumeName: "Demon Slayer",
+          volumeId: "12453",
           volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/6497309-01.jpg"
         },
         {
           volumeName: "Attack On Titan",
+          volumeId: "12453",
           volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3599837-01.jpg"
         },
         {
           volumeName: "Demon Slayer",
+          volumeId: "12453",
           volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/6497309-01.jpg"
         },
         {
           volumeName: "Attack On Titan",
+          volumeId: "12453",
           volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3599837-01.jpg"
         },
         {
           volumeName: "Demon Slayer",
+          volumeId: "12453",
           volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/6497309-01.jpg"
         },
       ]
@@ -65,7 +71,7 @@ function MangaMain() {
             <>
               {allVolumes.map((volume) => {
                 return (
-                  <MangaVolumeCard volumeImage = {volume.volumeImage} volumeName = {volume.volumeName}/>
+                  <MangaVolumeCard volumeImage = {volume.volumeImage} volumeName = {volume.volumeName} volumeId = {volume.volumeId}/>
                 )
               })}
             </>

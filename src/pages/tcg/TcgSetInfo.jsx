@@ -11,42 +11,56 @@ function TcgSetInfo() {
         {
           cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
           cardName: "Mario Pikachu #294",
+          setId: "1235451",
+          itemType: "tcg",
           setName: "Silver Tempest",
           cardId: "12341q2"
         },
         {
           cardImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3599837-01.jpg",
           cardName: "Mario Pikachu #294",
+          setId: "1235451",
+          itemType: "tcg",
           setName: "Silver Tempest",
           cardId: "12341q2"
         },
         {
           cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
           cardName: "Mario Pikachu #294",
+          setId: "1235451",
+          itemType: "tcg",
           setName: "Silver Tempest",
           cardId: "12341q2"
         },
         {
           cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
           cardName: "Mario Pikachu #294",
+          setId: "1235451",
+          itemType: "tcg",
           setName: "Silver Tempest",
           cardId: "12341q2"
         },
         {
           cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
           cardName: "Mario Pikachu #294",
+          setId: "1235451",
+          itemType: "tcg",
           setName: "Silver Tempest",
           cardId: "12341q2"
         },
         {
           cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
           cardName: "Mario Pikachu #294",
+          setId: "1235451",
+          itemType: "tcg",
           setName: "Silver Tempest",
           cardId: "12341q2"
         },
         {
           cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
           cardName: "Mario Pikachu #294",
+          setId: "1235451",
+          itemType: "tcg",
           setName: "Silver Tempest",
           cardId: "12341q2"
         },
@@ -90,7 +104,7 @@ function TcgSetInfo() {
             <>
               {allItems.map((item) => {
                 return (
-                  <SearchItemCard cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName}/>
+                  <SearchItemCard cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} setId = {item.setId} itemType = {item.itemType}/>
                 )
               })}
             </>

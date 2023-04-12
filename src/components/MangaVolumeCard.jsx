@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import styles from './mangaVolumeCard.module.css'
 
 
-function MangaVolumeCard({volumeName, volumeImage}) {
+function MangaVolumeCard({volumeName, volumeImage, volumeId}) {
 
 
 
     return (
-      <a href="www.google.com" className={styles.cardContainer}>
+      <Link to={`/manga/${volumeId}`} className={styles.cardContainer}>
         <div className={styles.imageBox}>
             <img src={volumeImage} alt=""/>
         </div>
@@ -16,7 +16,7 @@ function MangaVolumeCard({volumeName, volumeImage}) {
             <p className={styles.name}>{volumeName}</p>
         </div>
         
-      </a>
+      </Link>
     );
   }
   

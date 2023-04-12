@@ -11,36 +11,43 @@ function SportMain() {
     [
       {
         playerName: "Michael Jordan",
+        playerId: "12452",
         playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
         sport: "Basketball"
       },
       {
         playerName: "Michael Jordan",
+        playerId: "12452",
         playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
         sport: "Basketball"
       },
       {
         playerName: "Michael Jordan",
+        playerId: "12452",
         playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
         sport: "Basketball"
       },
       {
         playerName: "Michael Jordan",
+        playerId: "12452",
         playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
         sport: "Basketball"
       },
       {
         playerName: "Michael Jordan",
+        playerId: "12452",
         playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
         sport: "Basketball"
       },
       {
         playerName: "Michael Jordan",
+        playerId: "12452",
         playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
         sport: "Basketball"
       },
       {
         playerName: "Michael Jordan",
+        playerId: "12452",
         playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
         sport: "Basketball"
       },
@@ -77,7 +84,7 @@ function SportMain() {
             <>
               {allPlayers.map((player) => {
                 return (
-                  <SportPlayerCard playerImage = {player.playerImage} playerName = {player.playerName} sport = {player.sport}/>
+                  <SportPlayerCard playerImage = {player.playerImage} playerName = {player.playerName} sport = {player.sport} playerId = {player.playerId}/>
                 )
               })}
             </>

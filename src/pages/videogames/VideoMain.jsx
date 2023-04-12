@@ -9,25 +9,32 @@ function VideoMain() {
     const [allConsoles, setAllConsoles] = useState(
       [
         {
-          consoleName: "Playstation 3"
+          consoleName: "Playstation 3",
+          consoleId: "12453"
         },
         {
-          consoleName: "Playstation 4"
+          consoleName: "Playstation 4",
+          consoleId: "12453"
         },
         {
-          consoleName: "Xbox 360"
+          consoleName: "Xbox 360",
+          consoleId: "12453"
         },
         {
-          consoleName: "GameBoy Advance"
+          consoleName: "GameBoy Advance",
+          consoleId: "12453"
         },
         {
-          consoleName: "Nintendo 64"
+          consoleName: "Nintendo 64",
+          consoleId: "12453"
         },
         {
-          consoleName: "Xbox One"
+          consoleName: "Xbox One",
+          consoleId: "12453"
         },
         {
-          consoleName: "Playstation 2"
+          consoleName: "Playstation 2",
+          consoleId: "12453"
         },
       ]
     );
@@ -66,7 +73,7 @@ function VideoMain() {
             <>
               {allConsoles.map((console) => {
                 return (
-                  <a href="www.google.com">{console.consoleName}</a>
+                  <Link to={`/video-games/${console.consoleId}`}>{console.consoleName}</Link>
                 )
               })}
             </>
