@@ -11,7 +11,7 @@ function Navbar() {
         <div className={styles.logo}></div>
         <h1 className={styles.logoTitle}>CollectData</h1>
         <div className={styles.searchBar}></div>
-        <Link to={'/about'} className={styles.regLinks}>About</Link>
+        <Link to={'/'} className={styles.regLinks}>Home</Link>
         <Link to={'/contact'} className={styles.regLinks}>Contact</Link>
         <Link to={'/blog'} className={styles.regLinks}>Blog</Link>
         <Link to={'/login'} className={styles.regLinks}>Log In</Link>

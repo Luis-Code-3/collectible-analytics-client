@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
 import styles from "./itemAnalytics.module.css"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchItemCard from "../components/SearchItemCard";
 import SearchItemSportCard from "../components/SearchItemSportCard";
+import { collectionItems, tranData } from "./DummyData";
 
 
 function ItemAnalytics() {
+
+    const [sortPriceOrder, setSortPriceOrder] = useState('asc');
+    const [sortDateOrder, setSortDateOrder] = useState('asc');
+    const [sortTitleOrder, setSortTitleOrder] = useState('asc');
+    const [sortMarketplaceOrder, setSortMarketplaceOrder] = useState('asc');
 
     const [item, setItem] = useState(
         {
@@ -14,137 +20,92 @@ function ItemAnalytics() {
             setId: "1235451",
             itemType: "tcg",
             setName: "Silver Tempest",
-            cardId: "12341q2"
+            cardId: "12341q2",
+            cardType: "Refractor",
         }
     )
 
-    const [allTransactions, setAllTransactions] = useState(
-        [
-            {
-                soldDate: "2023-12-07",
-                listingTitle: "The title of the listing",
-                marketplace: "goldin auctions",
-                salePrice: "$21,093",
-            },
-            {
-                soldDate: "2023-12-07",
-                listingTitle: "The title of the listing",
-                marketplace: "goldin auctions",
-                salePrice: "$21,093",
-            },
-            {
-                soldDate: "2023-12-07",
-                listingTitle: "The title of the listing",
-                marketplace: "goldin auctions",
-                salePrice: "$21,093",
-            },
-            {
-                soldDate: "2023-12-07",
-                listingTitle: "The title of the listing",
-                marketplace: "goldin auctions",
-                salePrice: "$21,093",
-            },
-            {
-                soldDate: "2023-12-07",
-                listingTitle: "The title of the listing",
-                marketplace: "goldin auctions",
-                salePrice: "$21,093",
-            },
-            {
-                soldDate: "2023-12-07",
-                listingTitle: "The title of the listing",
-                marketplace: "goldin auctions",
-                salePrice: "$21,093",
-            },
-            {
-                soldDate: "2023-12-07",
-                listingTitle: "The title of the listing",
-                marketplace: "goldin auctions",
-                salePrice: "$21,093",
-            },
-            {
-                soldDate: "2023-12-07",
-                listingTitle: "The title of the listing",
-                marketplace: "goldin auctions",
-                salePrice: "$21,093",
-            },
-            {
-                soldDate: "2023-12-07",
-                listingTitle: "The title of the listing",
-                marketplace: "goldin auctions",
-                salePrice: "$21,093",
-            },
-            {
-                soldDate: "2023-12-07",
-                listingTitle: "The title of the listing",
-                marketplace: "goldin auctions",
-                salePrice: "$21,093",
-            },
-        ]
-    )
+    const [allTransactions, setAllTransactions] = useState(tranData)
+    const [filteredTransactions, setFilteredTransactions] = useState([])
+    const [dataTransactions, setDataTransactions] = useState([]);
 
-    const [similarItems, setSimilarItems] = useState(
-        [
-            {
-                itemType: "manga",
-                itemName: "Box Set #1",
-                itemId: "12453",
-                itemImage: "https://comicvine.gamespot.com/a/uploads/scale_medium/13/136525/5793686-43.png",
-                volumeName: "Attack on Titan"
-            },
-            {
-                itemType: "sport",
-                cardImage: "https://sportscardinvestor.s3.amazonaws.com/prod/372_76_5-L",
-                cardId: "252123",
-                cardName: "Michael Jordan #57",
-                cardType: "Refractor",
-                setName: "1986 Fleer"
-            },
-            {
-                itemType: "tcg",
-                cardImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3599837-01.jpg",
-                cardName: "Mario Pikachu #294",
-                setName: "Silver Tempest",
-                cardId: "12341q2"
-            },
-            {
-                itemType: "game",
-                gameId: "1234",
-                gameName: "Call of Duty",
-                gameImage: "https://m.media-amazon.com/images/I/71idyRpbl-L.jpg",
-                consoleName: "Playstation 3"
-            },
-            {
-                itemType: "manga",
-                itemName: "Box Set #1",
-                itemId: "12453",
-                itemImage: "https://comicvine.gamespot.com/a/uploads/scale_medium/13/136525/5793686-43.png",
-                volumeName: "Attack on Titan"
-            },
-            {
-                itemType: "sport",
-                cardImage: "https://sportscardinvestor.s3.amazonaws.com/prod/372_76_5-L",
-                cardId: "252123",
-                cardName: "Michael Jordan #57",
-                cardType: "Refractor",
-                setName: "1986 Fleer"
-            },
-            {
-                itemType: "tcg",
-                cardImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3599837-01.jpg",
-                cardName: "Mario Pikachu #294",
-                setName: "Silver Tempest",
-                cardId: "12341q2"
-            },
-            {
-                itemType: "game",
-                gameId: "1234",
-                gameName: "Call of Duty",
-                gameImage: "https://m.media-amazon.com/images/I/71idyRpbl-L.jpg",
-                consoleName: "Playstation 3"
-            },
-        ]
-    )
+    const [similarItems, setSimilarItems] = useState(collectionItems)
+    const [amountShown, setAmountShown] = useState(25);
+
+    
+    const sortDate = () => {
+
+    }
+
+    const sortSalePrice = () => {
+        let newArr = [...filteredTransactions].sort((a,b) => {
+            if(sortPriceOrder === 'asc') {
+                return b.salePrice - a.salePrice;
+            } else {
+                return a.salePrice - b.salePrice;
+            }
+        })
+
+        setFilteredTransactions(newArr);
+        setSortPriceOrder(sortPriceOrder === 'asc' ? 'desc' : 'asc');
+    }
+
+    const sortMarketplace = () => {
+        let newArr = [...filteredTransactions].sort((a,b) => {
+            if(sortMarketplaceOrder === 'asc') {
+                return a.marketplace.localeCompare(b.marketplace);
+            } else {
+                return b.marketplace.localeCompare(a.marketplace);
+            }
+        })
+
+        setFilteredTransactions(newArr)
+        setSortMarketplaceOrder(sortMarketplaceOrder === 'asc' ? 'desc' : 'asc')
+    }
+
+    const sortTitle = () => {
+        let newArr = [...filteredTransactions].sort((a,b) => {
+            if(sortTitleOrder === 'asc') {
+                return a.listingTitle.localeCompare(b.listingTitle);
+            } else {
+                return b.listingTitle.localeCompare(a.listingTitle);
+            }
+        })
+
+        setFilteredTransactions(newArr)
+        setSortTitleOrder(sortTitleOrder === 'asc' ? 'desc' : 'asc')
+        
+    }
+
+
+    const filterGrade = (event) => {
+        let newArr = [...allTransactions].filter((tran) => {
+            return tran.grade === event.target.value;
+        })
+
+        setFilteredTransactions(newArr)
+        setDataTransactions(newArr)
+    }
+
+    const timeFrameSort = (event) => {
+        // sort by cutoff date of transactions (6 months, 1 year, etc)
+    }
+
+    const handleAmountShown = (event) => {
+        setAmountShown(+event.target.value)
+    }
+
+
+    useEffect(() => {
+
+        let newArr = [...allTransactions].filter((tran) => {
+            return tran.grade === "PSA 10";
+        })
+
+        setFilteredTransactions(newArr)
+        setDataTransactions(newArr)
+
+    }, [])
 
 
     return (
@@ -156,11 +117,32 @@ function ItemAnalytics() {
                 </div>
 
                 <div className={styles.gradePop}>
-                    <select>
-                        <option>PSA 10</option>
-                        <option>PSA 9</option>
-                        <option>PSA 8</option>
-                    </select>
+
+                    {
+                        item.itemType === "tcg" ? 
+                            <select onChange={filterGrade}>
+                                <option>PSA 10</option>
+                                <option>PSA 9</option>
+                                <option>PSA 8</option>
+                            </select>
+                        : item.itemType === "sports" ?
+                            <select>
+                                <option>PSA 10</option>
+                                <option>PSA 9</option>
+                                <option>PSA 8</option>
+                            </select>
+                        : item.itemType === "game" ? 
+                            <select>
+                                <option>WATA 10</option>
+                                <option>WATA 9</option>
+                                <option>WATA 8</option>
+                            </select>
+                        : item.itemType === "manga" ?
+                            <select>
+                                <option>----</option>
+                            </select>
+                        : null
+                    }
 
                     <div>
                         1,352
@@ -171,7 +153,8 @@ function ItemAnalytics() {
             <div className={styles.rightTopDiv}>
                 <div className={styles.itemInfo}>
                     <div className={styles.nameBox}>
-                        <p>{item.setName}</p>
+                        {item.itemType === "sports" && <p className={styles.cardType}>{item.cardType}</p>}
+                        <p className={styles.setName}>{item.setName}</p>
                         <h2>{item.cardName}</h2>
                     </div>
 
@@ -191,7 +174,7 @@ function ItemAnalytics() {
                             <p>$120,000</p>
                             <p>10.23M</p>
                             <p>$110,234</p>
-                            <select>
+                            <select onChange={timeFrameSort}>
                                 <option>1 Month</option>
                                 <option>3 Month</option>
                                 <option>6 Month</option>
@@ -217,19 +200,19 @@ function ItemAnalytics() {
             </div>
 
             <div className={styles.transactionTitles}>
-                <div className={styles.soldDate}>
+                <div onClick={sortDate} className={styles.soldDate}>
                     <p>SOLD DATE</p>
                 </div>
 
-                <div className={styles.listingTitle}>
+                <div onClick={sortTitle} className={styles.listingTitle}>
                     <p>LISTING TITLE</p>
                 </div>
 
-                <div className={styles.marketplace}>
+                <div onClick={sortMarketplace} className={styles.marketplace}>
                     <p>MARKETPLACE</p>
                 </div>
 
-                <div className={styles.salePrice}>
+                <div onClick={sortSalePrice} className={styles.salePrice}>
                     <p>SALE PRICE</p>
                 </div>
 
@@ -239,8 +222,8 @@ function ItemAnalytics() {
             </div>
 
             {
-                allTransactions.length > 0 ? 
-                allTransactions.map((tran) => {
+                filteredTransactions.length > 0 ? 
+                filteredTransactions.slice(0, amountShown).map((tran) => {
                     return (
                         <div className={styles.transactionComplete}>
                             <div className={styles.tranSoldDate}>
@@ -256,7 +239,7 @@ function ItemAnalytics() {
                             </div>
 
                             <div className={styles.tranSalePrice}>
-                                <p>{tran.salePrice}</p>
+                                <p>${tran.salePrice}</p>
                             </div>
 
                             <div className={styles.tranReport}>
@@ -271,10 +254,11 @@ function ItemAnalytics() {
 
             <div className={styles.bottomMiddleDiv}>
                 <p>SALES PER PAGE:</p>
-                <select>
+                <select onChange={handleAmountShown}>
+                    <option>25</option>
                     <option>50</option>
+                    <option>75</option>
                     <option>100</option>
-                    <option>250</option>
                 </select>
             </div>
 

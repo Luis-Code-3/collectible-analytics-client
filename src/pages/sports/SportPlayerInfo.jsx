@@ -2,69 +2,11 @@ import { Link } from "react-router-dom";
 import styles from "./sportPlayerInfo.module.css";
 import { useState } from "react";
 import SearchItemSportCard from "../../components/SearchItemSportCard";
+import { playerItems } from "../DummyData";
 
 function SportPlayerInfo() {
 
-    const [allItems, setAllItems] = useState(
-      [
-        {
-          cardImage: "https://sportscardinvestor.s3.amazonaws.com/prod/372_76_5-L",
-          cardId: "252123",
-          cardName: "Michael Jordan #57",
-          cardType: "Refractor",
-          setName: "1986 Fleer",
-          itemType: "sports"
-        },
-        {
-          cardImage: "https://sportscardinvestor.s3.amazonaws.com/prod/372_76_5-L",
-          cardId: "252123",
-          cardName: "Michael Jordan #57",
-          cardType: "Refractor",
-          setName: "1986 Fleer",
-          itemType: "sports"
-        },
-        {
-          cardImage: "https://sportscardinvestor.s3.amazonaws.com/prod/372_76_5-L",
-          cardId: "252123",
-          cardName: "Michael Jordan #57",
-          cardType: "Refractor",
-          setName: "1986 Fleer",
-          itemType: "sports"
-        },
-        {
-          cardImage: "https://sportscardinvestor.s3.amazonaws.com/prod/372_76_5-L",
-          cardId: "252123",
-          cardName: "Michael Jordan #57",
-          cardType: "Refractor",
-          setName: "1986 Fleer",
-          itemType: "sports"
-        },
-        {
-          cardImage: "https://sportscardinvestor.s3.amazonaws.com/prod/372_76_5-L",
-          cardId: "252123",
-          cardName: "Michael Jordan #57",
-          cardType: "Refractor",
-          setName: "1986 Fleer",
-          itemType: "sports"
-        },
-        {
-          cardImage: "https://sportscardinvestor.s3.amazonaws.com/prod/372_76_5-L",
-          cardId: "252123",
-          cardName: "Michael Jordan #57",
-          cardType: "Refractor",
-          setName: "1986 Fleer",
-          itemType: "sports"
-        },
-        {
-          cardImage: "https://sportscardinvestor.s3.amazonaws.com/prod/372_76_5-L",
-          cardId: "252123",
-          cardName: "Michael Jordan #57",
-          cardType: "Refractor",
-          setName: "1986 Fleer",
-          itemType: "sports"
-        },
-      ]
-    )
+    const [allItems, setAllItems] = useState(playerItems)
 
 
 

@@ -3,72 +3,12 @@ import styles from "./watchlist.module.css"
 import SearchItemCard from "../components/SearchItemCard";
 import SearchItemSportCard from "../components/SearchItemSportCard";
 import { useState } from "react";
+import { collectionItems } from "./DummyData";
 
 
 function Watchlist() {
 
-    const [allItems, setAllItems] = useState(
-        [
-            {
-                itemType: "manga",
-                itemName: "Box Set #1",
-                itemId: "12453",
-                itemImage: "https://comicvine.gamespot.com/a/uploads/scale_medium/13/136525/5793686-43.png",
-                volumeName: "Attack on Titan"
-            },
-            {
-                itemType: "sport",
-                cardImage: "https://sportscardinvestor.s3.amazonaws.com/prod/372_76_5-L",
-                cardId: "252123",
-                cardName: "Michael Jordan #57",
-                cardType: "Refractor",
-                setName: "1986 Fleer"
-            },
-            {
-                itemType: "tcg",
-                cardImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3599837-01.jpg",
-                cardName: "Mario Pikachu #294",
-                setName: "Silver Tempest",
-                cardId: "12341q2"
-            },
-            {
-                itemType: "game",
-                gameId: "1234",
-                gameName: "Call of Duty",
-                gameImage: "https://m.media-amazon.com/images/I/71idyRpbl-L.jpg",
-                consoleName: "Playstation 3"
-            },
-            {
-                itemType: "manga",
-                itemName: "Box Set #1",
-                itemId: "12453",
-                itemImage: "https://comicvine.gamespot.com/a/uploads/scale_medium/13/136525/5793686-43.png",
-                volumeName: "Attack on Titan"
-            },
-            {
-                itemType: "sport",
-                cardImage: "https://sportscardinvestor.s3.amazonaws.com/prod/372_76_5-L",
-                cardId: "252123",
-                cardName: "Michael Jordan #57",
-                cardType: "Refractor",
-                setName: "1986 Fleer"
-            },
-            {
-                itemType: "tcg",
-                cardImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3599837-01.jpg",
-                cardName: "Mario Pikachu #294",
-                setName: "Silver Tempest",
-                cardId: "12341q2"
-            },
-            {
-                itemType: "game",
-                gameId: "1234",
-                gameName: "Call of Duty",
-                gameImage: "https://m.media-amazon.com/images/I/71idyRpbl-L.jpg",
-                consoleName: "Playstation 3"
-            },
-        ]
-    )
+    const [allItems, setAllItems] = useState(collectionItems)
 
 
 

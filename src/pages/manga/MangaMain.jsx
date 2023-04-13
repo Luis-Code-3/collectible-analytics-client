@@ -3,44 +3,12 @@ import styles from "./mangaMain.module.css"
 import headerImage from "../../images/p3.png"
 import { useState } from "react";
 import MangaVolumeCard from "../../components/MangaVolumeCard";
+import { mangaVolumes } from "../DummyData";
 
 
 function MangaMain() {
   
-    const [allVolumes, setAllVolumes] = useState(
-      [
-        {
-          volumeName: "Attack On Titan",
-          volumeId: "12453",
-          volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3599837-01.jpg"
-        },
-        {
-          volumeName: "Demon Slayer",
-          volumeId: "12453",
-          volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/6497309-01.jpg"
-        },
-        {
-          volumeName: "Attack On Titan",
-          volumeId: "12453",
-          volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3599837-01.jpg"
-        },
-        {
-          volumeName: "Demon Slayer",
-          volumeId: "12453",
-          volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/6497309-01.jpg"
-        },
-        {
-          volumeName: "Attack On Titan",
-          volumeId: "12453",
-          volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3599837-01.jpg"
-        },
-        {
-          volumeName: "Demon Slayer",
-          volumeId: "12453",
-          volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/6497309-01.jpg"
-        },
-      ]
-    )
+    const [allVolumes, setAllVolumes] = useState(mangaVolumes)
 
 
     return (

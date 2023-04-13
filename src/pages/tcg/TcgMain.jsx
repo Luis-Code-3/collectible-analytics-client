@@ -3,81 +3,12 @@ import styles from "./tcgMain.module.css"
 import headerImage from "../../images/p1.jpg"
 import TcgSetCard from "../../components/TcgSetCard";
 import { useState } from "react";
+import { tcgSets } from "../DummyData";
 
 
 function TcgMain() {
 
-  const [allSets, setAllSets] = useState(
-    [
-      {
-        id: "123",
-        setName: "Silver Tempest",
-        imageUrl: "https://pokemonsetimages.s3.us-west-1.amazonaws.com/Sets/Set_Images/503.png",
-        language: "",
-        releaseDate: "",
-        description: "",
-        setCount: "",
-        cards_id: [],
-        setYear: ""
-      },
-      {
-        id: "12332",
-        setName: "Evolving Skies",
-        imageUrl: "https://pokemonsetimages.s3.us-west-1.amazonaws.com/Sets/Set_Images/503.png",
-        language: "",
-        releaseDate: "",
-        description: "",
-        setCount: "",
-        cards_id: [],
-        setYear: ""
-      },
-      {
-        id: "1344",
-        setName: "Silver Tempest",
-        imageUrl: "https://pokemonsetimages.s3.us-west-1.amazonaws.com/Sets/Set_Images/503.png",
-        language: "",
-        releaseDate: "",
-        description: "",
-        setCount: "",
-        cards_id: [],
-        setYear: ""
-      },
-      {
-        id: "12343",
-        setName: "Silver Tempest",
-        imageUrl: "https://pokemonsetimages.s3.us-west-1.amazonaws.com/Sets/Set_Images/503.png",
-        language: "",
-        releaseDate: "",
-        description: "",
-        setCount: "",
-        cards_id: [],
-        setYear: ""
-      },
-      {
-        id: "1234563",
-        setName: "Silver Tempest",
-        imageUrl: "https://pokemonsetimages.s3.us-west-1.amazonaws.com/Sets/Set_Images/503.png",
-        language: "",
-        releaseDate: "",
-        description: "",
-        setCount: "",
-        cards_id: [],
-        setYear: ""
-      },
-      {
-        id: "129983",
-        setName: "Silver Tempest",
-        imageUrl: "https://pokemonsetimages.s3.us-west-1.amazonaws.com/Sets/Set_Images/503.png",
-        language: "",
-        releaseDate: "",
-        description: "",
-        setCount: "",
-        cards_id: [],
-        setYear: ""
-      },
-
-    ]
-  )
+  const [allSets, setAllSets] = useState(tcgSets)
 
 
 

@@ -2,70 +2,12 @@ import { Link } from "react-router-dom";
 import styles from "./tcgSetInfo.module.css"
 import SearchItemCard from "../../components/SearchItemCard";
 import { useState } from "react";
+import { setCards } from "../DummyData";
 
 
 function TcgSetInfo() {
 
-    const [allItems, setAllItems] = useState(
-      [
-        {
-          cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
-          cardName: "Mario Pikachu #294",
-          setId: "1235451",
-          itemType: "tcg",
-          setName: "Silver Tempest",
-          cardId: "12341q2"
-        },
-        {
-          cardImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3599837-01.jpg",
-          cardName: "Mario Pikachu #294",
-          setId: "1235451",
-          itemType: "tcg",
-          setName: "Silver Tempest",
-          cardId: "12341q2"
-        },
-        {
-          cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
-          cardName: "Mario Pikachu #294",
-          setId: "1235451",
-          itemType: "tcg",
-          setName: "Silver Tempest",
-          cardId: "12341q2"
-        },
-        {
-          cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
-          cardName: "Mario Pikachu #294",
-          setId: "1235451",
-          itemType: "tcg",
-          setName: "Silver Tempest",
-          cardId: "12341q2"
-        },
-        {
-          cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
-          cardName: "Mario Pikachu #294",
-          setId: "1235451",
-          itemType: "tcg",
-          setName: "Silver Tempest",
-          cardId: "12341q2"
-        },
-        {
-          cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
-          cardName: "Mario Pikachu #294",
-          setId: "1235451",
-          itemType: "tcg",
-          setName: "Silver Tempest",
-          cardId: "12341q2"
-        },
-        {
-          cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
-          cardName: "Mario Pikachu #294",
-          setId: "1235451",
-          itemType: "tcg",
-          setName: "Silver Tempest",
-          cardId: "12341q2"
-        },
-      ]
-    )
+    const [allItems, setAllItems] = useState(setCards)
 
 
 

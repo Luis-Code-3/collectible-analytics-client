@@ -2,62 +2,12 @@ import { Link } from "react-router-dom";
 import styles from "./videoConsoleInfo.module.css"
 import SearchItemCard from "../../components/SearchItemCard";
 import { useState } from "react";
+import { consoleGames } from "../DummyData";
 
 
 function VideoConsoleInfo() {
 
-  const [allGames, setAllGames] = useState(
-    [
-      {
-        gameId: "1234",
-        gameName: "Call of Duty",
-        gameImage: "https://m.media-amazon.com/images/I/71idyRpbl-L.jpg",
-        consoleId: "3252131",
-        itemType: "game",
-        consoleName: "Playstation 3"
-      },
-      {
-        gameId: "1234",
-        gameName: "Call of Duty",
-        gameImage: "https://commondatastorage.googleapis.com/images.pricecharting.com/1f0320c6cb2c29de18a77a73547737025b20aea716b9a05dd4dff9e779d369dd/240.jpg",
-        consoleId: "3252131",
-        itemType: "game",
-        consoleName: "Playstation 3"
-      },
-      {
-        gameId: "1234",
-        gameName: "Call of Duty",
-        gameImage: "https://www.lukiegames.com/assets/images/Xbox-360/x360_call_of_duty_black_ops_3_p_8c9ht3.jpg",
-        consoleId: "3252131",
-        itemType: "game",
-        consoleName: "Playstation 3"
-      },
-      {
-        gameId: "1234",
-        gameName: "Call of Duty",
-        gameImage: "https://m.media-amazon.com/images/I/71idyRpbl-L.jpg",
-        consoleId: "3252131",
-        itemType: "game",
-        consoleName: "Playstation 3"
-      },
-      {
-        gameId: "1234",
-        gameName: "Call of Duty",
-        gameImage: "https://www.lukiegames.com/assets/images/Xbox-360/x360_call_of_duty_black_ops_3_p_8c9ht3.jpg",
-        consoleId: "3252131",
-        itemType: "game",
-        consoleName: "Playstation 3"
-      },
-      {
-        gameId: "1234",
-        gameName: "Call of Duty",
-        gameImage: "https://m.media-amazon.com/images/I/71idyRpbl-L.jpg",
-        consoleId: "3252131",
-        itemType: "game",
-        consoleName: "Playstation 3"
-      },
-    ]
-  );
+  const [allGames, setAllGames] = useState(consoleGames);
 
 
     return (

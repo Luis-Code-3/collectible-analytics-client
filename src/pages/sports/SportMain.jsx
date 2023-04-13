@@ -3,56 +3,12 @@ import headerImage from "../../images/p2.jpg"
 import styles from "./sportMain.module.css"
 import { useState } from "react";
 import SportPlayerCard from "../../components/SportPlayerCard";
+import { players } from "../DummyData";
 
 
 function SportMain() {
 
-  const [allPlayers, setAllPlayers] = useState(
-    [
-      {
-        playerName: "Michael Jordan",
-        playerId: "12452",
-        playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
-        sport: "Basketball"
-      },
-      {
-        playerName: "Michael Jordan",
-        playerId: "12452",
-        playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
-        sport: "Basketball"
-      },
-      {
-        playerName: "Michael Jordan",
-        playerId: "12452",
-        playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
-        sport: "Basketball"
-      },
-      {
-        playerName: "Michael Jordan",
-        playerId: "12452",
-        playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
-        sport: "Basketball"
-      },
-      {
-        playerName: "Michael Jordan",
-        playerId: "12452",
-        playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
-        sport: "Basketball"
-      },
-      {
-        playerName: "Michael Jordan",
-        playerId: "12452",
-        playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
-        sport: "Basketball"
-      },
-      {
-        playerName: "Michael Jordan",
-        playerId: "12452",
-        playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
-        sport: "Basketball"
-      },
-    ]
-  )
+  const [allPlayers, setAllPlayers] = useState(players)
 
 
 

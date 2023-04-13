@@ -2,62 +2,12 @@ import { Link } from "react-router-dom";
 import styles from "./mangaVolumeInfo.module.css";
 import { useState } from "react";
 import SearchItemCard from "../../components/SearchItemCard";
+import { volumeItems } from "../DummyData";
 
 
 function MangaVolumeInfo() {
 
-  const [allItems, setAllItems] = useState(
-    [
-      {
-        itemName: "Box Set #1",
-        itemType: "manga",
-        itemId: "12453",
-        itemImage: "https://comicvine.gamespot.com/a/uploads/scale_medium/13/136525/5793686-43.png",
-        volumeName: "Attack on Titan",
-        volumeId: "234556"
-      },
-      {
-        itemName: "Box Set #1",
-        itemType: "manga",
-        itemId: "12453",
-        itemImage: "https://comicvine.gamespot.com/a/uploads/scale_medium/13/136525/5793686-43.png",
-        volumeName: "Attack on Titan",
-        volumeId: "234556"
-      },
-      {
-        itemName: "Box Set #1",
-        itemType: "manga",
-        itemId: "12453",
-        itemImage: "https://comicvine.gamespot.com/a/uploads/scale_medium/13/136525/5793686-43.png",
-        volumeName: "Attack on Titan",
-        volumeId: "234556"
-      },
-      {
-        itemName: "Box Set #1",
-        itemType: "manga",
-        itemId: "12453",
-        itemImage: "https://comicvine.gamespot.com/a/uploads/scale_medium/13/136525/5793686-43.png",
-        volumeName: "Attack on Titan",
-        volumeId: "234556"
-      },
-      {
-        itemName: "Box Set #1",
-        itemType: "manga",
-        itemId: "12453",
-        itemImage: "https://comicvine.gamespot.com/a/uploads/scale_medium/13/136525/5793686-43.png",
-        volumeName: "Attack on Titan",
-        volumeId: "234556"
-      },
-      {
-        itemName: "Box Set #1",
-        itemType: "manga",
-        itemId: "12453",
-        itemImage: "https://comicvine.gamespot.com/a/uploads/scale_medium/13/136525/5793686-43.png",
-        volumeName: "Attack on Titan",
-        volumeId: "234556"
-      },
-    ]
-  );
+  const [allItems, setAllItems] = useState(volumeItems);
 
 
 

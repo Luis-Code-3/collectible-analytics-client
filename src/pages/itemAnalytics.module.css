@@ -38,17 +38,21 @@
 }
 
 .gradePop select {
-    padding: 5% 13%;
+    padding: 5% 0%;
+    width: 51.5%;
     border: none;
     border-radius: 5px;
     background-color: #192a2f;
     color: white;
     font-size: 120%;
     font-weight: 700;
+    text-align: center;
 }
 
 .gradePop div {
-    padding: 5% 15%;
+    padding: 5% 0%;
+    width: 45%;
+    text-align: center;
     border: none;
     border-radius: 5px;
     background-color: #192a2f;
@@ -87,7 +91,15 @@
 
 .nameBox p {
     font-weight: 600;
+}
+
+.setName {
     color: #A3A6A8;
+}
+
+.cardType {
+    font-size: 90%;
+    color: #0daba0;
 }
 
 .extraBox {
@@ -199,12 +211,22 @@
     padding: 1% 5%;
     background-color: #1c2f36;
     border-right: 2px solid #0daba0;
+    cursor: pointer;
+}
+
+.salePrice:hover {
+    background-color: #283e46;
 }
 
 .marketplace {
     padding: 1% 5%;
     background-color: #1c2f36;
     border-right: 2px solid #0daba0;
+    cursor: pointer;
+}
+
+.marketplace:hover {
+    background-color: #283e46;
 }
 
 .report {
@@ -216,6 +238,11 @@
     padding: 1% 4%;
     background-color: #1c2f36;
     border-right: 2px solid #0daba0;
+    cursor: pointer;
+}
+
+.soldDate:hover {
+    background-color: #283e46;
 }
 
 .listingTitle {
@@ -224,6 +251,11 @@
     border-right: 2px solid #0daba0;
     flex-grow: 1;
     text-align: center;
+    cursor: pointer;
+}
+
+.listingTitle:hover {
+    background-color: #283e46;
 }
 
 .transactionComplete {

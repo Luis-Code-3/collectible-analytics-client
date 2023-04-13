@@ -2,42 +2,12 @@ import { Link } from "react-router-dom";
 import styles from "./videoMain.module.css"
 import headerImage from "../../images/p4.png"
 import { useState } from "react";
+import { consoles } from "../DummyData";
 
 
 function VideoMain() {
 
-    const [allConsoles, setAllConsoles] = useState(
-      [
-        {
-          consoleName: "Playstation 3",
-          consoleId: "12453"
-        },
-        {
-          consoleName: "Playstation 4",
-          consoleId: "12453"
-        },
-        {
-          consoleName: "Xbox 360",
-          consoleId: "12453"
-        },
-        {
-          consoleName: "GameBoy Advance",
-          consoleId: "12453"
-        },
-        {
-          consoleName: "Nintendo 64",
-          consoleId: "12453"
-        },
-        {
-          consoleName: "Xbox One",
-          consoleId: "12453"
-        },
-        {
-          consoleName: "Playstation 2",
-          consoleId: "12453"
-        },
-      ]
-    );
+    const [allConsoles, setAllConsoles] = useState(consoles);
 
 
 
