@@ -197,18 +197,20 @@ export let tranData = [
 export let consoleGames = [
     {
         gameId: "1234",
-        gameName: "Call of Duty",
+        gameName: "Zall of Duty",
         gameImage: "https://m.media-amazon.com/images/I/71idyRpbl-L.jpg",
         consoleId: "3252131",
         itemType: "game",
+        gameYear: 1992,
         consoleName: "Playstation 3"
       },
       {
         gameId: "1234",
-        gameName: "Call of Duty",
+        gameName: "Dall of Duty",
         gameImage: "https://commondatastorage.googleapis.com/images.pricecharting.com/1f0320c6cb2c29de18a77a73547737025b20aea716b9a05dd4dff9e779d369dd/240.jpg",
         consoleId: "3252131",
         itemType: "game",
+        gameYear: 1999,
         consoleName: "Playstation 3"
       },
       {
@@ -217,14 +219,16 @@ export let consoleGames = [
         gameImage: "https://www.lukiegames.com/assets/images/Xbox-360/x360_call_of_duty_black_ops_3_p_8c9ht3.jpg",
         consoleId: "3252131",
         itemType: "game",
+        gameYear: 2010,
         consoleName: "Playstation 3"
       },
       {
         gameId: "1234",
-        gameName: "Call of Duty",
+        gameName: "Aall of Duty",
         gameImage: "https://m.media-amazon.com/images/I/71idyRpbl-L.jpg",
         consoleId: "3252131",
         itemType: "game",
+        gameYear: 1998,
         consoleName: "Playstation 3"
       },
       {
@@ -233,14 +237,16 @@ export let consoleGames = [
         gameImage: "https://www.lukiegames.com/assets/images/Xbox-360/x360_call_of_duty_black_ops_3_p_8c9ht3.jpg",
         consoleId: "3252131",
         itemType: "game",
+        gameYear: 2018,
         consoleName: "Playstation 3"
       },
       {
         gameId: "1234",
-        gameName: "Call of Duty",
+        gameName: "Qall of Duty",
         gameImage: "https://m.media-amazon.com/images/I/71idyRpbl-L.jpg",
         consoleId: "3252131",
         itemType: "game",
+        gameYear: 2005,
         consoleName: "Playstation 3"
       },
 ];
@@ -248,30 +254,37 @@ export let consoleGames = [
 export let consoles = [
     {
         consoleName: "Playstation 3",
+        consoleCompany: "xbox",
         consoleId: "12453"
       },
       {
         consoleName: "Playstation 4",
+        consoleCompany: "sega",
         consoleId: "12453"
       },
       {
         consoleName: "Xbox 360",
+        consoleCompany: "atari",
         consoleId: "12453"
       },
       {
         consoleName: "GameBoy Advance",
+        consoleCompany: "playstation",
         consoleId: "12453"
       },
       {
         consoleName: "Nintendo 64",
+        consoleCompany: "nintendo",
         consoleId: "12453"
       },
       {
         consoleName: "Xbox One",
+        consoleCompany: "sega",
         consoleId: "12453"
       },
       {
         consoleName: "Playstation 2",
+        consoleCompany: "xbox",
         consoleId: "12453"
       },
 ];
@@ -279,9 +292,9 @@ export let consoles = [
 export let tcgSets = [
     {
         id: "123",
-        setName: "Silver Tempest",
+        setName: "Zilver Tempest",
         imageUrl: "https://pokemonsetimages.s3.us-west-1.amazonaws.com/Sets/Set_Images/503.png",
-        language: "",
+        language: "japanese",
         releaseDate: "",
         description: "",
         setCount: "",
@@ -292,7 +305,7 @@ export let tcgSets = [
         id: "12332",
         setName: "Evolving Skies",
         imageUrl: "https://pokemonsetimages.s3.us-west-1.amazonaws.com/Sets/Set_Images/503.png",
-        language: "",
+        language: "japanese",
         releaseDate: "",
         description: "",
         setCount: "",
@@ -301,9 +314,9 @@ export let tcgSets = [
       },
       {
         id: "1344",
-        setName: "Silver Tempest",
+        setName: "Qilver Tempest",
         imageUrl: "https://pokemonsetimages.s3.us-west-1.amazonaws.com/Sets/Set_Images/503.png",
-        language: "",
+        language: "english",
         releaseDate: "",
         description: "",
         setCount: "",
@@ -312,9 +325,9 @@ export let tcgSets = [
       },
       {
         id: "12343",
-        setName: "Silver Tempest",
+        setName: "Ailver Tempest",
         imageUrl: "https://pokemonsetimages.s3.us-west-1.amazonaws.com/Sets/Set_Images/503.png",
-        language: "",
+        language: "english",
         releaseDate: "",
         description: "",
         setCount: "",
@@ -323,9 +336,9 @@ export let tcgSets = [
       },
       {
         id: "1234563",
-        setName: "Silver Tempest",
+        setName: "Iilver Tempest",
         imageUrl: "https://pokemonsetimages.s3.us-west-1.amazonaws.com/Sets/Set_Images/503.png",
-        language: "",
+        language: "english",
         releaseDate: "",
         description: "",
         setCount: "",
@@ -336,7 +349,7 @@ export let tcgSets = [
         id: "129983",
         setName: "Silver Tempest",
         imageUrl: "https://pokemonsetimages.s3.us-west-1.amazonaws.com/Sets/Set_Images/503.png",
-        language: "",
+        language: "english",
         releaseDate: "",
         description: "",
         setCount: "",
@@ -348,18 +361,20 @@ export let tcgSets = [
 export let setCards = [
     {
         cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
-        cardName: "Mario Pikachu #294",
+        cardName: "Zario Pikachu #294",
         setId: "1235451",
         itemType: "tcg",
         setName: "Silver Tempest",
+        cardNumber: 12,
         cardId: "12341q2"
       },
       {
         cardImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3599837-01.jpg",
-        cardName: "Mario Pikachu #294",
+        cardName: "Bario Pikachu #294",
         setId: "1235451",
         itemType: "tcg",
         setName: "Silver Tempest",
+        cardNumber: 42,
         cardId: "12341q2"
       },
       {
@@ -368,6 +383,25 @@ export let setCards = [
         setId: "1235451",
         itemType: "tcg",
         setName: "Silver Tempest",
+        cardNumber: 34,
+        cardId: "12341q2"
+      },
+      {
+        cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
+        cardName: "Yario Pikachu #294",
+        setId: "1235451",
+        itemType: "tcg",
+        setName: "Silver Tempest",
+        cardNumber: 15,
+        cardId: "12341q2"
+      },
+      {
+        cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
+        cardName: "Eario Pikachu #294",
+        setId: "1235451",
+        itemType: "tcg",
+        setName: "Silver Tempest",
+        cardNumber: 3,
         cardId: "12341q2"
       },
       {
@@ -376,30 +410,16 @@ export let setCards = [
         setId: "1235451",
         itemType: "tcg",
         setName: "Silver Tempest",
+        cardNumber: 87,
         cardId: "12341q2"
       },
       {
         cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
-        cardName: "Mario Pikachu #294",
+        cardName: "Jario Pikachu #294",
         setId: "1235451",
         itemType: "tcg",
         setName: "Silver Tempest",
-        cardId: "12341q2"
-      },
-      {
-        cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
-        cardName: "Mario Pikachu #294",
-        setId: "1235451",
-        itemType: "tcg",
-        setName: "Silver Tempest",
-        cardId: "12341q2"
-      },
-      {
-        cardImage: "https://archives.bulbagarden.net/media/upload/5/52/MarioPikachuXYPromo294.jpg",
-        cardName: "Mario Pikachu #294",
-        setId: "1235451",
-        itemType: "tcg",
-        setName: "Silver Tempest",
+        cardNumber: 93,
         cardId: "12341q2"
       },
 ];
@@ -415,37 +435,37 @@ export let players = [
         playerName: "Michael Jordan",
         playerId: "12452",
         playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
-        sport: "Basketball"
+        sport: "Football"
       },
       {
         playerName: "Michael Jordan",
         playerId: "12452",
         playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
-        sport: "Basketball"
+        sport: "Football"
       },
       {
         playerName: "Michael Jordan",
         playerId: "12452",
         playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
-        sport: "Basketball"
+        sport: "Baseball"
       },
       {
         playerName: "Michael Jordan",
         playerId: "12452",
         playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
-        sport: "Basketball"
+        sport: "Hockey"
       },
       {
         playerName: "Michael Jordan",
         playerId: "12452",
         playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
-        sport: "Basketball"
+        sport: "Soccer"
       },
       {
         playerName: "Michael Jordan",
         playerId: "12452",
         playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
-        sport: "Basketball"
+        sport: "Soccer"
       },
 ];
 
@@ -456,6 +476,7 @@ export let playerItems = [
         cardName: "Michael Jordan #57",
         cardType: "Refractor",
         setName: "1986 Fleer",
+        cardYear: 1990,
         itemType: "sports"
       },
       {
@@ -464,6 +485,7 @@ export let playerItems = [
         cardName: "Michael Jordan #57",
         cardType: "Refractor",
         setName: "1986 Fleer",
+        cardYear: 1993,
         itemType: "sports"
       },
       {
@@ -472,6 +494,7 @@ export let playerItems = [
         cardName: "Michael Jordan #57",
         cardType: "Refractor",
         setName: "1986 Fleer",
+        cardYear: 1997,
         itemType: "sports"
       },
       {
@@ -480,6 +503,7 @@ export let playerItems = [
         cardName: "Michael Jordan #57",
         cardType: "Refractor",
         setName: "1986 Fleer",
+        cardYear: 1999,
         itemType: "sports"
       },
       {
@@ -488,6 +512,16 @@ export let playerItems = [
         cardName: "Michael Jordan #57",
         cardType: "Refractor",
         setName: "1986 Fleer",
+        cardYear: 2007,
+        itemType: "sports"
+      },
+      {
+        cardImage: "https://sportscardinvestor.s3.amazonaws.com/prod/372_76_5-L",
+        cardId: "252123",
+        cardName: "Zichael Jordan #57",
+        cardType: "Refractor",
+        setName: "1986 Fleer",
+        cardYear: 2017,
         itemType: "sports"
       },
       {
@@ -496,14 +530,7 @@ export let playerItems = [
         cardName: "Michael Jordan #57",
         cardType: "Refractor",
         setName: "1986 Fleer",
-        itemType: "sports"
-      },
-      {
-        cardImage: "https://sportscardinvestor.s3.amazonaws.com/prod/372_76_5-L",
-        cardId: "252123",
-        cardName: "Michael Jordan #57",
-        cardType: "Refractor",
-        setName: "1986 Fleer",
+        cardYear: 2022,
         itemType: "sports"
       },
 ];
@@ -512,31 +539,37 @@ export let mangaVolumes = [
     {
         volumeName: "Attack On Titan",
         volumeId: "12453",
+        volumeType: "manga",
         volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3599837-01.jpg"
       },
       {
         volumeName: "Demon Slayer",
         volumeId: "12453",
+        volumeType: "magazine",
         volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/6497309-01.jpg"
       },
       {
         volumeName: "Attack On Titan",
         volumeId: "12453",
+        volumeType: "manga",
         volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3599837-01.jpg"
       },
       {
         volumeName: "Demon Slayer",
         volumeId: "12453",
+        volumeType: "magazine",
         volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/6497309-01.jpg"
       },
       {
         volumeName: "Attack On Titan",
         volumeId: "12453",
+        volumeType: "manga",
         volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3599837-01.jpg"
       },
       {
         volumeName: "Demon Slayer",
         volumeId: "12453",
+        volumeType: "manga",
         volumeImage: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/6497309-01.jpg"
       },
 ];
@@ -559,7 +592,7 @@ export let volumeItems = [
         volumeId: "234556"
       },
       {
-        itemName: "Box Set #1",
+        itemName: "Zox Set #1",
         itemType: "manga",
         itemId: "12453",
         itemImage: "https://comicvine.gamespot.com/a/uploads/scale_medium/13/136525/5793686-43.png",

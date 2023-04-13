@@ -7,7 +7,34 @@ import { setCards } from "../DummyData";
 
 function TcgSetInfo() {
 
-    const [allItems, setAllItems] = useState(setCards)
+    const [allItems, setAllItems] = useState(setCards);
+    const [filteredItems, setFilteredItems] = useState(allItems);
+
+    
+    const handleSortOrder = (event) => {
+      let newArr = [...allItems];
+      if(event.target.value === "Alphabetical") {
+        newArr.sort((a,b) => {
+          return a.cardName.localeCompare(b.cardName);
+        })
+      } else if (event.target.value === "Reverse Alphabetical") {
+        newArr.sort((a,b) => {
+          return b.cardName.localeCompare(a.cardName);
+        })
+      } else if(event.target.value === "Card # High - Low") {
+        newArr.sort((a,b) => {
+          return b.cardNumber - a.cardNumber;
+        })
+      } else if (event.target.value === "Card # Low - High") {
+        newArr.sort((a,b) => {
+          return a.cardNumber - b.cardNumber;
+        })
+      }
+
+
+      setAllItems(newArr)
+    }
+
 
 
 
@@ -28,7 +55,7 @@ function TcgSetInfo() {
         </div>
 
         <div className={styles.middleDiv}>
-              <select>
+              <select onChange={handleSortOrder}>
                 <option disabled selected></option>
                 <option>Alphabetical</option>
                 <option>Reverse Alphabetical</option>

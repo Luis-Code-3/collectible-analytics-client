@@ -8,6 +8,24 @@ import { volumeItems } from "../DummyData";
 function MangaVolumeInfo() {
 
   const [allItems, setAllItems] = useState(volumeItems);
+  const [filteredItems, setFilteredItems] = useState(allItems);
+
+    
+    const handleSortOrder = (event) => {
+      let newArr = [...allItems];
+      if(event.target.value === "Alphabetical") {
+        newArr.sort((a,b) => {
+          return a.itemName.localeCompare(b.itemName);
+        })
+      } else if (event.target.value === "Reverse Alphabetical") {
+        newArr.sort((a,b) => {
+          return b.itemName.localeCompare(a.itemName);
+        })
+      }
+
+
+      setAllItems(newArr)
+    }
 
 
 
@@ -29,12 +47,10 @@ function MangaVolumeInfo() {
         </div>
 
         <div className={styles.middleDiv}>
-              <select>
+              <select onChange={handleSortOrder}>
                 <option disabled selected></option>
                 <option>Alphabetical</option>
                 <option>Reverse Alphabetical</option>
-                <option>Card # High - Low</option>
-                <option>Card # Low - High</option>
               </select>
               <input type='text'></input>
               <button>FILTER</button>

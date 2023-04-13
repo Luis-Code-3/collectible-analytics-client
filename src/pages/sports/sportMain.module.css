@@ -32,22 +32,26 @@
 .buttonBox {
     width: 75%;
     display: flex;
-    gap: 2.5%;
+    flex-wrap: wrap;
+    gap: 2%;
+    margin-bottom: -1%;
 }
 
 .buttonBox button {
     border: none;
     color: white;
-    background-color: #39957A;
-    font-size: 110%;
+    background-color: #39957a;
+    font-size: 100%;
     font-weight: 700;
-    padding: 3% 8%;
+    padding: 2% 0%;
+    width: 30%;
     border-radius: 10px;
+    margin-bottom: 2%;
     transition: all .1s linear;
 }
 
 .buttonBox button:hover {
-    background-color: #317863;
+    background-color: #33826a;
     cursor: pointer;
 }
 

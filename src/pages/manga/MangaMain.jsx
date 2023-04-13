@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./mangaMain.module.css"
 import headerImage from "../../images/p3.png"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MangaVolumeCard from "../../components/MangaVolumeCard";
 import { mangaVolumes } from "../DummyData";
 
@@ -9,6 +9,37 @@ import { mangaVolumes } from "../DummyData";
 function MangaMain() {
   
     const [allVolumes, setAllVolumes] = useState(mangaVolumes)
+    const [sortedVolumes, setSortedVolumes] = useState(allVolumes)
+    const [currentType, setCurrentType] = useState('');
+
+    const sortManga = () => {
+      if(currentType === 'manga') {
+        return;
+      } else {
+        let newArr = [...allVolumes].filter((volume) => {
+          return volume.volumeType === "manga"
+        })
+        setSortedVolumes(newArr);
+        setCurrentType('manga')
+      }
+    }
+
+    const sortMagazine = () => {
+      if(currentType === 'magazine') {
+        return;
+      } else {
+        let newArr = [...allVolumes].filter((volume) => {
+          return volume.volumeType === "magazine"
+        })
+        setSortedVolumes(newArr);
+        setCurrentType('magazine')
+      }
+    }
+
+
+    useEffect(() => {
+      
+    }, [])
 
 
     return (
@@ -17,8 +48,8 @@ function MangaMain() {
           <div className={styles.textNav}>
             <h1><span>MANGA</span> VOLUMES</h1>
             <div className={styles.buttonBox}>
-              <button>MANGA</button>
-              <button>MAGAZINE</button>
+              <button onClick={sortManga}>MANGA</button>
+              <button onClick={sortMagazine}>MAGAZINE</button>
             </div>
             <div className={styles.filterBox}>
               <input type='text'></input>
@@ -35,9 +66,9 @@ function MangaMain() {
 
         <div className={styles.bottomDiv}>
           {
-            allVolumes ?
+            sortedVolumes ?
             <>
-              {allVolumes.map((volume) => {
+              {sortedVolumes.map((volume) => {
                 return (
                   <MangaVolumeCard volumeImage = {volume.volumeImage} volumeName = {volume.volumeName} volumeId = {volume.volumeId}/>
                 )

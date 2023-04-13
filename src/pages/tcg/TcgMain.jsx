@@ -2,13 +2,48 @@ import { Link } from "react-router-dom";
 import styles from "./tcgMain.module.css"
 import headerImage from "../../images/p1.jpg"
 import TcgSetCard from "../../components/TcgSetCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { tcgSets } from "../DummyData";
 
 
 function TcgMain() {
 
   const [allSets, setAllSets] = useState(tcgSets)
+  const [sortedSets, setSortedSets] = useState()
+  const [currentLanguage, setCurrentLanguage] = useState('english');
+
+  const sortEnglish = () => {
+    if(currentLanguage === 'english') {
+      return;
+    } else {
+      let newArr = [...allSets].filter((set) => {
+        return set.language === "english"
+      })
+      setSortedSets(newArr);
+      setCurrentLanguage('english')
+    }
+  }
+
+  const sortJapanese = () => {
+    if(currentLanguage === 'japanese') {
+      return;
+    } else {
+      let newArr = [...allSets].filter((set) => {
+        return set.language === "japanese"
+      })
+      setSortedSets(newArr);
+      setCurrentLanguage('japanese')
+    }
+  }
+
+
+  useEffect(() => {
+    let newArr = [...allSets].filter((set) => {
+      return set.language === "english"
+    })
+
+    setSortedSets(newArr);
+  }, [])
 
 
 
@@ -18,8 +53,8 @@ function TcgMain() {
           <div className={styles.textNav}>
             <h1><span>POKÉMON</span> SETS</h1>
             <div className={styles.buttonBox}>
-              <button>ENGLISH</button>
-              <button>JAPANESE</button>
+              <button onClick={sortEnglish}>ENGLISH</button>
+              <button onClick={sortJapanese}>JAPANESE</button>
             </div>
             <div className={styles.filterBox}>
               <input type='text'></input>
@@ -36,9 +71,9 @@ function TcgMain() {
 
         <div className={styles.bottomDiv}>
           {
-            allSets ?
+            sortedSets ?
             <>
-              {allSets.map((set) => {
+              {sortedSets.map((set) => {
                 return (
                   <TcgSetCard setLogo = {set.imageUrl} setName = {set.setName} id = {set.id}/>
                 )

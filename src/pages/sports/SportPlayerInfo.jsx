@@ -7,6 +7,23 @@ import { playerItems } from "../DummyData";
 function SportPlayerInfo() {
 
     const [allItems, setAllItems] = useState(playerItems)
+    const [filteredItems, setFilteredItems] = useState(allItems);
+
+    const handleSortOrder = (event) => {
+      let newArr = [...allItems];
+      if(event.target.value === "Most Recent") {
+        newArr.sort((a,b) => {
+          return b.cardYear - a.cardYear;
+        })
+      } else if(event.target.value === "Oldest") {
+        newArr.sort((a,b) => {
+          return a.cardYear - b.cardYear;
+        })
+      }
+
+
+      setAllItems(newArr)
+    }
 
 
 
@@ -25,12 +42,10 @@ function SportPlayerInfo() {
         </div>
 
         <div className={styles.middleDiv}>
-              <select>
+              <select onChange={handleSortOrder}>
                 <option disabled selected></option>
-                <option>Alphabetical</option>
-                <option>Reverse Alphabetical</option>
-                <option>Card # High - Low</option>
-                <option>Card # Low - High</option>
+                <option>Most Recent</option>
+                <option>Oldest</option>
               </select>
               <input type='text'></input>
               <button>FILTER</button>

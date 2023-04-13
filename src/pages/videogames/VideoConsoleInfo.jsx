@@ -8,6 +8,31 @@ import { consoleGames } from "../DummyData";
 function VideoConsoleInfo() {
 
   const [allGames, setAllGames] = useState(consoleGames);
+  const [filteredGames, setFilteredGames] = useState(allGames);
+
+  const handleSortOrder = (event) => {
+    let newArr = [...allGames];
+    if(event.target.value === "Alphabetical") {
+      newArr.sort((a,b) => {
+        return a.gameName.localeCompare(b.gameName);
+      })
+    } else if (event.target.value === "Reverse Alphabetical") {
+      newArr.sort((a,b) => {
+        return b.gameName.localeCompare(a.gameName);
+      })
+    } else if(event.target.value === "Most Recent") {
+      newArr.sort((a,b) => {
+        return b.gameYear - a.gameYear;
+      })
+    } else if(event.target.value === "Oldest") {
+      newArr.sort((a,b) => {
+        return a.gameYear - b.gameYear;
+      })
+    }
+
+
+    setAllGames(newArr)
+  }
 
 
     return (
@@ -28,12 +53,12 @@ function VideoConsoleInfo() {
         </div>
 
         <div className={styles.middleDiv}>
-              <select>
+              <select onChange={handleSortOrder}>
                 <option disabled selected></option>
                 <option>Alphabetical</option>
                 <option>Reverse Alphabetical</option>
-                <option>Card # High - Low</option>
-                <option>Card # Low - High</option>
+                <option>Most Recent</option>
+                <option>Oldest</option>
               </select>
               <input type='text'></input>
               <button>FILTER</button>
