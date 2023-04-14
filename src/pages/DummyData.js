@@ -432,7 +432,7 @@ export let players = [
         sport: "Basketball"
       },
       {
-        playerName: "Michael Jordan",
+        playerName: "Michael Pippen",
         playerId: "12452",
         playerImage: "https://cdn.nba.com/manage/2021/08/michael-jordan-looks.jpg",
         sport: "Football"

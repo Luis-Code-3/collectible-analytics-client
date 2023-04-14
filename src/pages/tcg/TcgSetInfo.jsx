@@ -9,6 +9,7 @@ function TcgSetInfo() {
 
     const [allItems, setAllItems] = useState(setCards);
     const [filteredItems, setFilteredItems] = useState(allItems);
+    const [search, setSearch] = useState('');
 
     
     const handleSortOrder = (event) => {
@@ -62,7 +63,7 @@ function TcgSetInfo() {
                 <option>Card # High - Low</option>
                 <option>Card # Low - High</option>
               </select>
-              <input type='text'></input>
+              <input onChange={(e) => setSearch(e.target.value)} type='text'></input>
               <button>FILTER</button>
 
         </div>
@@ -71,7 +72,9 @@ function TcgSetInfo() {
           {
             allItems ?
             <>
-              {allItems.map((item) => {
+              {allItems.filter((item) => {
+                return search.toLowerCase() === '' ? item : item.cardName.toLowerCase().includes(search.toLowerCase())
+              }).map((item) => {
                 return (
                   <SearchItemCard cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} setId = {item.setId} itemType = {item.itemType}/>
                 )

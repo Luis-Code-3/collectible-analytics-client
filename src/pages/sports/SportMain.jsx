@@ -10,6 +10,7 @@ function SportMain() {
 
   const [allPlayers, setAllPlayers] = useState(players);
   const [sortedPlayers, setSortedPlayers] = useState(allPlayers);
+  const [search, setSearch] = useState('');
 
     const [currentType, setCurrentType] = useState('');
 
@@ -103,7 +104,7 @@ function SportMain() {
               <button onClick={sortHockey}>HOCKEY</button>
             </div>
             <div className={styles.filterBox}>
-              <input type='text'></input>
+              <input onChange={(e) => setSearch(e.target.value)} type='text'></input>
               <button>FILTER</button>
             </div>
 
@@ -119,7 +120,9 @@ function SportMain() {
           {
             sortedPlayers ?
             <>
-              {sortedPlayers.map((player) => {
+              {sortedPlayers.filter((player) => {
+                return search.toLowerCase() === '' ? player : player.playerName.toLowerCase().includes(search.toLowerCase())
+              }).map((player) => {
                 return (
                   <SportPlayerCard playerImage = {player.playerImage} playerName = {player.playerName} sport = {player.sport} playerId = {player.playerId}/>
                 )

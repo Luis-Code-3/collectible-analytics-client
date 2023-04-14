@@ -9,6 +9,7 @@ function MangaVolumeInfo() {
 
   const [allItems, setAllItems] = useState(volumeItems);
   const [filteredItems, setFilteredItems] = useState(allItems);
+  const [search, setSearch] = useState('');
 
     
     const handleSortOrder = (event) => {
@@ -52,7 +53,7 @@ function MangaVolumeInfo() {
                 <option>Alphabetical</option>
                 <option>Reverse Alphabetical</option>
               </select>
-              <input type='text'></input>
+              <input onChange={(e) => setSearch(e.target.value)} type='text'></input>
               <button>FILTER</button>
 
         </div>
@@ -61,7 +62,9 @@ function MangaVolumeInfo() {
           {
             allItems ?
             <>
-              {allItems.map((item) => {
+              {allItems.filter((item) => {
+                return search.toLowerCase() === '' ? item : item.itemName.toLowerCase().includes(search.toLowerCase())
+              }).map((item) => {
                 return (
                   <SearchItemCard cardImage = {item.itemImage} cardName = {item.itemName} cardId = {item.itemId} setName = {item.volumeName} itemType = {item.itemType} setId = {item.volumeId}/>
                 )

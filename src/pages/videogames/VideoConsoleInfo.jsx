@@ -9,6 +9,7 @@ function VideoConsoleInfo() {
 
   const [allGames, setAllGames] = useState(consoleGames);
   const [filteredGames, setFilteredGames] = useState(allGames);
+  const [search, setSearch] = useState('');
 
   const handleSortOrder = (event) => {
     let newArr = [...allGames];
@@ -60,7 +61,7 @@ function VideoConsoleInfo() {
                 <option>Most Recent</option>
                 <option>Oldest</option>
               </select>
-              <input type='text'></input>
+              <input onChange={(e) => setSearch(e.target.value)} type='text'></input>
               <button>FILTER</button>
 
         </div>
@@ -69,7 +70,9 @@ function VideoConsoleInfo() {
           {
             allGames ?
             <>
-              {allGames.map((game) => {
+              {allGames.filter((game) => {
+                return search.toLowerCase() === '' ? game : game.gameName.toLowerCase().includes(search.toLowerCase())
+              }).map((game) => {
                 return (
                   <SearchItemCard cardImage = {game.gameImage} cardName = {game.gameName} cardId = {game.gameId} setName = {game.consoleName} setId = {game.consoleId} itemType = {game.itemType}/>
                 )

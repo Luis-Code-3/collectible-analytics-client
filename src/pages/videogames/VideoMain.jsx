@@ -9,6 +9,7 @@ function VideoMain() {
 
     const [allConsoles, setAllConsoles] = useState(consoles);
     const [sortedConsoles, setSortedConsoles] = useState(allConsoles)
+    const [search, setSearch] = useState('');
     const [currentType, setCurrentType] = useState('');
 
     const sortAll = () => {
@@ -101,7 +102,7 @@ function VideoMain() {
               <button onClick={sortSega}>SEGA</button>
             </div>
             <div className={styles.filterBox}>
-              <input type='text'></input>
+              <input onChange={(e) => setSearch(e.target.value)} type='text'></input>
               <button>FILTER</button>
             </div>
 
@@ -117,7 +118,9 @@ function VideoMain() {
           {
             sortedConsoles ?
             <>
-              {sortedConsoles.map((console) => {
+              {sortedConsoles.filter((console) => {
+                return search.toLowerCase() === '' ? console : console.consoleName.toLowerCase().includes(search.toLowerCase())
+              }).map((console) => {
                 return (
                   <Link to={`/video-games/${console.consoleId}`}>{console.consoleName}</Link>
                 )

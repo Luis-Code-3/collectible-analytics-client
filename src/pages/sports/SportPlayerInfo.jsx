@@ -8,6 +8,7 @@ function SportPlayerInfo() {
 
     const [allItems, setAllItems] = useState(playerItems)
     const [filteredItems, setFilteredItems] = useState(allItems);
+    const [search,setSearch] = useState('');
 
     const handleSortOrder = (event) => {
       let newArr = [...allItems];
@@ -47,7 +48,7 @@ function SportPlayerInfo() {
                 <option>Most Recent</option>
                 <option>Oldest</option>
               </select>
-              <input type='text'></input>
+              <input onChange={(e) => setSearch(e.target.value)} type='text'></input>
               <button>FILTER</button>
 
         </div>
@@ -56,7 +57,9 @@ function SportPlayerInfo() {
           {
             allItems ?
             <>
-              {allItems.map((item) => {
+              {allItems.filter((item) => {
+                return search.toLowerCase() === '' ? item : item.cardName.toLowerCase().includes(search.toLowerCase())
+              }).map((item) => {
                 return (
                   <SearchItemSportCard cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} cardType = {item.cardType} itemType = {item.itemType}/>
                 )

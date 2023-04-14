@@ -8,8 +8,10 @@ import { tcgSets } from "../DummyData";
 
 function TcgMain() {
 
-  const [allSets, setAllSets] = useState(tcgSets)
-  const [sortedSets, setSortedSets] = useState()
+  const [allSets, setAllSets] = useState(tcgSets);
+  const [sortedSets, setSortedSets] = useState();
+  const [search, setSearch] = useState('');
+  
   const [currentLanguage, setCurrentLanguage] = useState('english');
 
   const sortEnglish = () => {
@@ -57,7 +59,7 @@ function TcgMain() {
               <button onClick={sortJapanese}>JAPANESE</button>
             </div>
             <div className={styles.filterBox}>
-              <input type='text'></input>
+              <input onChange={(e) => setSearch(e.target.value)} type='search'></input>
               <button>FILTER</button>
             </div>
 
@@ -73,7 +75,9 @@ function TcgMain() {
           {
             sortedSets ?
             <>
-              {sortedSets.map((set) => {
+              {sortedSets.filter((set) => {
+                return search.toLowerCase() === '' ? set : set.setName.toLowerCase().includes(search.toLowerCase())
+              }).map((set) => {
                 return (
                   <TcgSetCard setLogo = {set.imageUrl} setName = {set.setName} id = {set.id}/>
                 )
