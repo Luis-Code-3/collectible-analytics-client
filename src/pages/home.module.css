@@ -57,6 +57,9 @@
     width: 73.2%;
     height: 7vh;
     border-radius: 7px;
+    outline: none;
+    border: none;
+    color: black;
 }
 
 .searchAndBtn button {
@@ -67,6 +70,12 @@
     background-color: #0cb678;
     font-weight: 600;
     font-size: 100%;
+    transition: all .1s linear;
+    cursor: pointer;
+}
+
+.searchAndBtn button:hover {
+    background-color: #0c9d68;
 }
 
 .topSecOneRight {

@@ -62,13 +62,6 @@ export let collectionItems = [
 
 export let searchItems = [
     {
-        itemType: "manga",
-        itemName: "Box Set #1",
-        itemId: "12453",
-        itemImage: "https://comicvine.gamespot.com/a/uploads/scale_medium/13/136525/5793686-43.png",
-        volumeName: "Attack on Titan"
-    },
-    {
         itemType: "sport",
         cardImage: "https://sportscardinvestor.s3.amazonaws.com/prod/372_76_5-L",
         cardId: "252123",
@@ -84,20 +77,6 @@ export let searchItems = [
         cardId: "12341q2"
     },
     {
-        itemType: "game",
-        gameId: "1234",
-        gameName: "Call of Duty",
-        gameImage: "https://m.media-amazon.com/images/I/71idyRpbl-L.jpg",
-        consoleName: "Playstation 3"
-    },
-    {
-        itemType: "manga",
-        itemName: "Box Set #1",
-        itemId: "12453",
-        itemImage: "https://comicvine.gamespot.com/a/uploads/scale_medium/13/136525/5793686-43.png",
-        volumeName: "Attack on Titan"
-    },
-    {
         itemType: "sport",
         cardImage: "https://sportscardinvestor.s3.amazonaws.com/prod/372_76_5-L",
         cardId: "252123",
@@ -111,13 +90,6 @@ export let searchItems = [
         cardName: "Mario Pikachu #294",
         setName: "Silver Tempest",
         cardId: "12341q2"
-    },
-    {
-        itemType: "game",
-        gameId: "1234",
-        gameName: "Call of Duty",
-        gameImage: "https://m.media-amazon.com/images/I/71idyRpbl-L.jpg",
-        consoleName: "Playstation 3"
     },
 ];
 

@@ -1,15 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./home.module.css";
 import pokemonImage from "../images/p1.jpg"
 import sportImage from "../images/p2.jpg"
 import videoImage from "../images/p4.png"
 import mangaImage from "../images/p3.png"
 import charizard from "../images/charizard.png"
+import { useState, useRef } from "react";
 
 
 function Home() {
 
+    const inputRef = useRef();
+    const navigate = useNavigate();
 
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      const searchValue = inputRef.current.value;
+      navigate(`/search?q=${searchValue}`);
+    }
 
     return (
       <>
@@ -22,10 +30,10 @@ function Home() {
                   <div className={styles.rightbtn}>SELECT GENRE</div>
                 </div>
 
-                <div className={styles.searchAndBtn}>
-                  <div className={styles.searchBar}></div>
-                  <button>Go</button>
-                </div>
+                <form onSubmit={handleSubmit} className={styles.searchAndBtn}>
+                  <input type="text" ref={inputRef} className={styles.searchBar}></input>
+                  <button type="submit">Go</button>
+                </form>
 
               </div>
 

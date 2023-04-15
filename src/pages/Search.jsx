@@ -1,16 +1,23 @@
-import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import styles from "./search.module.css"
 import SearchItemCard from "../components/SearchItemCard";
 import SearchItemSportCard from "../components/SearchItemSportCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { searchItems } from "./DummyData";
 
 
 function Search() {
+    const [searchParams] = useSearchParams();
+    const [allItems, setAllItems] = useState([]);
 
-    const [allItems, setAllItems] = useState(searchItems)
-
-
+    useEffect(() => {
+        let query = searchParams.get('q');
+        //console.log(query);
+        let newArr = searchItems.filter((item) => {
+            return item.cardName.toLowerCase().includes(query.toLowerCase());
+        })
+        setAllItems(newArr)
+    }, [])
 
     return (
       <section className={styles.mainSection}>

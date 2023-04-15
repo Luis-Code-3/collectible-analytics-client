@@ -1,0 +1,59 @@
+.dropdown {
+    position:absolute;
+    top: 5rem;
+    right:11rem;
+    background-color: #0c2827;
+    width: 15%;
+    height: 23%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    z-index: 1;
+    border: 1px solid grey;
+}
+
+.fadeEnter {
+    opacity: 0;
+    visibility: hidden;
+    width: 13%;
+    height: 21%;
+}
+  
+.fadeEnterActive {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .07s ease, width .07s ease, height .07s ease;
+    width: 15%;
+    height: 23%;
+}
+
+.fadeExit {
+    opacity: 1;
+    visibility: visible;
+    width: 15%;
+    height: 23%;
+}
+  
+.fadeExitActive {
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 4s ease, width .07s ease, height .07s ease;
+    width: 13%;
+    height: 21%;
+}
+
+.dropdown li {
+    list-style: none;
+    color: white;
+    box-sizing: border-box;
+    padding: 5%;
+    border-radius: 8px;
+    transition: all .1s linear;
+    cursor: pointer;
+    margin: 0;
+}
+
+.dropdown li:hover {
+    background-color: #123231;
+}
