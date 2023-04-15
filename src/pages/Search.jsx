@@ -17,7 +17,7 @@ function Search() {
             return item.cardName.toLowerCase().includes(query.toLowerCase());
         })
         setAllItems(newArr)
-    }, [])
+    }, [searchParams])
 
     return (
       <section className={styles.mainSection}>

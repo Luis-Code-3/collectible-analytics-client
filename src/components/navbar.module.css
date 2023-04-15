@@ -17,11 +17,17 @@
     height: 30px;
 }
 
-.searchBar {
+.formSearch {
     flex-grow: 1;
+}
+
+.searchBar {
     background-color: rgb(246, 244, 244);
+    width: 100%;
     border-radius: 5px;
     height: 30px;
+    outline: none;
+    border: none;
 }
 
 .regLinks {
