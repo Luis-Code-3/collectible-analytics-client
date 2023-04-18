@@ -81,6 +81,14 @@ function VideoMain() {
       }
     }
 
+    let filteredItems;
+
+    const filterExecute = () => {
+      filteredItems = sortedConsoles.filter((console) => {
+        return search.toLowerCase() === '' ? console : console.consoleName.toLowerCase().includes(search.toLowerCase())
+      })
+    }
+
 
     useEffect(() => {
       
@@ -114,23 +122,25 @@ function VideoMain() {
           
         </div>
 
-        <div className={styles.bottomDiv}>
           {
             sortedConsoles ?
             <>
-              {sortedConsoles.filter((console) => {
-                return search.toLowerCase() === '' ? console : console.consoleName.toLowerCase().includes(search.toLowerCase())
-              }).map((console) => {
-                return (
-                  <Link to={`/video-games/${console.consoleId}`}>{console.consoleName}</Link>
-                )
-              })}
+              {filterExecute()}
+              {
+                filteredItems.length > 0 ?
+                <div className={styles.bottomDiv}>
+                    {filteredItems.map((console) => {
+                      return (
+                        <Link to={`/video-games/${console.consoleId}`}>{console.consoleName}</Link>
+                      )
+                    })}
+                </div>
+                : <div className={styles.notFound}><p>ITEM NOT FOUND...</p></div>
+              }
             </>
 
             : <h4> Loading...</h4>
           }
-          
-        </div>
   
       </section>
     );

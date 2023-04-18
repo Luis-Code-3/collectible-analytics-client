@@ -37,6 +37,14 @@ function MangaMain() {
       }
     }
 
+    let filteredItems;
+
+    const filterExecute = () => {
+      filteredItems = sortedVolumes.filter((volume) => {
+        return search.toLowerCase() === '' ? volume : volume.volumeName.toLowerCase().includes(search.toLowerCase())
+      })
+    }
+
 
     useEffect(() => {
       
@@ -65,22 +73,25 @@ function MangaMain() {
           
         </div>
 
-        <div className={styles.bottomDiv}>
           {
             sortedVolumes ?
             <>
-              {sortedVolumes.filter((volume) => {
-                return search.toLowerCase() === '' ? volume : volume.volumeName.toLowerCase().includes(search.toLowerCase())
-              }).map((volume) => {
-                return (
-                  <MangaVolumeCard volumeImage = {volume.volumeImage} volumeName = {volume.volumeName} volumeId = {volume.volumeId}/>
-                )
-              })}
+              {filterExecute()}
+              {
+                filteredItems.length > 0 ?
+                <div className={styles.bottomDiv}>
+                    {filteredItems.map((volume) => {
+                      return (
+                        <MangaVolumeCard volumeImage = {volume.volumeImage} volumeName = {volume.volumeName} volumeId = {volume.volumeId}/>
+                      )
+                    })}
+                </div>
+                : <div className={styles.notFound}><p>ITEM NOT FOUND...</p></div>
+              }
             </>
 
             : <h4> Loading...</h4>
           }
-        </div>
   
       </section>
     );

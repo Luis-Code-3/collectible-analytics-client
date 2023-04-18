@@ -8,7 +8,6 @@ import { volumeItems } from "../DummyData";
 function MangaVolumeInfo() {
 
   const [allItems, setAllItems] = useState(volumeItems);
-  const [filteredItems, setFilteredItems] = useState(allItems);
   const [search, setSearch] = useState('');
 
     
@@ -27,6 +26,14 @@ function MangaVolumeInfo() {
 
       setAllItems(newArr)
     }
+
+  let filteredItems;
+
+  const filterExecute = () => {
+    filteredItems = allItems.filter((item) => {
+      return search.toLowerCase() === '' ? item : item.itemName.toLowerCase().includes(search.toLowerCase())
+    })
+  }
 
 
 
@@ -58,22 +65,25 @@ function MangaVolumeInfo() {
 
         </div>
 
-        <div className={styles.bottomDiv}>
           {
             allItems ?
             <>
-              {allItems.filter((item) => {
-                return search.toLowerCase() === '' ? item : item.itemName.toLowerCase().includes(search.toLowerCase())
-              }).map((item) => {
-                return (
-                  <SearchItemCard cardImage = {item.itemImage} cardName = {item.itemName} cardId = {item.itemId} setName = {item.volumeName} itemType = {item.itemType} setId = {item.volumeId}/>
-                )
-              })}
+              {filterExecute()}
+              {
+                filteredItems.length > 0 ?
+                <div className={styles.bottomDiv}>
+                    {filteredItems.map((item) => {
+                      return (
+                        <SearchItemCard cardImage = {item.itemImage} cardName = {item.itemName} cardId = {item.itemId} setName = {item.volumeName} itemType = {item.itemType} setId = {item.volumeId}/>
+                      )
+                    })}
+                </div>
+                : <div className={styles.notFound}><p>ITEM NOT FOUND...</p></div>
+              }
             </>
 
             : <h4> Loading...</h4>
           }
-        </div>
   
       </section>
     );

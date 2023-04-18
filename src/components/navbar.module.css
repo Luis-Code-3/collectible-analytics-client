@@ -5,10 +5,11 @@
     gap: 1.7%;
     height: 10vh;
     overflow: hidden;
-    padding: 3%;
+    padding: 0% 7%;
     box-sizing: border-box;
     font-weight: 600;
-    background-color: #041c1b;
+    background-color: #0c1314;
+    border-bottom: 1px solid rgb(136, 136, 136, .2);
 }
 
 .logo {
@@ -17,17 +18,31 @@
     height: 30px;
 }
 
+.logoTitle {
+    font-size: 140%;
+    font-weight: 700;
+    color: rgb(255, 255, 255, .8);
+}
+
 .formSearch {
     flex-grow: 1;
+    /* border: 1px solid red; */
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .searchBar {
-    background-color: rgb(246, 244, 244);
+    background-color: rgb(246, 244, 244, .05);
     width: 100%;
     border-radius: 5px;
-    height: 30px;
     outline: none;
     border: none;
+    height: 60%;
+    color: rgb(255, 255, 255, .7);
+    font-size: 110%;
+    font-weight: 500;
+    padding-left: 2%;
 }
 
 .regLinks {
@@ -39,6 +54,26 @@
 .regLinks:hover {
     color: #F2F5F8;
     background-color: #0b3735;
+}
+
+.specDiv {
+    padding: .8% 1%;
+    border-radius: 8px;
+    transition: all .1s linear;
+    cursor: pointer;
+}
+
+.specDiv:hover {
+    color: #F2F5F8;
+    background-color: #0b3735;
+}
+
+.dropLink {
+    transition: all .1s linear;
+}
+
+.specDiv:hover .dropLink {
+    color: #F2F5F8;
 }
 
 .register {

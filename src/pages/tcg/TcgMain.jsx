@@ -11,7 +11,6 @@ function TcgMain() {
   const [allSets, setAllSets] = useState(tcgSets);
   const [sortedSets, setSortedSets] = useState();
   const [search, setSearch] = useState('');
-  
   const [currentLanguage, setCurrentLanguage] = useState('english');
 
   const sortEnglish = () => {
@@ -36,6 +35,14 @@ function TcgMain() {
       setSortedSets(newArr);
       setCurrentLanguage('japanese')
     }
+  }
+
+  let filteredItems;
+
+  const filterExecute = () => {
+    filteredItems = sortedSets.filter((set) => {
+      return search.toLowerCase() === '' ? set : set.setName.toLowerCase().includes(search.toLowerCase())
+    })
   }
 
 
@@ -71,23 +78,26 @@ function TcgMain() {
           
         </div>
 
-        <div className={styles.bottomDiv}>
           {
             sortedSets ?
             <>
-              {sortedSets.filter((set) => {
-                return search.toLowerCase() === '' ? set : set.setName.toLowerCase().includes(search.toLowerCase())
-              }).map((set) => {
-                return (
-                  <TcgSetCard setLogo = {set.imageUrl} setName = {set.setName} id = {set.id}/>
-                )
-              })}
+              {filterExecute()}
+              {
+                filteredItems.length > 0 ?
+                <div className={styles.bottomDiv}>
+                    {filteredItems.map((set) => {
+                    return (
+                      <TcgSetCard setLogo = {set.imageUrl} setName = {set.setName} id = {set.id}/>
+                    )
+                  })}
+                </div>
+                : <div className={styles.notFound}><p>ITEM NOT FOUND...</p></div>
+              }
             </>
 
             : <h4> Loading...</h4>
           }
           
-        </div>
   
       </section>
     );

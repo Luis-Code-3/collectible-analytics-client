@@ -8,7 +8,6 @@ import { consoleGames } from "../DummyData";
 function VideoConsoleInfo() {
 
   const [allGames, setAllGames] = useState(consoleGames);
-  const [filteredGames, setFilteredGames] = useState(allGames);
   const [search, setSearch] = useState('');
 
   const handleSortOrder = (event) => {
@@ -33,6 +32,14 @@ function VideoConsoleInfo() {
 
 
     setAllGames(newArr)
+  }
+
+  let filteredItems;
+
+  const filterExecute = () => {
+    filteredItems = allGames.filter((game) => {
+      return search.toLowerCase() === '' ? game : game.gameName.toLowerCase().includes(search.toLowerCase())
+    })
   }
 
 
@@ -66,22 +73,25 @@ function VideoConsoleInfo() {
 
         </div>
 
-        <div className={styles.bottomDiv}>
           {
             allGames ?
             <>
-              {allGames.filter((game) => {
-                return search.toLowerCase() === '' ? game : game.gameName.toLowerCase().includes(search.toLowerCase())
-              }).map((game) => {
-                return (
-                  <SearchItemCard cardImage = {game.gameImage} cardName = {game.gameName} cardId = {game.gameId} setName = {game.consoleName} setId = {game.consoleId} itemType = {game.itemType}/>
-                )
-              })}
+              {filterExecute()}
+              {
+                filteredItems.length > 0 ? 
+                <div className={styles.bottomDiv}>
+                    {filteredItems.map((game) => {
+                      return (
+                        <SearchItemCard cardImage = {game.gameImage} cardName = {game.gameName} cardId = {game.gameId} setName = {game.consoleName} setId = {game.consoleId} itemType = {game.itemType}/>
+                      )
+                    })}
+                </div>
+                : <div className={styles.notFound}><p>ITEM NOT FOUND...</p></div>
+              }
             </>
 
             : <h4> Loading...</h4>
           }
-        </div>
   
       </section>
     );

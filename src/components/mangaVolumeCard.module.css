@@ -3,6 +3,7 @@
     border-radius: 5px;
     overflow: hidden;
     height: 43vh;
+    /* width: 230px; */
     color: white;
     transition: all .1s linear;
     border: 1px solid #070b0b;

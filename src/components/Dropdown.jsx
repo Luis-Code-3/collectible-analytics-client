@@ -13,7 +13,7 @@ function Dropdown({currentView}) {
         nodeRef={nodeRef}
       in={currentView}
       unmountOnExit
-      timeout={500}
+      timeout={100}
       classNames={{
         enter: styles.fadeEnter,
         enterActive: styles.fadeEnterActive,

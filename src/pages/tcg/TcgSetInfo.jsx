@@ -8,7 +8,6 @@ import { setCards } from "../DummyData";
 function TcgSetInfo() {
 
     const [allItems, setAllItems] = useState(setCards);
-    const [filteredItems, setFilteredItems] = useState(allItems);
     const [search, setSearch] = useState('');
 
     
@@ -34,6 +33,14 @@ function TcgSetInfo() {
 
 
       setAllItems(newArr)
+    }
+
+    let filteredItems;
+
+    const filterExecute = () => {
+      filteredItems = allItems.filter((item) => {
+        return search.toLowerCase() === '' ? item : item.cardName.toLowerCase().includes(search.toLowerCase())
+      })
     }
 
 
@@ -68,22 +75,25 @@ function TcgSetInfo() {
 
         </div>
 
-        <div className={styles.bottomDiv}>
           {
             allItems ?
             <>
-              {allItems.filter((item) => {
-                return search.toLowerCase() === '' ? item : item.cardName.toLowerCase().includes(search.toLowerCase())
-              }).map((item) => {
-                return (
-                  <SearchItemCard cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} setId = {item.setId} itemType = {item.itemType}/>
-                )
-              })}
+              {filterExecute()}
+              {
+                filteredItems.length > 0 ? 
+                <div className={styles.bottomDiv}>
+                    {filteredItems.map((item) => {
+                      return (
+                        <SearchItemCard cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} setId = {item.setId} itemType = {item.itemType}/>
+                      )
+                    })}
+                </div>
+                : <div className={styles.notFound}><p>ITEM NOT FOUND...</p></div>
+              }
             </>
 
             : <h4> Loading...</h4>
           }
-        </div>
   
       </section>
     );

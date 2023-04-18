@@ -11,8 +11,7 @@ function SportMain() {
   const [allPlayers, setAllPlayers] = useState(players);
   const [sortedPlayers, setSortedPlayers] = useState(allPlayers);
   const [search, setSearch] = useState('');
-
-    const [currentType, setCurrentType] = useState('');
+  const [currentType, setCurrentType] = useState('');
 
     const sortAll = () => {
       if(currentType === 'all') {
@@ -83,6 +82,14 @@ function SportMain() {
       }
     }
 
+    let filteredItems;
+
+    const filterExecute = () => {
+      filteredItems = sortedPlayers.filter((player) => {
+        return search.toLowerCase() === '' ? player : player.playerName.toLowerCase().includes(search.toLowerCase())
+      })
+    }
+
 
     useEffect(() => {
       
@@ -116,22 +123,26 @@ function SportMain() {
           
         </div>
 
-        <div className={styles.bottomDiv}>
           {
             sortedPlayers ?
             <>
-              {sortedPlayers.filter((player) => {
-                return search.toLowerCase() === '' ? player : player.playerName.toLowerCase().includes(search.toLowerCase())
-              }).map((player) => {
-                return (
-                  <SportPlayerCard playerImage = {player.playerImage} playerName = {player.playerName} sport = {player.sport} playerId = {player.playerId}/>
-                )
-              })}
+              {filterExecute()}
+              {
+                filteredItems.length > 0 ?
+                <div className={styles.bottomDiv}>
+                    {filteredItems.map((player) => {
+                      return (
+                        <SportPlayerCard playerImage = {player.playerImage} playerName = {player.playerName} sport = {player.sport} playerId = {player.playerId}/>
+                      )
+                    })}
+                </div>
+                : <div className={styles.notFound}><p>ITEM NOT FOUND...</p></div>
+              }
+              
             </>
 
             : <h4> Loading...</h4>
           }
-        </div>
   
       </section>
     );

@@ -27,14 +27,14 @@ function Navbar() {
     return (
       <nav className={styles.navbarContainer}>
         <div className={styles.logo}></div>
-        <h1 className={styles.logoTitle}>CollectData</h1>
+        <Link to={'/'} className={styles.logoTitle}>CollectData</Link>
         <form onSubmit={handleSubmit} className={styles.formSearch}>
           <input ref={inputRef} className={styles.searchBar}></input>
         </form>
-        <Link to={'/'} className={styles.regLinks}>Home</Link>
-        <Link to={'/contact'} className={styles.regLinks}>Contact</Link>
-        <Link onClick={toggleDropdown} className={styles.regLinks}>Blog</Link>
-        <Dropdown currentView = {showDropdown} />
+        <div className={styles.specDiv} onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
+          <Link className={styles.dropLink}>Blog</Link>
+          <Dropdown currentView = {showDropdown} />
+        </div>
         <Link to={'/login'} className={styles.regLinks}>Log In</Link>
         <Link to={'/signup'} className={styles.register}>Register</Link>
   

@@ -1,7 +1,7 @@
 .dropdown {
     position:absolute;
-    top: 5rem;
-    right:11rem;
+    top: 4rem;
+    right: 15.7rem;
     background-color: #0c2827;
     width: 15%;
     height: 23%;
@@ -15,32 +15,28 @@
 
 .fadeEnter {
     opacity: 0;
-    visibility: hidden;
-    width: 13%;
-    height: 21%;
+    transform: scaleX(.95) scaleY(.95);
+    transform-origin: top right;
 }
   
 .fadeEnterActive {
     opacity: 1;
-    visibility: visible;
-    transition: opacity .07s ease, width .07s ease, height .07s ease;
-    width: 15%;
-    height: 23%;
+    transition: opacity 80ms ease-out, transform 80ms ease-out;
+    transform: scaleX(1) scaleY(1);
+    transform-origin: top right;
 }
 
 .fadeExit {
     opacity: 1;
-    visibility: visible;
-    width: 15%;
-    height: 23%;
+    transform: scaleX(1) scaleY(1);
+    transform-origin: top right;
 }
   
 .fadeExitActive {
     opacity: 0;
-    visibility: hidden;
-    transition: visibility 4s ease, width .07s ease, height .07s ease;
-    width: 13%;
-    height: 21%;
+    transition: opacity 80ms ease-in, transform 80ms ease-in;
+    transform: scaleX(.95) scaleY(.95);
+    transform-origin: top right;
 }
 
 .dropdown li {

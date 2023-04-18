@@ -7,7 +7,8 @@
     box-sizing: border-box;
     padding: 3%;
     overflow: hidden;
-    background-color: #041c1b;
+    background-color: #0c1314;
+    border-top: 1px solid rgb(136, 136, 136, .2);
 }
 
 .footerProfile {
