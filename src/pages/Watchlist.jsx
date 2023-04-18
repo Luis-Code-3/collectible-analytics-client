@@ -4,11 +4,20 @@ import SearchItemCard from "../components/SearchItemCard";
 import SearchItemSportCard from "../components/SearchItemSportCard";
 import { useState } from "react";
 import { collectionItems } from "./DummyData";
+import WatchlistAddItem from "../components/WatchlistAddItem";
+import { CSSTransition } from "react-transition-group";
 
 
 function Watchlist() {
 
-    const [allItems, setAllItems] = useState(collectionItems)
+    const [allItems, setAllItems] = useState(collectionItems);
+    const [openModal, setOpenModal] = useState(false);
+
+    if (openModal) {
+        document.body.classList.add(styles.activeModal);
+    } else {
+        document.body.classList.remove(styles.activeModal);
+    }
 
 
 
@@ -19,9 +28,26 @@ function Watchlist() {
                 WATCHLIST
             </div>
 
-            <div className={styles.addDiv}>
+            <div onClick={() => setOpenModal(true)} className={styles.addDiv}>
                 NEW ITEM
             </div>
+                {/* <CSSTransition
+                in={openModal}
+                unmountOnExit
+                timeout={100}
+                classNames={{
+                    enter: styles.modalEnter,
+                    enterActive: styles.modalEnterActive,
+                    exit: styles.modalExit,
+                    exitActive: styles.modalExitActive,
+                }}
+                >
+                <div onClick={() => setOpenModal(false)} className={styles.modalBackdrop}>
+                        <WatchlistAddItem openModal = {openModal}/>
+                </div>
+                </CSSTransition> */}
+
+            <WatchlistAddItem closeModal={() => setOpenModal(false)} openModal = {openModal}/>
         </div>
 
         <div className={styles.bottomDiv}>

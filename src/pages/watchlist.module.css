@@ -1,3 +1,44 @@
+.activeModal {
+    overflow-y: hidden;
+}
+
+.modalBackdrop {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(0, 0, 0, .3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+}
+
+/* ANIMATION MODAL */
+
+/* .modalEnter {
+    opacity: 0;
+}
+
+.modalEnterActive {
+    opacity: 1;
+    transition: opacity 100ms ease-out;
+}
+
+.modalExit {
+    opacity: 1;
+}
+
+.modalExitActive {
+    opacity: 0;
+    transition: opacity 100ms ease-in;
+} */
+
+/* ANIMATION MODAL */
+
 .mainSection {
     background-color: #0c1314;
     box-sizing: border-box;
@@ -28,6 +69,12 @@
     text-align: center;
     font-weight: 900;
     font-size: 120%;
+    transition: all .1s linear;
+    cursor: pointer;
+}
+
+.addDiv:hover {
+    background-color: #109866;
 }
 
 .bottomDiv {
