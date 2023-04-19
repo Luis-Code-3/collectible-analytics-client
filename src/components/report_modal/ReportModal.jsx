@@ -1,5 +1,5 @@
 import styles from './reportModal.module.css'
-import ModalBackdrop from './ModalBackdrop';
+import ModalBackdrop from '../backdrop_modal/ModalBackdrop';
 import { CSSTransition } from 'react-transition-group';
 import { useRef } from 'react';
 

@@ -1,10 +1,10 @@
 import './App.css';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import Footer from './components/Footer';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+import Footer from './components/navbar_and_footer/Footer';
+import Navbar from './components/navbar_and_footer/Navbar';
+import Home from './pages/landing/Home';
+import Login from './pages/login_and_signup/Login';
+import Signup from './pages/login_and_signup/Signup';
 import MangaMain from './pages/manga/MangaMain';
 import SportMain from './pages/sports/SportMain';
 import TcgMain from './pages/tcg/TcgMain';
@@ -13,10 +13,10 @@ import MangaVolumeInfo from './pages/manga/MangaVolumeInfo';
 import SportPlayerInfo from './pages/sports/SportPlayerInfo';
 import TcgSetInfo from './pages/tcg/TcgSetInfo';
 import VideoConsoleInfo from './pages/videogames/VideoConsoleInfo';
-import Search from './pages/Search';
-import ItemAnalytics from './pages/ItemAnalytics';
-import Collection from './pages/Collection';
-import Watchlist from './pages/Watchlist';
+import Search from './pages/search_results/Search';
+import ItemAnalytics from './pages/analytics/ItemAnalytics';
+import Collection from './pages/collection/Collection';
+import Watchlist from './pages/watchlist/Watchlist';
 
 function App() {
 

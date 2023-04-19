@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
-import styles from "./collection.module.css"
-import SearchItemCard from "../components/SearchItemCard";
-import SearchItemSportCard from "../components/SearchItemSportCard";
+import styles from "./watchlist.module.css"
+import SearchItemCard from "../../components/search_and_item_card/SearchItemCard";
+import SearchItemSportCard from "../../components/search_and_item_card/SearchItemSportCard";
 import { useState } from "react";
-import { collectionItems } from "./DummyData";
-import WatchlistAddItem from "../components/WatchlistAddItem";
+import { collectionItems } from "../DummyData";
+import WatchlistAddItem from "../../components/collection_and_watchlist_modal/WatchlistAddItem";
+import { CSSTransition } from "react-transition-group";
 
 
-function Collection() {
+function Watchlist() {
 
     const [allItems, setAllItems] = useState(collectionItems);
     const [openModal, setOpenModal] = useState(false);
@@ -24,13 +25,29 @@ function Collection() {
       <section className={styles.mainSection}>
         <div className={styles.topDivBox}>
             <div className={styles.topDiv}>
-                MY COLLECTION
+                WATCHLIST
             </div>
 
             <div onClick={() => setOpenModal(true)} className={styles.addDiv}>
                 NEW ITEM
             </div>
-            <WatchlistAddItem closeModal={() => setOpenModal(false)} openModal = {openModal} modalType={'collection'}/>
+                {/* <CSSTransition
+                in={openModal}
+                unmountOnExit
+                timeout={100}
+                classNames={{
+                    enter: styles.modalEnter,
+                    enterActive: styles.modalEnterActive,
+                    exit: styles.modalExit,
+                    exitActive: styles.modalExitActive,
+                }}
+                >
+                <div onClick={() => setOpenModal(false)} className={styles.modalBackdrop}>
+                        <WatchlistAddItem openModal = {openModal}/>
+                </div>
+                </CSSTransition> */}
+
+            <WatchlistAddItem closeModal={() => setOpenModal(false)} openModal = {openModal} modalType={'watchlist'}/>
         </div>
 
         <div className={styles.bottomDiv}>
@@ -66,4 +83,4 @@ function Collection() {
     );
   }
   
-  export default Collection;
+  export default Watchlist;

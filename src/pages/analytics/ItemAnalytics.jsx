@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import styles from "./itemAnalytics.module.css"
 import { useState, useEffect } from "react";
-import SearchItemCard from "../components/SearchItemCard";
-import SearchItemSportCard from "../components/SearchItemSportCard";
-import { collectionItems, tranData } from "./DummyData";
-import ReportModal from "../components/ReportModal";
-import GradeSelect from "../components/grade_select_dropdown/GradeSelect";
-import ChartSelect from "../components/chart_time_dropdown/ChartSelect";
+import SearchItemCard from "../../components/search_and_item_card/SearchItemCard";
+import SearchItemSportCard from "../../components/search_and_item_card/SearchItemSportCard";
+import { collectionItems, tranData } from "../DummyData";
+import ReportModal from "../../components/report_modal/ReportModal";
+import GradeSelect from "../../components/grade_select_dropdown/GradeSelect";
+import ChartSelect from "../../components/chart_time_dropdown/ChartSelect";
 
 
 function ItemAnalytics() {

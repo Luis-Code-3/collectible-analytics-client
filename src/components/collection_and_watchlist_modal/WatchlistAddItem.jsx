@@ -1,8 +1,8 @@
 import styles from './watchlistAddItem.module.css'
-import { searchItems } from "../pages/DummyData";
+import { searchItems } from "../../pages/DummyData";
 import { useState, useRef } from "react";
 import WatchlistResult from "./WatchlistResult";
-import ModalBackdrop from "./ModalBackdrop";
+import ModalBackdrop from "../backdrop_modal/ModalBackdrop";
 import { CSSTransition } from "react-transition-group";
 
 function WatchlistAddItem({closeModal, openModal, modalType}) {

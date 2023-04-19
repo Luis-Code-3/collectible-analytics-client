@@ -1,10 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./home.module.css";
-import pokemonImage from "../images/p1.jpg"
-import sportImage from "../images/p2.jpg"
-import videoImage from "../images/p4.png"
-import mangaImage from "../images/p3.png"
-import charizard from "../images/charizard.png"
+import pokemonImage from "../../images/p1.jpg"
+import sportImage from "../../images/p2.jpg"
+import videoImage from "../../images/p4.png"
+import mangaImage from "../../images/p3.png"
+import charizard from "../../images/charizard.png"
 import { useState, useRef } from "react";
 
 
@@ -15,6 +15,9 @@ function Home() {
 
     const handleSubmit = (e) => {
       e.preventDefault()
+      if (!inputRef.current.value) {
+        return
+      }
       const searchValue = inputRef.current.value;
       navigate(`/search?q=${searchValue}`);
     }

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./mangaMain.module.css"
 import headerImage from "../../images/p3.png"
 import { useState, useEffect } from "react";
-import MangaVolumeCard from "../../components/MangaVolumeCard";
+import MangaVolumeCard from "../../components/manga_volume_card/MangaVolumeCard";
 import { mangaVolumes } from "../DummyData";
 
 

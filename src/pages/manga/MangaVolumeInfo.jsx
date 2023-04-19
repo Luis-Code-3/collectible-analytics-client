@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./mangaVolumeInfo.module.css";
 import { useState } from "react";
-import SearchItemCard from "../../components/SearchItemCard";
+import SearchItemCard from "../../components/search_and_item_card/SearchItemCard";
 import { volumeItems } from "../DummyData";
 import ItemSort from "../../components/item_sort_dropdown/ItemSort";
 

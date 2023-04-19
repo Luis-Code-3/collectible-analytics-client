@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./tcgMain.module.css"
 import headerImage from "../../images/p1.jpg"
-import TcgSetCard from "../../components/TcgSetCard";
+import TcgSetCard from "../../components/tcg_set_card/TcgSetCard";
 import { useState, useEffect } from "react";
 import { tcgSets } from "../DummyData";
 

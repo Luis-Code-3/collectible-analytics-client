@@ -1,10 +1,17 @@
 import styles from "./dropdown.module.css"
 import { CSSTransition } from "react-transition-group";
 import { useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-function Dropdown({currentView}) {
+function Dropdown({currentView, setShowDropdown}) {
 
     const nodeRef = useRef(null);
+    const navigate = useNavigate();
+
+    const handleNavigate = (url) => {
+        navigate(`/${url}`)
+        setShowDropdown();
+    }
 
 
     return (
@@ -21,10 +28,10 @@ function Dropdown({currentView}) {
       }}
     >
         <ul ref={nodeRef} className={styles.dropdown}>
-            <li>Profile</li>
-            <li>Collection</li>
-            <li>Watchlist</li>
-            <li>Logout</li>
+            <li onClick={() => handleNavigate('')}>Profile</li>
+            <li onClick={() => handleNavigate('collection')}>Collection</li>
+            <li onClick={() => handleNavigate('watchlist')}>Watchlist</li>
+            <li onClick={() => handleNavigate('')}>Logout</li>
         </ul>
         </CSSTransition>
     );

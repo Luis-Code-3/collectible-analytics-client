@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./sportPlayerInfo.module.css";
 import { useState } from "react";
-import SearchItemSportCard from "../../components/SearchItemSportCard";
+import SearchItemSportCard from "../../components/search_and_item_card/SearchItemSportCard";
 import { playerItems } from "../DummyData";
 import ItemSort from "../../components/item_sort_dropdown/ItemSort";
 

@@ -55,6 +55,14 @@
     outline: none;
 }
 
+.signupForm input:-webkit-autofill,
+.signupForm input:-webkit-autofill:focus {
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0 1000px transparent inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
 .signupForm button {
     font-size: 120%;
     font-weight: 900;

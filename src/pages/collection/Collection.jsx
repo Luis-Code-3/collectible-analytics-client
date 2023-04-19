@@ -1,28 +1,36 @@
-import { useSearchParams } from "react-router-dom";
-import styles from "./search.module.css"
-import SearchItemCard from "../components/SearchItemCard";
-import SearchItemSportCard from "../components/SearchItemSportCard";
-import { useState, useEffect } from "react";
-import { searchItems } from "./DummyData";
+import { Link } from "react-router-dom";
+import styles from "./collection.module.css"
+import SearchItemCard from "../../components/search_and_item_card/SearchItemCard";
+import SearchItemSportCard from "../../components/search_and_item_card/SearchItemSportCard";
+import { useState } from "react";
+import { collectionItems } from "../DummyData";
+import WatchlistAddItem from "../../components/collection_and_watchlist_modal/WatchlistAddItem";
 
 
-function Search() {
-    const [searchParams] = useSearchParams();
-    const [allItems, setAllItems] = useState([]);
+function Collection() {
 
-    useEffect(() => {
-        let query = searchParams.get('q');
-        //console.log(query);
-        let newArr = searchItems.filter((item) => {
-            return item.cardName.toLowerCase().includes(query.toLowerCase());
-        })
-        setAllItems(newArr)
-    }, [searchParams])
+    const [allItems, setAllItems] = useState(collectionItems);
+    const [openModal, setOpenModal] = useState(false);
+
+    if (openModal) {
+        document.body.classList.add(styles.activeModal);
+    } else {
+        document.body.classList.remove(styles.activeModal);
+    }
+
+
 
     return (
       <section className={styles.mainSection}>
-        <div className={styles.topDiv}>
-            SEARCH RESULTS
+        <div className={styles.topDivBox}>
+            <div className={styles.topDiv}>
+                MY COLLECTION
+            </div>
+
+            <div onClick={() => setOpenModal(true)} className={styles.addDiv}>
+                NEW ITEM
+            </div>
+            <WatchlistAddItem closeModal={() => setOpenModal(false)} openModal = {openModal} modalType={'collection'}/>
         </div>
 
         <div className={styles.bottomDiv}>
@@ -58,4 +66,4 @@ function Search() {
     );
   }
   
-  export default Search;
+  export default Collection;

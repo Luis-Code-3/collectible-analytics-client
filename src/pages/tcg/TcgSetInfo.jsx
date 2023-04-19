@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./tcgSetInfo.module.css"
-import SearchItemCard from "../../components/SearchItemCard";
+import SearchItemCard from "../../components/search_and_item_card/SearchItemCard";
 import { useState } from "react";
 import { setCards } from "../DummyData";
 import ItemSort from "../../components/item_sort_dropdown/ItemSort";

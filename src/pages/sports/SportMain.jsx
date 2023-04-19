@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import headerImage from "../../images/p2.jpg"
 import styles from "./sportMain.module.css"
 import { useState, useEffect } from "react";
-import SportPlayerCard from "../../components/SportPlayerCard";
+import SportPlayerCard from "../../components/sport_player_card/SportPlayerCard";
 import { players } from "../DummyData";
 
 
