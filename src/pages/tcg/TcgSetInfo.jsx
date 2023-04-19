@@ -3,6 +3,7 @@ import styles from "./tcgSetInfo.module.css"
 import SearchItemCard from "../../components/SearchItemCard";
 import { useState } from "react";
 import { setCards } from "../DummyData";
+import ItemSort from "../../components/item_sort_dropdown/ItemSort";
 
 
 function TcgSetInfo() {
@@ -11,21 +12,21 @@ function TcgSetInfo() {
     const [search, setSearch] = useState('');
 
     
-    const handleSortOrder = (event) => {
+    const handleSortOrder = (sort) => {
       let newArr = [...allItems];
-      if(event.target.value === "Alphabetical") {
+      if(sort === "Alphabetical") {
         newArr.sort((a,b) => {
           return a.cardName.localeCompare(b.cardName);
         })
-      } else if (event.target.value === "Reverse Alphabetical") {
+      } else if (sort === "Reverse Alphabetical") {
         newArr.sort((a,b) => {
           return b.cardName.localeCompare(a.cardName);
         })
-      } else if(event.target.value === "Card # High - Low") {
+      } else if(sort === "Card # High - Low") {
         newArr.sort((a,b) => {
           return b.cardNumber - a.cardNumber;
         })
-      } else if (event.target.value === "Card # Low - High") {
+      } else if (sort === "Card # Low - High") {
         newArr.sort((a,b) => {
           return a.cardNumber - b.cardNumber;
         })
@@ -63,15 +64,16 @@ function TcgSetInfo() {
         </div>
 
         <div className={styles.middleDiv}>
-              <select onChange={handleSortOrder}>
+              {/* <select onChange={handleSortOrder}>
                 <option disabled selected></option>
                 <option>Alphabetical</option>
                 <option>Reverse Alphabetical</option>
                 <option>Card # High - Low</option>
                 <option>Card # Low - High</option>
-              </select>
+              </select> */}
+              <ItemSort handleSortOrder={handleSortOrder} genreType={"tcg"}/>
               <input onChange={(e) => setSearch(e.target.value)} type='text'></input>
-              <button>FILTER</button>
+              <button className={styles.filterButton}>FILTER</button>
 
         </div>
 

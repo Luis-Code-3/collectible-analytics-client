@@ -1,0 +1,18 @@
+.sortButton {
+    border: none;
+    width: 30%;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: white;
+    background-color: rgb(62, 72, 72, .5);
+    text-align: center;
+    font-size: 100%;
+    font-weight: 500;
+    outline: none;
+    cursor: pointer;
+    transition: all .1s linear;
+}
+
+.sortButton:hover {
+    background-color: rgba(80, 91, 91, 0.5);
+}

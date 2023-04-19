@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styles from "./dropdown.module.css"
 import { CSSTransition } from "react-transition-group";
 import { useRef } from "react";

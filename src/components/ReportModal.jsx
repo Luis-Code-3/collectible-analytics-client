@@ -23,7 +23,7 @@ function ReportModal({openModal, closeModal}) {
         in={openModal}
         mountOnEnter
         unmountOnExit
-        timeout={100}
+        timeout={200}
         classNames={{
             enter: styles.backdropEnter,
             enterActive: styles.backdropEnterActive,
@@ -38,7 +38,7 @@ function ReportModal({openModal, closeModal}) {
         in={openModal}
         mountOnEnter
         unmountOnExit
-        timeout={100}
+        timeout={200}
         classNames={{
             enter: styles.modalEnter,
             enterActive: styles.modalEnterActive,

@@ -3,19 +3,20 @@ import styles from "./sportPlayerInfo.module.css";
 import { useState } from "react";
 import SearchItemSportCard from "../../components/SearchItemSportCard";
 import { playerItems } from "../DummyData";
+import ItemSort from "../../components/item_sort_dropdown/ItemSort";
 
 function SportPlayerInfo() {
 
     const [allItems, setAllItems] = useState(playerItems)
     const [search,setSearch] = useState('');
 
-    const handleSortOrder = (event) => {
+    const handleSortOrder = (sort) => {
       let newArr = [...allItems];
-      if(event.target.value === "Most Recent") {
+      if(sort === "Most Recent") {
         newArr.sort((a,b) => {
           return b.cardYear - a.cardYear;
         })
-      } else if(event.target.value === "Oldest") {
+      } else if(sort === "Oldest") {
         newArr.sort((a,b) => {
           return a.cardYear - b.cardYear;
         })
@@ -51,13 +52,14 @@ function SportPlayerInfo() {
         </div>
 
         <div className={styles.middleDiv}>
-              <select onChange={handleSortOrder}>
+              {/* <select onChange={handleSortOrder}>
                 <option disabled selected></option>
                 <option>Most Recent</option>
                 <option>Oldest</option>
-              </select>
+              </select> */}
+              <ItemSort handleSortOrder={handleSortOrder} genreType={"sports"}/>
               <input onChange={(e) => setSearch(e.target.value)} type='text'></input>
-              <button>FILTER</button>
+              <button className={styles.filterButton}>FILTER</button>
 
         </div>
 

@@ -35,7 +35,7 @@
 
 .backdropExitActive {
     opacity: 0;
-    transition: opacity 100ms ease-in;
+    transition: opacity 200ms ease-in;
 }
 
 /*  */

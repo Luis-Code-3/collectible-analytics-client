@@ -1,11 +1,12 @@
 import styles from "./watchlistResult.module.css"
 
 
-function WatchlistResult({cardName, cardImage, setName, cardId, cardType, modalType, closeModal}) {
+function WatchlistResult({cardName, cardImage, setName, cardId, cardType, modalType, closeModal, setAllItems}) {
 
     const addItem = () => {
         if (modalType === 'collection') {
             closeModal();
+            setAllItems(null);
         } else {
 
         }

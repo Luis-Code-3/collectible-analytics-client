@@ -3,28 +3,28 @@ import styles from "./videoConsoleInfo.module.css"
 import SearchItemCard from "../../components/SearchItemCard";
 import { useState } from "react";
 import { consoleGames } from "../DummyData";
-
+import ItemSort from "../../components/item_sort_dropdown/ItemSort";
 
 function VideoConsoleInfo() {
 
   const [allGames, setAllGames] = useState(consoleGames);
   const [search, setSearch] = useState('');
 
-  const handleSortOrder = (event) => {
+  const handleSortOrder = (sort) => {
     let newArr = [...allGames];
-    if(event.target.value === "Alphabetical") {
+    if(sort === "Alphabetical") {
       newArr.sort((a,b) => {
         return a.gameName.localeCompare(b.gameName);
       })
-    } else if (event.target.value === "Reverse Alphabetical") {
+    } else if (sort === "Reverse Alphabetical") {
       newArr.sort((a,b) => {
         return b.gameName.localeCompare(a.gameName);
       })
-    } else if(event.target.value === "Most Recent") {
+    } else if(sort === "Most Recent") {
       newArr.sort((a,b) => {
         return b.gameYear - a.gameYear;
       })
-    } else if(event.target.value === "Oldest") {
+    } else if(sort === "Oldest") {
       newArr.sort((a,b) => {
         return a.gameYear - b.gameYear;
       })
@@ -61,15 +61,16 @@ function VideoConsoleInfo() {
         </div>
 
         <div className={styles.middleDiv}>
-              <select onChange={handleSortOrder}>
+              {/* <select onChange={handleSortOrder}>
                 <option disabled selected></option>
                 <option>Alphabetical</option>
                 <option>Reverse Alphabetical</option>
                 <option>Most Recent</option>
                 <option>Oldest</option>
-              </select>
+              </select> */}
+              <ItemSort handleSortOrder={handleSortOrder} genreType={"game"}/>
               <input onChange={(e) => setSearch(e.target.value)} type='text'></input>
-              <button>FILTER</button>
+              <button className={styles.filterButton}>FILTER</button>
 
         </div>
 

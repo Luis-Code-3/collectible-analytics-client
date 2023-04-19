@@ -66,10 +66,11 @@
     width: 60%;
     gap: 2.5%;
     /* border: 1px solid white; */
+    position: relative;
 }
 
-.middleDiv select {
-    /* border: 2px solid #b6c1c1; */
+/* .middleDiv select {
+    border: 2px solid #b6c1c1;
     border: none;
     width: 30%;
     border-radius: 5px;
@@ -80,7 +81,7 @@
     font-size: 100%;
     font-weight: 500;
     outline: none;
-}
+} */
 
 .middleDiv input {
     border: none;
@@ -94,7 +95,7 @@
     padding: 0% 2%;
 }
 
-.middleDiv button {
+.filterButton {
     border: none;
     font-size: 100%;
     font-weight: 700;
@@ -106,7 +107,7 @@
     transition: all .1s linear;
 }
 
-.middleDiv button:hover {
+.filterButton:hover {
     background-color: #148e86;
     cursor: pointer;
 }

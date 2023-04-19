@@ -3,6 +3,7 @@ import styles from "./mangaVolumeInfo.module.css";
 import { useState } from "react";
 import SearchItemCard from "../../components/SearchItemCard";
 import { volumeItems } from "../DummyData";
+import ItemSort from "../../components/item_sort_dropdown/ItemSort";
 
 
 function MangaVolumeInfo() {
@@ -11,13 +12,13 @@ function MangaVolumeInfo() {
   const [search, setSearch] = useState('');
 
     
-    const handleSortOrder = (event) => {
+    const handleSortOrder = (sort) => {
       let newArr = [...allItems];
-      if(event.target.value === "Alphabetical") {
+      if(sort === "Alphabetical") {
         newArr.sort((a,b) => {
           return a.itemName.localeCompare(b.itemName);
         })
-      } else if (event.target.value === "Reverse Alphabetical") {
+      } else if (sort === "Reverse Alphabetical") {
         newArr.sort((a,b) => {
           return b.itemName.localeCompare(a.itemName);
         })
@@ -55,13 +56,14 @@ function MangaVolumeInfo() {
         </div>
 
         <div className={styles.middleDiv}>
-              <select onChange={handleSortOrder}>
+              {/* <select onChange={handleSortOrder}>
                 <option disabled selected></option>
                 <option>Alphabetical</option>
                 <option>Reverse Alphabetical</option>
-              </select>
+              </select> */}
+              <ItemSort handleSortOrder={handleSortOrder} genreType={"manga"}/>
               <input onChange={(e) => setSearch(e.target.value)} type='text'></input>
-              <button>FILTER</button>
+              <button className={styles.filterButton}>FILTER</button>
 
         </div>
 

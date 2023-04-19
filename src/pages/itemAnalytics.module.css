@@ -39,6 +39,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    position: relative;
 }
 
 .gradePop select {
@@ -53,7 +54,7 @@
     text-align: center;
 }
 
-.gradePop div {
+.gradeAmount {
     padding: 5% 0%;
     width: 45%;
     text-align: center;
@@ -149,9 +150,10 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    position: relative;
 }
 
-.analyticsPrices p {
+.prices {
     background-color: #192a2f;
     width: 24%;
     text-align: center;

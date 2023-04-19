@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import styles from './watchlistAddItem.module.css'
 import { searchItems } from "../pages/DummyData";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import WatchlistResult from "./WatchlistResult";
 import ModalBackdrop from "./ModalBackdrop";
 import { CSSTransition } from "react-transition-group";
@@ -72,19 +71,19 @@ function WatchlistAddItem({closeModal, openModal, modalType}) {
                             {allItems.map((item) => {
                                 if (item.itemType === "sport") {
                                     return (
-                                    <WatchlistResult cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} cardType = {item.cardType} modalType = {modalType} closeModal = {closeModal}/>
+                                    <WatchlistResult cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} cardType = {item.cardType} modalType = {modalType} closeModal = {closeModal} setAllItems={setAllItems}/>
                                     )
                                 } else if (item.itemType === "tcg") {
                                     return (
-                                    <WatchlistResult cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} modalType = {modalType} closeModal = {closeModal}/>
+                                    <WatchlistResult cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} modalType = {modalType} closeModal = {closeModal} setAllItems={setAllItems}/>
                                     )
                                 } else if (item.itemType === "manga") {
                                     return (
-                                    <WatchlistResult cardImage = {item.itemImage} cardName = {item.itemName} cardId = {item.itemId} setName = {item.volumeName} modalType = {modalType} closeModal = {closeModal}/>
+                                    <WatchlistResult cardImage = {item.itemImage} cardName = {item.itemName} cardId = {item.itemId} setName = {item.volumeName} modalType = {modalType} closeModal = {closeModal} setAllItems={setAllItems}/>
                                     )
                                 } else {
                                     return (
-                                    <WatchlistResult cardImage = {item.gameImage} cardName = {item.gameName} cardId = {item.gameId} setName = {item.consoleName} modalType = {modalType} closeModal = {closeModal}/>
+                                    <WatchlistResult cardImage = {item.gameImage} cardName = {item.gameName} cardId = {item.gameId} setName = {item.consoleName} modalType = {modalType} closeModal = {closeModal} setAllItems={setAllItems}/>
                                     )
                                 }
                             })}

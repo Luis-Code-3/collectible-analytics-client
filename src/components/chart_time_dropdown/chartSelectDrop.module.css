@@ -1,0 +1,65 @@
+.dropdownContainer {
+    position: absolute;
+    z-index: 1;
+    border: 1px solid rgb(223, 223, 223, .4);
+    width: 24%;
+    height: 400%;
+    top: 115%;
+    left: 76%;
+    border-radius: 5px;
+    padding: 3%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+    overflow: auto;
+    background-color: rgb(38, 55, 60);
+}
+
+.dropdownContainer::-webkit-scrollbar {
+    width: 0; /* Set scrollbar width to 0 */
+    background: transparent; /* Make scrollbar background transparent */
+}
+
+.dropdownContainer div {
+    width: 100%;
+    border-radius: 5px;
+    padding: 5%;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all .1s linear;
+
+}
+
+.dropdownContainer div:hover {
+    background-color: rgb(235, 235, 235, .05);
+}
+
+.dropdownContainer div p {
+    font-weight: 500;
+    color: rgb(255, 255, 255, .9);
+}
+
+/* ANIMATION */
+
+.charttimeEnter {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.charttimeEnterActive {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: opacity 100ms ease-out, transform 100ms ease-out;
+}
+
+.charttimeExit {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.charttimeExitActive {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 100ms ease-in, transform 100ms ease-in;
+}

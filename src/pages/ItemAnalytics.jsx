@@ -5,6 +5,8 @@ import SearchItemCard from "../components/SearchItemCard";
 import SearchItemSportCard from "../components/SearchItemSportCard";
 import { collectionItems, tranData } from "./DummyData";
 import ReportModal from "../components/ReportModal";
+import GradeSelect from "../components/grade_select_dropdown/GradeSelect";
+import ChartSelect from "../components/chart_time_dropdown/ChartSelect";
 
 
 function ItemAnalytics() {
@@ -26,7 +28,7 @@ function ItemAnalytics() {
             cardImage: "https://52f4e29a8321344e30ae-0f55c9129972ac85d6b1f4e703468e6b.ssl.cf2.rackcdn.com/products/pictures/1106604.jpg",
             cardName: "Mario Pikachu #294",
             setId: "1235451",
-            itemType: "tcg",
+            itemType: "sports",
             setName: "Silver Tempest",
             cardId: "12341q2",
             cardType: "Refractor",
@@ -86,9 +88,9 @@ function ItemAnalytics() {
     }
 
 
-    const filterGrade = (event) => {
+    const filterGrade = (grade) => {
         let newArr = [...allTransactions].filter((tran) => {
-            return tran.grade === event.target.value;
+            return tran.grade === grade;
         })
 
         setFilteredTransactions(newArr)
@@ -128,31 +130,17 @@ function ItemAnalytics() {
 
                     {
                         item.itemType === "tcg" ? 
-                            <select onChange={filterGrade}>
-                                <option>PSA 10</option>
-                                <option>PSA 9</option>
-                                <option>PSA 8</option>
-                            </select>
+                            <GradeSelect filterGrade = {filterGrade} itemType = {item.itemType} startGrade = {"PSA 10"}/>
                         : item.itemType === "sports" ?
-                            <select>
-                                <option>PSA 10</option>
-                                <option>PSA 9</option>
-                                <option>PSA 8</option>
-                            </select>
+                            <GradeSelect filterGrade = {filterGrade} itemType = {item.itemType} startGrade = {"PSA 10"}/>
                         : item.itemType === "game" ? 
-                            <select>
-                                <option>WATA 10</option>
-                                <option>WATA 9</option>
-                                <option>WATA 8</option>
-                            </select>
+                            <GradeSelect filterGrade = {filterGrade} itemType = {item.itemType} startGrade = {"WATA 10"}/>
                         : item.itemType === "manga" ?
-                            <select>
-                                <option>----</option>
-                            </select>
+                            <GradeSelect filterGrade = {filterGrade} itemType = {item.itemType} startGrade = {"----"}/>
                         : null
                     }
 
-                    <div>
+                    <div className={styles.gradeAmount}>
                         1,352
                     </div>
                 </div>
@@ -179,15 +167,10 @@ function ItemAnalytics() {
                         </div>
 
                         <div className={styles.analyticsPrices}>
-                            <p>$120,000</p>
-                            <p>10.23M</p>
-                            <p>$110,234</p>
-                            <select onChange={timeFrameSort}>
-                                <option>1 Month</option>
-                                <option>3 Month</option>
-                                <option>6 Month</option>
-                                <option>1 Year</option>
-                            </select>
+                            <p className={styles.prices}>$120,000</p>
+                            <p className={styles.prices}>10.23M</p>
+                            <p className={styles.prices}>$110,234</p>
+                            <ChartSelect timeFrameSort={timeFrameSort}/>
                         </div>
 
                     </div>
