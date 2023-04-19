@@ -1,3 +1,7 @@
+.activeModal {
+    overflow-y: hidden;
+}
+
 .mainSection {
     background-color: #0c1314;
     box-sizing: border-box;
@@ -285,6 +289,10 @@
     flex-grow: 1;
     display: flex;
     justify-content: center;
+}
+
+.reportButton {
+    cursor: pointer;
 }
 
 .tranSoldDate {

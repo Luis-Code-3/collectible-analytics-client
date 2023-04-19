@@ -1,12 +1,18 @@
 import styles from "./watchlistResult.module.css"
 
 
-function WatchlistResult({cardName, cardImage, setName, cardId, cardType}) {
+function WatchlistResult({cardName, cardImage, setName, cardId, cardType, modalType, closeModal}) {
 
+    const addItem = () => {
+        if (modalType === 'collection') {
+            closeModal();
+        } else {
 
+        }
+    }
 
     return (
-        <div className={styles.resultContainer}>
+        <div onClick={addItem} className={styles.resultContainer}>
             <div className={styles.imageBox}>
                 <img src={cardImage} alt=""/>
             </div>

@@ -47,7 +47,7 @@ function Watchlist() {
                 </div>
                 </CSSTransition> */}
 
-            <WatchlistAddItem closeModal={() => setOpenModal(false)} openModal = {openModal}/>
+            <WatchlistAddItem closeModal={() => setOpenModal(false)} openModal = {openModal} modalType={'watchlist'}/>
         </div>
 
         <div className={styles.bottomDiv}>

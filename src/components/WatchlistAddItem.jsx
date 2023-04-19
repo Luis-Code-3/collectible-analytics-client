@@ -6,7 +6,7 @@ import WatchlistResult from "./WatchlistResult";
 import ModalBackdrop from "./ModalBackdrop";
 import { CSSTransition } from "react-transition-group";
 
-function WatchlistAddItem({closeModal, openModal}) {
+function WatchlistAddItem({closeModal, openModal, modalType}) {
 
     const [allItems,setAllItems] = useState(null);
 
@@ -29,7 +29,7 @@ function WatchlistAddItem({closeModal, openModal}) {
         in={openModal}
         mountOnEnter
         unmountOnExit
-        timeout={1000}
+        timeout={100}
         classNames={{
             enter: styles.backdropEnter,
             enterActive: styles.backdropEnterActive,
@@ -72,19 +72,19 @@ function WatchlistAddItem({closeModal, openModal}) {
                             {allItems.map((item) => {
                                 if (item.itemType === "sport") {
                                     return (
-                                    <WatchlistResult cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} cardType = {item.cardType}/>
+                                    <WatchlistResult cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} cardType = {item.cardType} modalType = {modalType} closeModal = {closeModal}/>
                                     )
                                 } else if (item.itemType === "tcg") {
                                     return (
-                                    <WatchlistResult cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName}/>
+                                    <WatchlistResult cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} modalType = {modalType} closeModal = {closeModal}/>
                                     )
                                 } else if (item.itemType === "manga") {
                                     return (
-                                    <WatchlistResult cardImage = {item.itemImage} cardName = {item.itemName} cardId = {item.itemId} setName = {item.volumeName}/>
+                                    <WatchlistResult cardImage = {item.itemImage} cardName = {item.itemName} cardId = {item.itemId} setName = {item.volumeName} modalType = {modalType} closeModal = {closeModal}/>
                                     )
                                 } else {
                                     return (
-                                    <WatchlistResult cardImage = {item.gameImage} cardName = {item.gameName} cardId = {item.gameId} setName = {item.consoleName}/>
+                                    <WatchlistResult cardImage = {item.gameImage} cardName = {item.gameName} cardId = {item.gameId} setName = {item.consoleName} modalType = {modalType} closeModal = {closeModal}/>
                                     )
                                 }
                             })}

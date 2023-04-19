@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import SearchItemCard from "../components/SearchItemCard";
 import SearchItemSportCard from "../components/SearchItemSportCard";
 import { collectionItems, tranData } from "./DummyData";
+import ReportModal from "../components/ReportModal";
 
 
 function ItemAnalytics() {
@@ -12,6 +13,13 @@ function ItemAnalytics() {
     const [sortDateOrder, setSortDateOrder] = useState('asc');
     const [sortTitleOrder, setSortTitleOrder] = useState('asc');
     const [sortMarketplaceOrder, setSortMarketplaceOrder] = useState('asc');
+    const [openModal, setOpenModal] = useState(false);
+
+    if (openModal) {
+        document.body.classList.add(styles.activeModal);
+    } else {
+        document.body.classList.remove(styles.activeModal);
+    }
 
     const [item, setItem] = useState(
         {
@@ -243,8 +251,9 @@ function ItemAnalytics() {
                             </div>
 
                             <div className={styles.tranReport}>
-                                <p>X</p>
+                                <p onClick={() => setOpenModal(true)} className={styles.reportButton}>X</p>
                             </div>
+                            <ReportModal closeModal={() => setOpenModal(false)} openModal={openModal}/>
                         </div>
                     );
                 })   

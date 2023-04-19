@@ -4,11 +4,19 @@ import SearchItemCard from "../components/SearchItemCard";
 import SearchItemSportCard from "../components/SearchItemSportCard";
 import { useState } from "react";
 import { collectionItems } from "./DummyData";
+import WatchlistAddItem from "../components/WatchlistAddItem";
 
 
 function Collection() {
 
-    const [allItems, setAllItems] = useState(collectionItems)
+    const [allItems, setAllItems] = useState(collectionItems);
+    const [openModal, setOpenModal] = useState(false);
+
+    if (openModal) {
+        document.body.classList.add(styles.activeModal);
+    } else {
+        document.body.classList.remove(styles.activeModal);
+    }
 
 
 
@@ -19,9 +27,10 @@ function Collection() {
                 MY COLLECTION
             </div>
 
-            <div className={styles.addDiv}>
-                ADD ITEM
+            <div onClick={() => setOpenModal(true)} className={styles.addDiv}>
+                NEW ITEM
             </div>
+            <WatchlistAddItem closeModal={() => setOpenModal(false)} openModal = {openModal} modalType={'collection'}/>
         </div>
 
         <div className={styles.bottomDiv}>
