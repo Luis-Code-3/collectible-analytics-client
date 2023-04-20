@@ -596,3 +596,14 @@ export let volumeItems = [
         volumeId: "234556"
       },
 ];
+
+export let oneItem = 
+{
+    cardImage: "https://52f4e29a8321344e30ae-0f55c9129972ac85d6b1f4e703468e6b.ssl.cf2.rackcdn.com/products/pictures/1106604.jpg",
+    cardName: "Mario Pikachu #294",
+    setId: "1235451",
+    itemType: "sports",
+    setName: "Silver Tempest",
+    cardId: "12341q2",
+    cardType: "Refractor",
+};

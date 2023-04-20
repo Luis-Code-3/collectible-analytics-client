@@ -2,6 +2,10 @@ import styles from "./dropdown.module.css"
 import { CSSTransition } from "react-transition-group";
 import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {ReactComponent as UserIcon} from '../../icons/user-solid.svg'
+import {ReactComponent as WatchIcon} from '../../icons/eye-solid.svg'
+import {ReactComponent as CollectionIcon} from '../../icons/plus-solid.svg'
+import {ReactComponent as LogoutIcon} from '../../icons/circle-xmark-solid.svg'
 
 function Dropdown({currentView, setShowDropdown}) {
 
@@ -28,10 +32,10 @@ function Dropdown({currentView, setShowDropdown}) {
       }}
     >
         <ul ref={nodeRef} className={styles.dropdown}>
-            <li onClick={() => handleNavigate('')}>Profile</li>
-            <li onClick={() => handleNavigate('collection')}>Collection</li>
-            <li onClick={() => handleNavigate('watchlist')}>Watchlist</li>
-            <li onClick={() => handleNavigate('')}>Logout</li>
+            <li onClick={() => handleNavigate('')}><span>{<UserIcon/>}</span><p>Profile</p></li>
+            <li onClick={() => handleNavigate('collection')}><span>{<CollectionIcon/>}</span><p>Collection</p></li>
+            <li onClick={() => handleNavigate('watchlist')}><span>{<WatchIcon/>}</span><p>Watchlist</p></li>
+            <li onClick={() => handleNavigate('')}><span>{<LogoutIcon/>}</span><p>Logout</p></li>
         </ul>
         </CSSTransition>
     );

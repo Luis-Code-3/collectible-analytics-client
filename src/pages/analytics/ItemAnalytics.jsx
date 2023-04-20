@@ -3,18 +3,35 @@ import styles from "./itemAnalytics.module.css"
 import { useState, useEffect } from "react";
 import SearchItemCard from "../../components/search_and_item_card/SearchItemCard";
 import SearchItemSportCard from "../../components/search_and_item_card/SearchItemSportCard";
-import { collectionItems, tranData } from "../DummyData";
+import { collectionItems, tranData, oneItem } from "../DummyData";
 import ReportModal from "../../components/report_modal/ReportModal";
 import GradeSelect from "../../components/grade_select_dropdown/GradeSelect";
 import ChartSelect from "../../components/chart_time_dropdown/ChartSelect";
+import {ReactComponent as ReportIcon} from "../../icons/flag-regular.svg"
+import {ReactComponent as WatchIcon} from "../../icons/eye-solid.svg"
+import {ReactComponent as AddIcon} from "../../icons/plus-solid.svg"
 
 
 function ItemAnalytics() {
+
+    // See if I should get all transactions or one grade at a time through api call.
+    // I should also probably seperate the components in this page.
+    // Need to to do the date sort.
+    // And the chart js time frame sort
+
+    // STATES
+    const [item, setItem] = useState(oneItem)
+    const [allTransactions, setAllTransactions] = useState(tranData)
+    const [filteredTransactions, setFilteredTransactions] = useState([])
+    const [similarItems, setSimilarItems] = useState(collectionItems)
+
+    const [amountShown, setAmountShown] = useState(25);
 
     const [sortPriceOrder, setSortPriceOrder] = useState('asc');
     const [sortDateOrder, setSortDateOrder] = useState('asc');
     const [sortTitleOrder, setSortTitleOrder] = useState('asc');
     const [sortMarketplaceOrder, setSortMarketplaceOrder] = useState('asc');
+    
     const [openModal, setOpenModal] = useState(false);
 
     if (openModal) {
@@ -23,26 +40,8 @@ function ItemAnalytics() {
         document.body.classList.remove(styles.activeModal);
     }
 
-    const [item, setItem] = useState(
-        {
-            cardImage: "https://52f4e29a8321344e30ae-0f55c9129972ac85d6b1f4e703468e6b.ssl.cf2.rackcdn.com/products/pictures/1106604.jpg",
-            cardName: "Mario Pikachu #294",
-            setId: "1235451",
-            itemType: "sports",
-            setName: "Silver Tempest",
-            cardId: "12341q2",
-            cardType: "Refractor",
-        }
-    )
 
-    const [allTransactions, setAllTransactions] = useState(tranData)
-    const [filteredTransactions, setFilteredTransactions] = useState([])
-    const [dataTransactions, setDataTransactions] = useState([]);
-
-    const [similarItems, setSimilarItems] = useState(collectionItems)
-    const [amountShown, setAmountShown] = useState(25);
-
-    
+    // FUNCTIONS
     const sortDate = () => {
 
     }
@@ -94,7 +93,6 @@ function ItemAnalytics() {
         })
 
         setFilteredTransactions(newArr)
-        setDataTransactions(newArr)
     }
 
     const timeFrameSort = (event) => {
@@ -113,8 +111,6 @@ function ItemAnalytics() {
         })
 
         setFilteredTransactions(newArr)
-        setDataTransactions(newArr)
-
     }, [])
 
 
@@ -156,8 +152,8 @@ function ItemAnalytics() {
 
                     <div className={styles.extraBox}>
                         <div className={styles.buttons}>
-                            <div></div>
-                            <div></div>
+                            <div className={styles.watchIcon}>{<WatchIcon/>}</div>
+                            <div className={styles.addIcon}>{<AddIcon/>}</div>
                         </div>
 
                         <div className={styles.analyticsTitles}>
@@ -234,7 +230,7 @@ function ItemAnalytics() {
                             </div>
 
                             <div className={styles.tranReport}>
-                                <p onClick={() => setOpenModal(true)} className={styles.reportButton}>X</p>
+                                <p onClick={() => setOpenModal(true)} className={styles.reportButton}>{<ReportIcon/>}</p>
                             </div>
                             <ReportModal closeModal={() => setOpenModal(false)} openModal={openModal}/>
                         </div>

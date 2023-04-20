@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./footer.module.css"
+import {ReactComponent as InstagramIcon} from "../../icons/instagram.svg"
+import {ReactComponent as TwitterIcon} from "../../icons/twitter.svg"
 
 
 function Footer() {
@@ -14,9 +16,8 @@ function Footer() {
             <h1>CollectData</h1>
           </div>
           <div className={styles.footerFollow}>
-            <p>Follow Us</p>
-            <a href="https://www.instagram.com/">Instagram</a>
-            <a href="https://twitter.com/">Twitter</a>
+            <a href="https://www.instagram.com/">{<InstagramIcon/>}</a>
+            <a href="https://twitter.com/">{<TwitterIcon/>}</a>
           </div>
 
         </div>
