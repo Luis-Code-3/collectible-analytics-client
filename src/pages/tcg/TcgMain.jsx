@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { baseUrl } from "../../services/baseUrl";
 import styles from "./tcgMain.module.css"
 import headerImage from "../../images/p1.jpg"
 import TcgSetCard from "../../components/tcg_set_card/TcgSetCard";
 import { useState, useEffect } from "react";
-import { tcgSets } from "../DummyData";
 
 
 function TcgMain() {
 
-  const [allSets, setAllSets] = useState(tcgSets);
+  const [allSets, setAllSets] = useState(null);
   const [sortedSets, setSortedSets] = useState();
   const [search, setSearch] = useState('');
   const [currentLanguage, setCurrentLanguage] = useState('english');
@@ -45,13 +45,19 @@ function TcgMain() {
     })
   }
 
-
   useEffect(() => {
-    let newArr = [...allSets].filter((set) => {
-      return set.language === "english"
+    axios.get(`${baseUrl}/tcg/set`)
+    .then((response) => {
+      setAllSets(response.data);
+      let newArr = response.data.filter((set) => {
+        return set.language === "english"
+      })
+      setSortedSets(newArr);
+    })
+    .catch((err) => {
+      console.log(err);
     })
 
-    setSortedSets(newArr);
   }, [])
 
 
@@ -87,7 +93,7 @@ function TcgMain() {
                 <div className={styles.bottomDiv}>
                     {filteredItems.map((set) => {
                     return (
-                      <TcgSetCard setLogo = {set.imageUrl} setName = {set.setName} id = {set.id}/>
+                      <TcgSetCard setLogo = {set.imageUrl} setName = {set.setName} id = {set._id}/>
                     )
                   })}
                 </div>

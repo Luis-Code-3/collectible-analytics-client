@@ -1,15 +1,20 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { baseUrl } from "../../services/baseUrl";
 import styles from "./tcgSetInfo.module.css"
 import SearchItemCard from "../../components/search_and_item_card/SearchItemCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { setCards } from "../DummyData";
 import ItemSort from "../../components/item_sort_dropdown/ItemSort";
 
 
 function TcgSetInfo() {
 
-    const [allItems, setAllItems] = useState(setCards);
+    const [currentSet, setCurrentSet] = useState();
+    const [allItems, setAllItems] = useState();
     const [search, setSearch] = useState('');
+
+    const {setId} = useParams();
 
     
     const handleSortOrder = (sort) => {
@@ -44,6 +49,18 @@ function TcgSetInfo() {
       })
     }
 
+    useEffect(() => {
+        axios.get(`${baseUrl}/tcg/set/${setId}`)
+          .then((response) => {
+            console.log(response.data);
+            setCurrentSet(response.data[0])
+            setAllItems(setCards)
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+    }, [])
+
 
 
 
@@ -51,14 +68,24 @@ function TcgSetInfo() {
       <section className={styles.mainSection}>
         <div className={styles.topDiv}>
           <div className={styles.imageBox}>
-            <img src="https://pokemonsetimages.s3.us-west-1.amazonaws.com/Sets/Set_Images/503.png" alt=""/>
+            {
+              currentSet ?
+                <img src={currentSet.imageUrl} alt=""/>
+              : <div>Loading...</div>
+            }
           </div>
 
           <div className={styles.description}>
-            <h1>Silver Tempest</h1>
-            <p><span>Release Date:</span> August 20th, 2023</p>
-            <p><span>Total:</span> 214</p>
-            <p className={styles.descriptionText}>Silver Tempest Paragraph more..</p>
+            {
+              currentSet ?
+              <>
+              <h1>{currentSet.setName}</h1>
+              <p><span>Release Date:</span> {currentSet.releaseDate}</p>
+              <p><span>Total:</span> {currentSet.setCount}</p>
+              <p className={styles.descriptionText}>{currentSet.description}</p>
+              </>
+              : <div>Loading...</div>
+            }
           </div>
 
         </div>
