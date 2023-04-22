@@ -7,7 +7,7 @@ function MangaVolumeCard({volumeName, volumeImage, volumeId}) {
 
 
     return (
-      <Link to={`/manga/${volumeId}`} className={styles.cardContainer}>
+      <Link to={`/manga/${volumeName.toLowerCase().replace(/ /g,"-")}`} className={styles.cardContainer}>
         <div className={styles.imageBox}>
             <img src={volumeImage} alt=""/>
         </div>

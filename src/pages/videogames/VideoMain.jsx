@@ -2,13 +2,14 @@ import { Link } from "react-router-dom";
 import styles from "./videoMain.module.css"
 import headerImage from "../../images/p4.png"
 import { useState, useEffect } from "react";
-import { consoles } from "../DummyData";
+import axios from "axios";
+import { baseUrl } from "../../services/baseUrl";
 
 
 function VideoMain() {
 
-    const [allConsoles, setAllConsoles] = useState(consoles);
-    const [sortedConsoles, setSortedConsoles] = useState(allConsoles)
+    const [allConsoles, setAllConsoles] = useState();
+    const [sortedConsoles, setSortedConsoles] = useState()
     const [search, setSearch] = useState('');
     const [currentType, setCurrentType] = useState('');
 
@@ -26,7 +27,7 @@ function VideoMain() {
         return;
       } else {
         let newArr = [...allConsoles].filter((console) => {
-          return console.consoleCompany === "nintendo"
+          return console.company === "nintendo"
         })
         setSortedConsoles(newArr);
         setCurrentType('nintendo')
@@ -38,7 +39,7 @@ function VideoMain() {
         return;
       } else {
         let newArr = [...allConsoles].filter((console) => {
-          return console.consoleCompany === "atari"
+          return console.company === "atari"
         })
         setSortedConsoles(newArr);
         setCurrentType('atari')
@@ -50,7 +51,7 @@ function VideoMain() {
         return;
       } else {
         let newArr = [...allConsoles].filter((console) => {
-          return console.consoleCompany === "xbox"
+          return console.company === "xbox"
         })
         setSortedConsoles(newArr);
         setCurrentType('xbox')
@@ -62,7 +63,7 @@ function VideoMain() {
         return;
       } else {
         let newArr = [...allConsoles].filter((console) => {
-          return console.consoleCompany === "playstation"
+          return console.company === "playstation"
         })
         setSortedConsoles(newArr);
         setCurrentType('playstation')
@@ -74,7 +75,7 @@ function VideoMain() {
         return;
       } else {
         let newArr = [...allConsoles].filter((console) => {
-          return console.consoleCompany === "sega"
+          return console.company === "sega"
         })
         setSortedConsoles(newArr);
         setCurrentType('sega')
@@ -91,7 +92,14 @@ function VideoMain() {
 
 
     useEffect(() => {
-      
+      axios.get(`${baseUrl}/videogames/console`)
+        .then((response) => {
+          setAllConsoles(response.data);
+          setSortedConsoles(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
     }, [])
 
 
@@ -131,7 +139,7 @@ function VideoMain() {
                 <div className={styles.bottomDiv}>
                     {filteredItems.map((console) => {
                       return (
-                        <Link to={`/video-games/${console.consoleId}`}>{console.consoleName}</Link>
+                        <Link to={`/video-games/${console.consoleName.toLowerCase().replace(/ /g,"-")}`}>{console.consoleName}</Link>
                       )
                     })}
                 </div>

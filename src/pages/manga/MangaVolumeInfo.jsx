@@ -1,26 +1,29 @@
-import { Link } from "react-router-dom";
 import styles from "./mangaVolumeInfo.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchItemCard from "../../components/search_and_item_card/SearchItemCard";
-import { volumeItems } from "../DummyData";
 import ItemSort from "../../components/item_sort_dropdown/ItemSort";
+import axios from "axios";
+import { baseUrl } from "../../services/baseUrl";
+import { useParams } from "react-router-dom";
 
 
 function MangaVolumeInfo() {
 
-  const [allItems, setAllItems] = useState(volumeItems);
+  const [currentVolume, setCurrentVolume] = useState()
+  const [allItems, setAllItems] = useState();
   const [search, setSearch] = useState('');
 
+  const {mangaId} = useParams()
     
     const handleSortOrder = (sort) => {
       let newArr = [...allItems];
       if(sort === "Alphabetical") {
         newArr.sort((a,b) => {
-          return a.itemName.localeCompare(b.itemName);
+          return a.title.localeCompare(b.title);
         })
       } else if (sort === "Reverse Alphabetical") {
         newArr.sort((a,b) => {
-          return b.itemName.localeCompare(a.itemName);
+          return b.title.localeCompare(a.title);
         })
       }
 
@@ -32,9 +35,30 @@ function MangaVolumeInfo() {
 
   const filterExecute = () => {
     filteredItems = allItems.filter((item) => {
-      return search.toLowerCase() === '' ? item : item.itemName.toLowerCase().includes(search.toLowerCase())
+      // return search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search.toLowerCase());
+      const itemName = item.volumeName.toLowerCase() + " " + item.title.toLowerCase();
+      return search.toLowerCase() === '' ? item : itemName.toLowerCase().includes(search.toLowerCase());
     })
   }
+
+  useEffect(() => {
+    axios.get(`${baseUrl}/manga/volume/${mangaId}`)
+          .then((response) => {
+            setCurrentVolume(response.data[0])
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+
+    axios.get(`${baseUrl}/manga/volume-items/${mangaId}`)
+          .then((response) => {
+            //console.log(response.data);
+            setAllItems(response.data)
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+  }, [])
 
 
 
@@ -42,15 +66,25 @@ function MangaVolumeInfo() {
       <section className={styles.mainSection}>
         <div className={styles.topDiv}>
           <div className={styles.imageBox}>
-            <img src="https://comicvine.gamespot.com/a/uploads/scale_small/6/67663/3599837-01.jpg" alt=""/>
+            {
+              currentVolume ? 
+              <img src={currentVolume.imageUrl} alt=""/>
+              : <div>Loading...</div>
+            }
           </div>
 
           <div className={styles.description}>
-            <h1>Attack On Titan</h1>
-            <p><span>Release Date:</span> August 20th, 2023</p>
-            <p><span>Publisher:</span> Viz</p>
-            <p><span>Issues:</span> 214</p>
-            <p className={styles.descriptionText}>Attack On Titan Paragraph more..</p>
+            {
+              currentVolume ?
+                <>
+                <h1>{currentVolume.title}</h1>
+                <p><span>Release Date:</span> {currentVolume.releaseDate}</p>
+                <p><span>Publisher:</span> {currentVolume.publisher}</p>
+                <p><span>Issues:</span> {currentVolume.issueCount}</p>
+                <p className={styles.descriptionText}>{currentVolume.description}</p>
+                </>
+              : <div>Loading...</div>
+            }
           </div>
 
         </div>
@@ -76,7 +110,7 @@ function MangaVolumeInfo() {
                 <div className={styles.bottomDiv}>
                     {filteredItems.map((item) => {
                       return (
-                        <SearchItemCard cardImage = {item.itemImage} cardName = {item.itemName} cardId = {item.itemId} setName = {item.volumeName} itemType = {item.itemType} setId = {item.volumeId}/>
+                        <SearchItemCard cardImage = {item.imageUrl} cardName = {item.title} cardId = {item._id} setName = {item.volumeName} itemType = {item.itemType} setId = {item.volumeId}/>
                       )
                     })}
                 </div>

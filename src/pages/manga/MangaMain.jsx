@@ -1,15 +1,14 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { baseUrl } from "../../services/baseUrl";
 import styles from "./mangaMain.module.css"
 import headerImage from "../../images/p3.png"
 import { useState, useEffect } from "react";
 import MangaVolumeCard from "../../components/manga_volume_card/MangaVolumeCard";
-import { mangaVolumes } from "../DummyData";
-
 
 function MangaMain() {
   
-    const [allVolumes, setAllVolumes] = useState(mangaVolumes)
-    const [sortedVolumes, setSortedVolumes] = useState(allVolumes)
+    const [allVolumes, setAllVolumes] = useState()
+    const [sortedVolumes, setSortedVolumes] = useState()
     const [search, setSearch] = useState('');
     const [currentType, setCurrentType] = useState('');
 
@@ -18,7 +17,7 @@ function MangaMain() {
         return;
       } else {
         let newArr = [...allVolumes].filter((volume) => {
-          return volume.volumeType === "manga"
+          return volume.mangaType === "manga"
         })
         setSortedVolumes(newArr);
         setCurrentType('manga')
@@ -30,7 +29,7 @@ function MangaMain() {
         return;
       } else {
         let newArr = [...allVolumes].filter((volume) => {
-          return volume.volumeType === "magazine"
+          return volume.mangaType === "magazine"
         })
         setSortedVolumes(newArr);
         setCurrentType('magazine')
@@ -41,13 +40,20 @@ function MangaMain() {
 
     const filterExecute = () => {
       filteredItems = sortedVolumes.filter((volume) => {
-        return search.toLowerCase() === '' ? volume : volume.volumeName.toLowerCase().includes(search.toLowerCase())
+        return search.toLowerCase() === '' ? volume : volume.title.toLowerCase().includes(search.toLowerCase())
       })
     }
 
 
     useEffect(() => {
-      
+      axios.get(`${baseUrl}/manga/volume`)
+      .then((response) => {
+        setAllVolumes(response.data);
+        setSortedVolumes(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
     }, [])
 
 
@@ -82,7 +88,7 @@ function MangaMain() {
                 <div className={styles.bottomDiv}>
                     {filteredItems.map((volume) => {
                       return (
-                        <MangaVolumeCard volumeImage = {volume.volumeImage} volumeName = {volume.volumeName} volumeId = {volume.volumeId}/>
+                        <MangaVolumeCard volumeImage = {volume.imageUrl} volumeName = {volume.title} volumeId = {volume._id}/>
                       )
                     })}
                 </div>

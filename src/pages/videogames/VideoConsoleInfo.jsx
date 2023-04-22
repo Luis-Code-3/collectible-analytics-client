@@ -1,32 +1,36 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { baseUrl } from "../../services/baseUrl";
 import styles from "./videoConsoleInfo.module.css"
 import SearchItemCard from "../../components/search_and_item_card/SearchItemCard";
-import { useState } from "react";
-import { consoleGames } from "../DummyData";
+import { useState, useEffect } from "react";
 import ItemSort from "../../components/item_sort_dropdown/ItemSort";
+import { useParams } from "react-router-dom";
 
 function VideoConsoleInfo() {
 
-  const [allGames, setAllGames] = useState(consoleGames);
+  const [currentConsole, setCurrentConsole] = useState()
+  const [allGames, setAllGames] = useState();
   const [search, setSearch] = useState('');
+
+  const {consoleId} = useParams();
 
   const handleSortOrder = (sort) => {
     let newArr = [...allGames];
     if(sort === "Alphabetical") {
       newArr.sort((a,b) => {
-        return a.gameName.localeCompare(b.gameName);
+        return a.title.localeCompare(b.title);
       })
     } else if (sort === "Reverse Alphabetical") {
       newArr.sort((a,b) => {
-        return b.gameName.localeCompare(a.gameName);
+        return b.title.localeCompare(a.title);
       })
     } else if(sort === "Most Recent") {
       newArr.sort((a,b) => {
-        return b.gameYear - a.gameYear;
+        return b.releaseDate - a.releaseDate;
       })
     } else if(sort === "Oldest") {
       newArr.sort((a,b) => {
-        return a.gameYear - b.gameYear;
+        return a.releaseDate - b.releaseDate;
       })
     }
 
@@ -38,24 +42,56 @@ function VideoConsoleInfo() {
 
   const filterExecute = () => {
     filteredItems = allGames.filter((game) => {
-      return search.toLowerCase() === '' ? game : game.gameName.toLowerCase().includes(search.toLowerCase())
+      // return search.toLowerCase() === '' ? game : game.title.toLowerCase().includes(search.toLowerCase())
+      const itemName = game.consoleName.toLowerCase() + " " + game.title.toLowerCase()
+      return search.toLowerCase() === '' ? game : itemName.toLowerCase().includes(search.toLowerCase())
     })
   }
+
+  useEffect(() => {
+    axios.get(`${baseUrl}/videogames/console/${consoleId}`)
+          .then((response) => {
+            //console.log(response.data);
+            setCurrentConsole(response.data[0])
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+
+    axios.get(`${baseUrl}/videogames/console-games/${consoleId}`)
+          .then((response) => {
+            //console.log(response.data);
+            setAllGames(response.data)
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+  }, [])
 
 
     return (
       <section className={styles.mainSection}>
         <div className={styles.topDiv}>
           <div className={styles.imageBox}>
-            <img src="https://c4.wallpaperflare.com/wallpaper/604/831/703/playstation-3-black-sony-ps3-wallpaper-preview.jpg" alt=""/>
+            {
+              currentConsole ? 
+              <img src={currentConsole.imageUrl} alt=""/>
+              : <div>Loading...</div>
+            }
           </div>
 
           <div className={styles.description}>
-            <h1>Playstation 3</h1>
-            <p><span>Release Date:</span> August 20th, 2023</p>
-            <p><span>Creator:</span> Sony</p>
-            <p><span>Total:</span> 214</p>
-            <p className={styles.descriptionText}>Silver Tempest Paragraph more..</p>
+            {
+              currentConsole ? 
+                <>
+                <h1>{currentConsole.consoleName}</h1>
+                <p><span>Release Date:</span> {currentConsole.releaseDate}</p>
+                <p><span>Creator:</span> {currentConsole.company}</p>
+                <p><span>Total:</span> {currentConsole.gameCount}</p>
+                <p className={styles.descriptionText}>{currentConsole.description}</p>
+                </>
+              : <div>Loading...</div>
+            }
           </div>
 
         </div>
@@ -83,7 +119,7 @@ function VideoConsoleInfo() {
                 <div className={styles.bottomDiv}>
                     {filteredItems.map((game) => {
                       return (
-                        <SearchItemCard cardImage = {game.gameImage} cardName = {game.gameName} cardId = {game.gameId} setName = {game.consoleName} setId = {game.consoleId} itemType = {game.itemType}/>
+                        <SearchItemCard cardImage = {game.imageUrl} cardName = {game.title} cardId = {game._id} setName = {game.consoleName} setId = {game.consoleId} itemType = {game.itemType}/>
                       )
                     })}
                 </div>

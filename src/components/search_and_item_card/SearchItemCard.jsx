@@ -12,7 +12,7 @@ function SearchItemCard({cardName, cardImage, setName, cardId, itemType, setId, 
                 </div>
 
                 <div className={styles.titleBox}>
-                    <p className={styles.name}>{cardName} #{cardNumber}</p>
+                    <p className={styles.name}>{cardName} {itemType === "tcg" ? `#${cardNumber}` : null}</p>
                     <p className={styles.sport}>{setName}</p>
                 </div>
             </>

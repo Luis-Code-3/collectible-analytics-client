@@ -7,7 +7,7 @@ function SportPlayerCard({playerName, playerImage, sport}) {
 
 
     return (
-      <Link to={`/sports-cards/players/${playerName.toLowerCase().replace(" ","-")}`} className={styles.cardContainer}>
+      <Link to={`/sports-cards/players/${playerName.toLowerCase().replace(/ /g,"-")}`} className={styles.cardContainer}>
         <div className={styles.imageBox}>
             <img src={playerImage} alt=""/>
         </div>
