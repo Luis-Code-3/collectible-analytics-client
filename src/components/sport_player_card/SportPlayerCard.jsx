@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import styles from './sportPlayerCard.module.css'
 
 
-function SportPlayerCard({playerName, playerImage, sport, playerId}) {
+function SportPlayerCard({playerName, playerImage, sport}) {
 
 
 
     return (
-      <Link to={`/sports-cards/players/${playerId}`} className={styles.cardContainer}>
+      <Link to={`/sports-cards/players/${playerName.toLowerCase().replace(" ","-")}`} className={styles.cardContainer}>
         <div className={styles.imageBox}>
             <img src={playerImage} alt=""/>
         </div>

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styles from './searchItemSportCard.module.css'
 
 
-function SearchItemSportCard({cardName, cardImage, setName, cardId, cardType}) {
+function SearchItemSportCard({cardName, cardImage, setName, cardId, cardType, cardNumber}) {
 
 
 
@@ -13,7 +13,7 @@ function SearchItemSportCard({cardName, cardImage, setName, cardId, cardType}) {
         </div>
 
         <div className={styles.titleBox}>
-            <p className={styles.name}>{cardName}</p>
+            <p className={styles.name}>{cardName} #{cardNumber}</p>
             <p className={styles.cardType}>{cardType}</p>
             <p className={styles.sport}>{setName}</p>
         </div>

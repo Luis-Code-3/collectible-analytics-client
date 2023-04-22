@@ -4,7 +4,6 @@ import { baseUrl } from "../../services/baseUrl";
 import styles from "./tcgSetInfo.module.css"
 import SearchItemCard from "../../components/search_and_item_card/SearchItemCard";
 import { useState, useEffect } from "react";
-import { setCards } from "../DummyData";
 import ItemSort from "../../components/item_sort_dropdown/ItemSort";
 
 
@@ -45,16 +44,27 @@ function TcgSetInfo() {
 
     const filterExecute = () => {
       filteredItems = allItems.filter((item) => {
-        return search.toLowerCase() === '' ? item : item.cardName.toLowerCase().includes(search.toLowerCase())
+        const itemName = item.cardName.toLowerCase() + " #" + item.cardNumber.toString().toLowerCase();
+        // return search.toLowerCase() === '' ? item : item.cardName.toLowerCase().includes(search.toLowerCase()) || item.cardNumber.toString().toLowerCase().includes(search.toLowerCase())
+        return search.toLowerCase() === '' ? item : itemName.toLowerCase().includes(search.toLowerCase());
       })
     }
 
     useEffect(() => {
         axios.get(`${baseUrl}/tcg/set/${setId}`)
           .then((response) => {
-            console.log(response.data);
+            //console.log(response.data);
             setCurrentSet(response.data[0])
-            setAllItems(setCards)
+            // setAllItems(setCards)
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+
+          axios.get(`${baseUrl}/tcg/set-cards/${setId}`)
+          .then((response) => {
+            //console.log(response.data);
+            setAllItems(response.data)
           })
           .catch((err) => {
             console.log(err);
@@ -113,7 +123,7 @@ function TcgSetInfo() {
                 <div className={styles.bottomDiv}>
                     {filteredItems.map((item) => {
                       return (
-                        <SearchItemCard cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} setId = {item.setId} itemType = {item.itemType}/>
+                        <SearchItemCard cardImage = {item.imageUrl} cardName = {item.cardName} cardId = {item._id} setName = {item.setName} setId = {item.setId} itemType = {item.itemType} cardNumber = {item.cardNumber}/>
                       )
                     })}
                 </div>

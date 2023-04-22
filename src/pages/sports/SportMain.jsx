@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
 import headerImage from "../../images/p2.jpg"
 import styles from "./sportMain.module.css"
 import { useState, useEffect } from "react";
 import SportPlayerCard from "../../components/sport_player_card/SportPlayerCard";
-import { players } from "../DummyData";
+import axios from "axios";
+import { baseUrl } from "../../services/baseUrl";
 
 
 function SportMain() {
 
-  const [allPlayers, setAllPlayers] = useState(players);
-  const [sortedPlayers, setSortedPlayers] = useState(allPlayers);
+  const [allPlayers, setAllPlayers] = useState(null);
+  const [sortedPlayers, setSortedPlayers] = useState();
   const [search, setSearch] = useState('');
   const [currentType, setCurrentType] = useState('');
 
@@ -92,7 +92,15 @@ function SportMain() {
 
 
     useEffect(() => {
-      
+      axios.get(`${baseUrl}/sportcards/players`)
+        .then((response) => {
+          setAllPlayers(response.data);
+          setSortedPlayers(response.data)
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+
     }, [])
 
 
@@ -132,7 +140,7 @@ function SportMain() {
                 <div className={styles.bottomDiv}>
                     {filteredItems.map((player) => {
                       return (
-                        <SportPlayerCard playerImage = {player.playerImage} playerName = {player.playerName} sport = {player.sport} playerId = {player.playerId}/>
+                        <SportPlayerCard playerImage = {player.imageUrl} playerName = {player.playerName} sport = {player.sport} playerId = {player.playerId}/>
                       )
                     })}
                 </div>

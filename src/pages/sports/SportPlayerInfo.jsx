@@ -1,24 +1,29 @@
-import { Link } from "react-router-dom";
 import styles from "./sportPlayerInfo.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchItemSportCard from "../../components/search_and_item_card/SearchItemSportCard";
 import { playerItems } from "../DummyData";
 import ItemSort from "../../components/item_sort_dropdown/ItemSort";
+import { useParams } from "react-router-dom";
+import { baseUrl } from "../../services/baseUrl";
+import axios from "axios";
 
 function SportPlayerInfo() {
 
-    const [allItems, setAllItems] = useState(playerItems)
+    const [currentPlayer, setCurrentPlayer] = useState();
+    const [allItems, setAllItems] = useState()
     const [search,setSearch] = useState('');
+
+    const {playerId} = useParams();
 
     const handleSortOrder = (sort) => {
       let newArr = [...allItems];
       if(sort === "Most Recent") {
         newArr.sort((a,b) => {
-          return b.cardYear - a.cardYear;
+          return Number(b.setName.match(/\d+/g).join('')) - Number(a.setName.match(/\d+/g).join(''));
         })
       } else if(sort === "Oldest") {
         newArr.sort((a,b) => {
-          return a.cardYear - b.cardYear;
+          return Number(a.setName.match(/\d+/g).join('')) - Number(b.setName.match(/\d+/g).join(''));
         })
       }
 
@@ -31,9 +36,32 @@ function SportPlayerInfo() {
 
     const filterExecute = () => {
       filteredItems = allItems.filter((item) => {
-        return search.toLowerCase() === '' ? item : item.cardName.toLowerCase().includes(search.toLowerCase())
+        // return search.toLowerCase() === '' ? item : item.playerName.toLowerCase().includes(search.toLowerCase())
+        const itemName = item.setName.toLowerCase() + " " + item.playerName.toLowerCase() + " #" + item.cardNumber.toString().toLowerCase();
+        return search.toLowerCase() === '' ? item : itemName.toLowerCase().includes(search.toLowerCase())
       })
     }
+
+    useEffect(() => {
+      axios.get(`${baseUrl}/sportcards/players/${playerId}`)
+          .then((response) => {
+            //console.log(response.data);
+            setCurrentPlayer(response.data[0])
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+
+      axios.get(`${baseUrl}/sportcards/player-cards/${playerId}`)
+        .then((response) => {
+          //console.log(response.data);
+          setAllItems(response.data)
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+
+    }, [])
 
 
 
@@ -41,12 +69,22 @@ function SportPlayerInfo() {
       <section className={styles.mainSection}>
         <div className={styles.topDiv}>
           <div className={styles.imageBox}>
-            <img src="https://cconnect.s3.amazonaws.com/wp-content/uploads/2019/03/1986-87-Fleer-Michael-Jordan-57-RC-Authentic-Rookie-Card.jpg" alt=""/>
+            {
+              currentPlayer ? 
+                <img src={currentPlayer.imageUrl} alt=""/>
+              : <div>Loading...</div>
+            }
           </div>
 
           <div className={styles.description}>
-            <h1>Michael Jordan</h1>
-            <p className={styles.descriptionText}>Silver Tempest Paragraph more..</p>
+            {
+              currentPlayer ?
+                <>
+                  <h1>{currentPlayer.playerName}</h1>
+                  <p className={styles.descriptionText}>{currentPlayer.description}</p>
+                </>
+              : <div>Loading...</div>
+            }
           </div>
 
         </div>
@@ -72,7 +110,7 @@ function SportPlayerInfo() {
                 <div className={styles.bottomDiv}>
                     {filteredItems.map((item) => {
                       return (
-                        <SearchItemSportCard cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} cardType = {item.cardType} itemType = {item.itemType}/>
+                        <SearchItemSportCard cardImage = {item.imageUrl} cardName = {item.playerName} cardId = {item._id} setName = {item.setName} cardType = {item.cardType} itemType = {item.itemType} cardNumber = {item.cardNumber}/>
                       )
                     })}
                 </div>

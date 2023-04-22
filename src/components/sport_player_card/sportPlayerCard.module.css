@@ -30,7 +30,7 @@
 .imageBox img {
     position: absolute;
     height: 100%;
-    left: -75%;
+    /* left: -75%; */
 }
 
 .titleBox {
