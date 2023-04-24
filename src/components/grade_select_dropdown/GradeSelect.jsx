@@ -1,12 +1,16 @@
 import styles from './gradeSelect.module.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import GradeSelectDrop from './GradeSelectDrop';
 
 
-function GradeSelect({filterGrade, itemType, startGrade}) {
+function GradeSelect({filterGrade, itemType, startGrade, itemId}) {
 
-    const [selectedGrade, setSelectedGrade] = useState(startGrade)
+    const [selectedGrade, setSelectedGrade] = useState()
     const [showDropdown, setShowDropdown] = useState(false)
+
+    useEffect(() => {
+        setSelectedGrade(startGrade)
+    }, [itemId])
 
 
     return (

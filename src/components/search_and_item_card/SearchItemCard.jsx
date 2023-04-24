@@ -24,7 +24,7 @@ function SearchItemCard({cardName, cardImage, setName, cardId, itemType, setId, 
     return (
         itemType === "tcg" ? 
         (
-            <Link to={`/trading-cards/${setId}/${cardId}`} className={styles.cardContainer}>
+            <Link to={`/trading-cards/${setName.toLowerCase().replace(/ /g,"-")}/${cardId}`} className={styles.cardContainer}>
                 {cardInfo()}
             </Link>
         )
@@ -36,13 +36,13 @@ function SearchItemCard({cardName, cardImage, setName, cardId, itemType, setId, 
         )
         : itemType === "game" ?
         (
-            <Link to={`/video-games/${setId}/${cardId}`} className={styles.cardContainer}>
+            <Link to={`/video-games/${setName.toLowerCase().replace(/ /g,"-")}/${cardId}`} className={styles.cardContainer}>
                 {cardInfo()}
             </Link>
         )
         : itemType === "manga" ?
         (
-            <Link to={`/manga/${setId}/${cardId}`} className={styles.cardContainer}>
+            <Link to={`/manga/${setName.toLowerCase().replace(/ /g,"-")}/${cardId}`} className={styles.cardContainer}>
                 {cardInfo()}
             </Link>
         )

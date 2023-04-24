@@ -1,5 +1,6 @@
 import './App.css';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Footer from './components/navbar_and_footer/Footer';
 import Navbar from './components/navbar_and_footer/Navbar';
 import Home from './pages/landing/Home';
@@ -17,12 +18,16 @@ import Search from './pages/search_results/Search';
 import ItemAnalytics from './pages/analytics/ItemAnalytics';
 import Collection from './pages/collection/Collection';
 import Watchlist from './pages/watchlist/Watchlist';
+import NotFound from './pages/notFound_page/NotFound';
 
 function App() {
 
   const location = useLocation();
   const hideNavbarFooter = ['/signup', '/login'].includes(location.pathname);
 
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, [location.pathname])
 
   return (
     <div className="App">
@@ -59,6 +64,9 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/watchlist' element={<Watchlist/>}/>
         <Route path='/collection' element={<Collection/>}/>
+
+        {/* 404 Route */}
+        <Route path='*' element={<NotFound/>}/>
 
       </Routes>
       {!hideNavbarFooter && <Footer/>}

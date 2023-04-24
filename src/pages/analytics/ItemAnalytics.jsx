@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+import axios from "axios";
+import { baseUrl } from "../../services/baseUrl";
 import styles from "./itemAnalytics.module.css"
 import { useState, useEffect } from "react";
 import SearchItemCard from "../../components/search_and_item_card/SearchItemCard";
 import SearchItemSportCard from "../../components/search_and_item_card/SearchItemSportCard";
-import { collectionItems, tranData, oneItem } from "../DummyData";
-import ReportModal from "../../components/report_modal/ReportModal";
 import GradeSelect from "../../components/grade_select_dropdown/GradeSelect";
 import ChartSelect from "../../components/chart_time_dropdown/ChartSelect";
-import {ReactComponent as ReportIcon} from "../../icons/flag-regular.svg"
+import TransactionsBlock from "../../components/transactions_section/TransactionsBlock";
 import {ReactComponent as WatchIcon} from "../../icons/eye-solid.svg"
 import {ReactComponent as AddIcon} from "../../icons/plus-solid.svg"
 
@@ -20,77 +20,24 @@ function ItemAnalytics() {
     // And the chart js time frame sort
 
     // STATES
-    const [item, setItem] = useState(oneItem)
-    const [allTransactions, setAllTransactions] = useState(tranData)
+    const [item, setItem] = useState()
+    const [allTransactions, setAllTransactions] = useState()
     const [filteredTransactions, setFilteredTransactions] = useState([])
-    const [similarItems, setSimilarItems] = useState(collectionItems)
+    const [similarItems, setSimilarItems] = useState()
 
-    const [amountShown, setAmountShown] = useState(25);
-
-    const [sortPriceOrder, setSortPriceOrder] = useState('asc');
-    const [sortDateOrder, setSortDateOrder] = useState('asc');
-    const [sortTitleOrder, setSortTitleOrder] = useState('asc');
-    const [sortMarketplaceOrder, setSortMarketplaceOrder] = useState('asc');
-    
-    const [openModal, setOpenModal] = useState(false);
-
-    if (openModal) {
-        document.body.classList.add(styles.activeModal);
-    } else {
-        document.body.classList.remove(styles.activeModal);
-    }
-
-
-    // FUNCTIONS
-    const sortDate = () => {
-
-    }
-
-    const sortSalePrice = () => {
-        let newArr = [...filteredTransactions].sort((a,b) => {
-            if(sortPriceOrder === 'asc') {
-                return b.salePrice - a.salePrice;
-            } else {
-                return a.salePrice - b.salePrice;
-            }
-        })
-
-        setFilteredTransactions(newArr);
-        setSortPriceOrder(sortPriceOrder === 'asc' ? 'desc' : 'asc');
-    }
-
-    const sortMarketplace = () => {
-        let newArr = [...filteredTransactions].sort((a,b) => {
-            if(sortMarketplaceOrder === 'asc') {
-                return a.marketplace.localeCompare(b.marketplace);
-            } else {
-                return b.marketplace.localeCompare(a.marketplace);
-            }
-        })
-
-        setFilteredTransactions(newArr)
-        setSortMarketplaceOrder(sortMarketplaceOrder === 'asc' ? 'desc' : 'asc')
-    }
-
-    const sortTitle = () => {
-        let newArr = [...filteredTransactions].sort((a,b) => {
-            if(sortTitleOrder === 'asc') {
-                return a.listingTitle.localeCompare(b.listingTitle);
-            } else {
-                return b.listingTitle.localeCompare(a.listingTitle);
-            }
-        })
-
-        setFilteredTransactions(newArr)
-        setSortTitleOrder(sortTitleOrder === 'asc' ? 'desc' : 'asc')
-        
-    }
-
+    const location = useLocation();
+    const pathType = location.pathname.split('/')[1]
+    const {itemId} = useParams();
 
     const filterGrade = (grade) => {
-        let newArr = [...allTransactions].filter((tran) => {
-            return tran.grade === grade;
-        })
+        let newArr;
+        if (grade === "") {
+            newArr = [...allTransactions];
+        } else {
+            newArr = [...allTransactions].filter((tran) => {
+                return tran.grade === grade;
+            })
+        }
 
         setFilteredTransactions(newArr)
     }
@@ -99,19 +46,101 @@ function ItemAnalytics() {
         // sort by cutoff date of transactions (6 months, 1 year, etc)
     }
 
-    const handleAmountShown = (event) => {
-        setAmountShown(+event.target.value)
+    const itemBio = (itemType) => {
+        switch (itemType) {
+            case "tcg":
+                return (
+                    <>
+                    <p className={styles.setName}>{item.setName}</p>
+                    <h2>{item.cardName}</h2>
+                    </>
+                );
+            case "sports":
+                return (
+                    <>
+                    <p className={styles.cardType}>{item.cardType}</p>
+                    <p className={styles.setName}>{item.setName}</p>
+                    <h2>{item.playerName}</h2>
+                    </>
+                );
+            case "manga":
+                return (
+                    <>
+                    <p className={styles.setName}>{item.volumeName}</p>
+                    <h2>{item.title}</h2>
+                    </>
+                );
+            case "game":
+                return (
+                    <>
+                    <p className={styles.setName}>{item.consoleName}</p>
+                    <h2>{item.title}</h2>
+                    </>
+                );
+            default:
+        }
+    }
+
+    const fetchData = async (itemType) => {
+        await axios.get(`${baseUrl}/search/item-details/${itemType}/${itemId}`)
+            .then((response) => {
+                //console.log(response.data);
+                setItem(response.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        await axios.get(`${baseUrl}/search/item-sales/${itemType}/${itemId}`)
+            .then((response) => {
+                //console.log(response.data);
+                setAllTransactions(response.data);
+                let newArr = response.data.filter((tran) => {
+                    //return tran.grade === "PSA 10";
+                    switch (itemType) {
+                        case "tcg":
+                            return tran.grade === "PSA 10";
+                        case "manga":
+                            return tran.grade === "";
+                        case "sports":
+                            return tran.grade === "PSA 10";
+                        case "videogames":
+                            return tran.grade === "WATA 10";
+                        default:
+                            return false;
+                    }
+                })
+                setFilteredTransactions(newArr)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        await axios.get(`${baseUrl}/search/similar-items/${itemType}`)
+            .then((response) => {
+                setSimilarItems(response.data)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
 
     useEffect(() => {
-
-        let newArr = [...allTransactions].filter((tran) => {
-            return tran.grade === "PSA 10";
-        })
-
-        setFilteredTransactions(newArr)
-    }, [])
+        switch (pathType) {
+            case "trading-cards":
+                fetchData("tcg");
+                break;
+            case "manga":
+                fetchData("manga");
+                break;
+            case "sports-cards":
+                fetchData("sports");
+                break;
+            case "video-games":
+                fetchData("videogames");
+                break;
+            default:
+        }
+    }, [itemId])
 
 
     return (
@@ -119,20 +148,24 @@ function ItemAnalytics() {
         <div className={styles.topDiv}>
             <div className={styles.leftTopDiv}>
                 <div className={styles.imageBox}>
-                    <img src={item.cardImage} alt=""/>
+                    {
+                        item ? 
+                        <img src={item.imageUrl} alt=""/>
+                        : <div>Loading...</div>
+                    }
                 </div>
 
                 <div className={styles.gradePop}>
 
                     {
-                        item.itemType === "tcg" ? 
-                            <GradeSelect filterGrade = {filterGrade} itemType = {item.itemType} startGrade = {"PSA 10"}/>
-                        : item.itemType === "sports" ?
-                            <GradeSelect filterGrade = {filterGrade} itemType = {item.itemType} startGrade = {"PSA 10"}/>
-                        : item.itemType === "game" ? 
-                            <GradeSelect filterGrade = {filterGrade} itemType = {item.itemType} startGrade = {"WATA 10"}/>
-                        : item.itemType === "manga" ?
-                            <GradeSelect filterGrade = {filterGrade} itemType = {item.itemType} startGrade = {"----"}/>
+                        pathType === "trading-cards" ? 
+                            <GradeSelect filterGrade = {filterGrade} itemType = {pathType} startGrade = {"PSA 10"} itemId = {itemId}/>
+                        : pathType === "sports-cards" ?
+                            <GradeSelect filterGrade = {filterGrade} itemType = {pathType} startGrade = {"PSA 10"} itemId = {itemId}/>
+                        : pathType === "video-games" ? 
+                            <GradeSelect filterGrade = {filterGrade} itemType = {pathType} startGrade = {"WATA 10"} itemId = {itemId}/>
+                        : pathType === "manga" ?
+                            <GradeSelect filterGrade = {filterGrade} itemType = {pathType} startGrade = {"----"} itemId = {itemId}/>
                         : null
                     }
 
@@ -145,9 +178,13 @@ function ItemAnalytics() {
             <div className={styles.rightTopDiv}>
                 <div className={styles.itemInfo}>
                     <div className={styles.nameBox}>
-                        {item.itemType === "sports" && <p className={styles.cardType}>{item.cardType}</p>}
-                        <p className={styles.setName}>{item.setName}</p>
-                        <h2>{item.cardName}</h2>
+                        {
+                            item ?
+                            <>
+                            {itemBio(item.itemType)}
+                            </>
+                            :<div>Loading...</div>
+                        }
                     </div>
 
                     <div className={styles.extraBox}>
@@ -166,7 +203,7 @@ function ItemAnalytics() {
                             <p className={styles.prices}>$120,000</p>
                             <p className={styles.prices}>10.23M</p>
                             <p className={styles.prices}>$110,234</p>
-                            <ChartSelect timeFrameSort={timeFrameSort}/>
+                            <ChartSelect timeFrameSort={timeFrameSort} itemId = {itemId}/>
                         </div>
 
                     </div>
@@ -185,73 +222,7 @@ function ItemAnalytics() {
             <div className={styles.topMiddleDiv}>
                 <h3>RECENT SALES</h3>
             </div>
-
-            <div className={styles.transactionTitles}>
-                <div onClick={sortDate} className={styles.soldDate}>
-                    <p>SOLD DATE</p>
-                </div>
-
-                <div onClick={sortTitle} className={styles.listingTitle}>
-                    <p>LISTING TITLE</p>
-                </div>
-
-                <div onClick={sortMarketplace} className={styles.marketplace}>
-                    <p>MARKETPLACE</p>
-                </div>
-
-                <div onClick={sortSalePrice} className={styles.salePrice}>
-                    <p>SALE PRICE</p>
-                </div>
-
-                <div className={styles.report}>
-                    <p>REPORT</p>
-                </div>
-            </div>
-
-            {
-                filteredTransactions.length > 0 ? 
-                filteredTransactions.slice(0, amountShown).map((tran) => {
-                    return (
-                        <div className={styles.transactionComplete}>
-                            <div className={styles.tranSoldDate}>
-                                <p>{tran.soldDate}</p>
-                            </div>
-
-                            <div className={styles.tranListingTitle}>
-                                <p>{tran.listingTitle.toUpperCase()}</p>
-                            </div>
-
-                            <div className={styles.tranMarketplace}>
-                                <p>{tran.marketplace.toUpperCase()}</p>
-                            </div>
-
-                            <div className={styles.tranSalePrice}>
-                                <p>${tran.salePrice}</p>
-                            </div>
-
-                            <div className={styles.tranReport}>
-                                <p onClick={() => setOpenModal(true)} className={styles.reportButton}>{<ReportIcon/>}</p>
-                            </div>
-                            <ReportModal closeModal={() => setOpenModal(false)} openModal={openModal}/>
-                        </div>
-                    );
-                })   
-
-                : <div className={styles.noSales}>NO SALES</div>
-            }
-
-            <div className={styles.bottomMiddleDiv}>
-                <p>SALES PER PAGE:</p>
-                <select onChange={handleAmountShown}>
-                    <option>25</option>
-                    <option>50</option>
-                    <option>75</option>
-                    <option>100</option>
-                </select>
-            </div>
-
-
-            
+            <TransactionsBlock filteredTransactions = {filteredTransactions} setFilteredTransactions = {setFilteredTransactions}/>
         </div>
 
         <div className={styles.similarTitle}>
@@ -263,21 +234,21 @@ function ItemAnalytics() {
             similarItems ?
             <>
               {similarItems.map((item) => {
-                if (item.itemType === "sport") {
+                if (item.itemType === "sports") {
                     return (
-                    <SearchItemSportCard cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} cardType = {item.cardType}/>
+                    <SearchItemSportCard cardImage = {item.imageUrl} cardName = {item.playerName} cardId = {item._id} setName = {item.setName} cardType = {item.cardType} cardNumber = {item.cardNumber}/>
                     )
                 } else if (item.itemType === "tcg") {
                     return (
-                    <SearchItemCard cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} setId = {item.setId} itemType = {item.itemType}/>
+                    <SearchItemCard cardImage = {item.imageUrl} cardName = {item.cardName} cardId = {item._id} setName = {item.setName} setId = {item.setId} itemType = {item.itemType} cardNumber = {item.cardNumber}/>
                     )
                 } else if (item.itemType === "manga") {
                     return (
-                    <SearchItemCard cardImage = {item.itemImage} cardName = {item.itemName} cardId = {item.itemId} setName = {item.volumeName} setId = {item.setId} itemType = {item.itemType}/>
+                    <SearchItemCard cardImage = {item.imageUrl} cardName = {item.title} cardId = {item._id} setName = {item.volumeName} setId = {item.volumeId} itemType = {item.itemType}/>
                     )
                 } else {
                     return (
-                    <SearchItemCard cardImage = {item.gameImage} cardName = {item.gameName} cardId = {item.gameId} setName = {item.consoleName} setId = {item.setId} itemType = {item.itemType}/>
+                    <SearchItemCard cardImage = {item.imageUrl} cardName = {item.title} cardId = {item._id} setName = {item.consoleName} setId = {item.consoleId} itemType = {item.itemType}/>
                     )
                 }
               })}

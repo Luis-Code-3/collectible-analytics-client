@@ -1,0 +1,165 @@
+.activeModal {
+    overflow-y: hidden;
+}
+
+.transactionTitles {
+    width: 100%;
+    display: flex;
+    border-bottom: 2px solid #0daba0;
+}
+
+.transactionTitles div p {
+    font-weight: 800;
+}
+
+.salePrice {
+    padding: 1% 5%;
+    background-color: #1c2f36;
+    border-right: 2px solid #0daba0;
+    cursor: pointer;
+}
+
+.salePrice:hover {
+    background-color: #283e46;
+}
+
+.marketplace {
+    padding: 1% 5%;
+    background-color: #1c2f36;
+    border-right: 2px solid #0daba0;
+    cursor: pointer;
+}
+
+.marketplace:hover {
+    background-color: #283e46;
+}
+
+.report {
+    padding: 1% 2%;
+    background-color: #1c2f36;
+}
+
+.soldDate {
+    padding: 1% 4%;
+    background-color: #1c2f36;
+    border-right: 2px solid #0daba0;
+    cursor: pointer;
+}
+
+.soldDate:hover {
+    background-color: #283e46;
+}
+
+.listingTitle {
+    padding: 1% 5%;
+    background-color: #1c2f36;
+    border-right: 2px solid #0daba0;
+    flex-grow: 1;
+    text-align: center;
+    cursor: pointer;
+}
+
+.listingTitle:hover {
+    background-color: #283e46;
+}
+
+.transactionComplete {
+    width: 100%;
+    display: flex;
+    border-bottom: 2px solid #166963;
+    background-color: #1c2f36;
+    font-weight: 600;
+}
+
+.tranSalePrice {
+    padding: 1% 0%;
+    width: 17.9%;
+    display: flex;
+    justify-content: center;
+}
+
+.tranMarketplace {
+    padding: 1% 0%;
+    width: 20.1%;
+    display: flex;
+    justify-content: center;
+}
+
+.tranReport {
+    /* padding: 0% 0%; */
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+.reportButton {
+    cursor: pointer;
+    margin-top: 4%;
+    /* border: 1px solid red; */
+}
+
+.reportButton svg {
+    width: 18px;
+    fill: rgba(246, 26, 70, 0.6);
+    transition: all .1s linear;
+}
+
+.reportButton svg:hover {
+    fill: rgba(246, 26, 70, 0.9);
+}
+
+.tranSoldDate {
+    padding: 1% 0%;
+    width: 15.5%;
+    display: flex;
+    justify-content: center;
+}
+
+.tranListingTitle {
+    padding: 1% 0%;
+    width: 37.1%;
+    display: flex;
+    justify-content: center;
+}
+
+.noSales {
+    width: 100%;
+    background-color: #1c2f36;
+    border-bottom: 2px solid #166963;
+    box-sizing: border-box;
+    padding: 2%;
+    text-align: center;
+    font-weight: 700;
+    color: #A3A6A8;
+}
+
+.bottomMiddleDiv {
+    display: flex;
+    gap: 2%;
+    justify-content: flex-end;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 1%;
+    border-bottom-right-radius: 5px;
+    background-color: #1c2f36;
+    border-bottom-left-radius: 5px;
+}
+
+.bottomMiddleDiv p {
+    font-size: 80%;
+    font-weight: 700;
+}
+
+.bottomMiddleDiv select {
+    border: none;
+    outline: none;
+    background-color: #131f23;
+    color: white;
+    box-sizing: border-box;
+    border-radius: 5px;
+    text-align: center;
+    width: 4%;
+    padding: .3% 0%;
+}

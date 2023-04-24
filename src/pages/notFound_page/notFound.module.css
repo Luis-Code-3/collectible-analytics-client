@@ -1,0 +1,20 @@
+.mainSection {
+    background-color: #0c1314;
+    box-sizing: border-box;
+    padding: 5% 7%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 3%;
+}
+
+.mainSection h1 {
+    font-size: 400%;
+}
+
+.mainSection p {
+    color: rgb(255, 255, 255, .5);
+}

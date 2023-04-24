@@ -6,12 +6,12 @@ function GradeSelectDrop({filterGrade, setSelectedGrade, setShowDropdown, showDr
 
     let gradeArray = []
 
-    if(itemType === "tcg") {
+    if(itemType === "trading-cards") {
         gradeArray = ["PSA 10", "PSA 9", "PSA 8", "PSA 7", "PSA 6", "PSA 5", "PSA 4", "PSA 3", "PSA 2", "PSA 1"];
-    } else if (itemType === "sports") {
+    } else if (itemType === "sports-cards") {
         gradeArray = ["PSA 10", "PSA 9", "PSA 8", "PSA 7", "PSA 6", "PSA 5", "PSA 4", "PSA 3", "PSA 2", "PSA 1"];
-    } else if (itemType === "game") {
-        gradeArray = ["WATA 10", "WATA 9", "WATA 8", "WATA 7", "WATA 6", "WATA 5", "WATA 4", "WATA 3", "WATA 2", "WATA 1"];
+    } else if (itemType === "video-games") {
+        gradeArray = ["WATA 10", "WATA 9", "WATA 8", "WATA 7", "WATA 6", "CIB", "LOOSE", "NEW", "BOX-ONLY"];
     } else if (itemType === "manga") {
         gradeArray = ["----"];
     }
