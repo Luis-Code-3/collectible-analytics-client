@@ -1,9 +1,10 @@
 import styles from './watchlistAddItem.module.css'
-import { searchItems } from "../../pages/DummyData";
 import { useState, useRef } from "react";
 import WatchlistResult from "./WatchlistResult";
 import ModalBackdrop from "../backdrop_modal/ModalBackdrop";
 import { CSSTransition } from "react-transition-group";
+import axios from 'axios';
+import { baseUrl } from '../../services/baseUrl';
 
 function WatchlistAddItem({closeModal, openModal, modalType}) {
 
@@ -15,10 +16,18 @@ function WatchlistAddItem({closeModal, openModal, modalType}) {
         e.preventDefault()
         const searchValue = inputRef.current.value;
         inputRef.current.value = '';
-        let newArr = searchItems.filter((item) => {
-            return item.cardName.toLowerCase().includes(searchValue.toLowerCase());
-        })
-        setAllItems(newArr)
+        // let newArr = searchItems.filter((item) => {
+        //     return item.cardName.toLowerCase().includes(searchValue.toLowerCase());
+        // })
+        // setAllItems(newArr)
+        axios.get(`${baseUrl}/search/search-bar/check?q=${encodeURIComponent(searchValue)}`)
+         .then((response) => {
+            //console.log(response.data);
+            setAllItems(response.data)
+         })
+         .catch((err) => {
+            console.log(err);
+         })
     }
 
 
@@ -69,21 +78,21 @@ function WatchlistAddItem({closeModal, openModal, modalType}) {
                         allItems.length > 0 ? 
                             <>
                             {allItems.map((item) => {
-                                if (item.itemType === "sport") {
+                                if (item.itemType === "sports") {
                                     return (
-                                    <WatchlistResult cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} cardType = {item.cardType} modalType = {modalType} closeModal = {closeModal} setAllItems={setAllItems}/>
+                                    <WatchlistResult cardImage = {item.imageUrl} cardName = {item.playerName} cardId = {item._id} setName = {item.setName} cardType = {item.cardType} cardNumber = {item.cardNumber} itemType = {item.itemType} modalType = {modalType} closeModal = {closeModal} setAllItems={setAllItems}/>
                                     )
                                 } else if (item.itemType === "tcg") {
                                     return (
-                                    <WatchlistResult cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} modalType = {modalType} closeModal = {closeModal} setAllItems={setAllItems}/>
+                                    <WatchlistResult cardImage = {item.imageUrl} cardName = {item.cardName} cardId = {item._id} setName = {item.setName} modalType = {modalType} cardNumber = {item.cardNumber} itemType = {item.itemType} closeModal = {closeModal} setAllItems={setAllItems}/>
                                     )
                                 } else if (item.itemType === "manga") {
                                     return (
-                                    <WatchlistResult cardImage = {item.itemImage} cardName = {item.itemName} cardId = {item.itemId} setName = {item.volumeName} modalType = {modalType} closeModal = {closeModal} setAllItems={setAllItems}/>
+                                    <WatchlistResult cardImage = {item.imageUrl} cardName = {item.title} cardId = {item._id} setName = {item.volumeName} modalType = {modalType} closeModal = {closeModal} itemType = {item.itemType} setAllItems={setAllItems}/>
                                     )
                                 } else {
                                     return (
-                                    <WatchlistResult cardImage = {item.gameImage} cardName = {item.gameName} cardId = {item.gameId} setName = {item.consoleName} modalType = {modalType} closeModal = {closeModal} setAllItems={setAllItems}/>
+                                    <WatchlistResult cardImage = {item.imageUrl} cardName = {item.title} cardId = {item._id} setName = {item.consoleName} modalType = {modalType} closeModal = {closeModal} itemType = {item.itemType} setAllItems={setAllItems}/>
                                     )
                                 }
                             })}

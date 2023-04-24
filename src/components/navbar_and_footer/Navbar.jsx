@@ -23,7 +23,7 @@ function Navbar() {
       return
     }
     const searchValue = inputRef.current.value;
-    navigate(`/search?q=${searchValue}`);
+    navigate(`/search?q=${encodeURIComponent(searchValue)}`);
     inputRef.current.value = '';
   }
 

@@ -1,14 +1,17 @@
 import styles from "./watchlistResult.module.css"
 
 
-function WatchlistResult({cardName, cardImage, setName, cardId, cardType, modalType, closeModal, setAllItems}) {
+function WatchlistResult({cardName, cardImage, setName, cardId, cardType, modalType, closeModal, setAllItems, itemType, cardNumber}) {
 
     const addItem = () => {
         if (modalType === 'collection') {
             closeModal();
             setAllItems(null);
+            // add to collection of logged in user
         } else {
-
+            closeModal();
+            setAllItems(null);
+            // add to watchlist of logged in user
         }
     }
 
@@ -18,7 +21,7 @@ function WatchlistResult({cardName, cardImage, setName, cardId, cardType, modalT
                 <img src={cardImage} alt=""/>
             </div>
             <div className={styles.resultInfo}>
-                <h3>{cardName}</h3>
+                <h3>{cardName} {itemType === "tcg" || itemType === "sports" ? (cardNumber) : null}</h3>
                 {cardType && <p>{cardType}</p>}
                 <p>{setName}</p>
             </div>

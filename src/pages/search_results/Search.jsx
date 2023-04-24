@@ -3,7 +3,8 @@ import styles from "./search.module.css"
 import SearchItemCard from "../../components/search_and_item_card/SearchItemCard";
 import SearchItemSportCard from "../../components/search_and_item_card/SearchItemSportCard";
 import { useState, useEffect } from "react";
-import { searchItems } from "../DummyData";
+import axios from "axios";
+import { baseUrl } from "../../services/baseUrl";
 
 
 function Search() {
@@ -13,10 +14,19 @@ function Search() {
     useEffect(() => {
         let query = searchParams.get('q');
         //console.log(query);
-        let newArr = searchItems.filter((item) => {
-            return item.cardName.toLowerCase().includes(query.toLowerCase());
-        })
-        setAllItems(newArr)
+        // let newArr = searchItems.filter((item) => {
+        //     return item.cardName.toLowerCase().includes(query.toLowerCase());
+        // })
+        // setAllItems(newArr)
+        //console.log(query);
+        axios.get(`${baseUrl}/search/search-bar/check?q=${encodeURIComponent(query)}`)
+         .then((response) => {
+            //console.log(response.data);
+            setAllItems(response.data)
+         })
+         .catch((err) => {
+            console.log(err);
+         })
     }, [searchParams])
 
     return (
@@ -33,21 +43,21 @@ function Search() {
                 allItems.length > 0 ?
                 <>
                 {allItems.map((item) => {
-                    if (item.itemType === "sport") {
+                    if (item.itemType === "sports") {
                         return (
-                        <SearchItemSportCard cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} cardType = {item.cardType}/>
+                        <SearchItemSportCard cardImage = {item.imageUrl} cardName = {item.playerName} cardId = {item._id} setName = {item.setName} cardType = {item.cardType} cardNumber = {item.cardNumber}/>
                         )
                     } else if (item.itemType === "tcg") {
                         return (
-                        <SearchItemCard cardImage = {item.cardImage} cardName = {item.cardName} cardId = {item.cardId} setName = {item.setName} setId = {item.setId} itemType = {item.itemType}/>
+                        <SearchItemCard cardImage = {item.imageUrl} cardName = {item.cardName} cardId = {item._id} setName = {item.setName} setId = {item.setId} itemType = {item.itemType} cardNumber = {item.cardNumber}/>
                         )
                     } else if (item.itemType === "manga") {
                         return (
-                        <SearchItemCard cardImage = {item.itemImage} cardName = {item.itemName} cardId = {item.itemId} setName = {item.volumeName} setId = {item.setId} itemType = {item.itemType}/>
+                        <SearchItemCard cardImage = {item.imageUrl} cardName = {item.title} cardId = {item._id} setName = {item.volumeName} setId = {item.volumeId} itemType = {item.itemType}/>
                         )
                     } else {
                         return (
-                        <SearchItemCard cardImage = {item.gameImage} cardName = {item.gameName} cardId = {item.gameId} setName = {item.consoleName} setId = {item.setId} itemType = {item.itemType}/>
+                        <SearchItemCard cardImage = {item.imageUrl} cardName = {item.title} cardId = {item._id} setName = {item.consoleName} setId = {item.consoleId} itemType = {item.itemType}/>
                         )
                     }
                 })}

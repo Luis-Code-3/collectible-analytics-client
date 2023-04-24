@@ -119,7 +119,7 @@ function TransactionsBlock({filteredTransactions, setFilteredTransactions}) {
                             <div className={styles.tranReport}>
                                 <p onClick={() => setOpenModal(true)} className={styles.reportButton}>{<ReportIcon/>}</p>
                             </div>
-                            <ReportModal closeModal={() => setOpenModal(false)} openModal={openModal}/>
+                            <ReportModal closeModal={() => setOpenModal(false)} openModal={openModal} tranId = {tran._id}/>
                         </div>
                     );
                 })   

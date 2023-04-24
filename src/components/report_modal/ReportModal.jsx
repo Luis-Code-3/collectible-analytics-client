@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 import { useRef } from 'react';
 
 
-function ReportModal({openModal, closeModal}) {
+function ReportModal({openModal, closeModal, tranId}) {
 
     const inputRef = useRef();
 
@@ -13,6 +13,8 @@ function ReportModal({openModal, closeModal}) {
         const searchValue = inputRef.current.value;
         inputRef.current.value = '';
         closeModal();
+        //add a report to the the report model
+        //add a report to the transaction item (object id array)
     }
 
 
