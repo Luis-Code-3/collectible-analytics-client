@@ -8,6 +8,7 @@ import SearchItemSportCard from "../../components/search_and_item_card/SearchIte
 import GradeSelect from "../../components/grade_select_dropdown/GradeSelect";
 import ChartSelect from "../../components/chart_time_dropdown/ChartSelect";
 import TransactionsBlock from "../../components/transactions_section/TransactionsBlock";
+import LineChart from "../../components/chart_analytics/LineChart";
 import {ReactComponent as WatchIcon} from "../../icons/eye-solid.svg"
 import {ReactComponent as AddIcon} from "../../icons/plus-solid.svg"
 
@@ -211,7 +212,11 @@ function ItemAnalytics() {
                 </div>
 
                 <div className={styles.analytics}>
-
+                    {
+                        filteredTransactions.length > 0 ? 
+                        <LineChart filteredTransactions = {filteredTransactions}/>
+                        : <div>Loading...</div>
+                    }
                 </div>
 
             </div>
@@ -222,7 +227,11 @@ function ItemAnalytics() {
             <div className={styles.topMiddleDiv}>
                 <h3>RECENT SALES</h3>
             </div>
-            <TransactionsBlock filteredTransactions = {filteredTransactions} setFilteredTransactions = {setFilteredTransactions}/>
+            {
+                filteredTransactions.length > 0 ? 
+                <TransactionsBlock filteredTransactions = {filteredTransactions} setFilteredTransactions = {setFilteredTransactions}/>
+                : <div className={styles.noSales}>No Sales...</div>
+            }
         </div>
 
         <div className={styles.similarTitle}>

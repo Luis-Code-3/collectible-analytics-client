@@ -1,15 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import styles from './transactionsBlock.module.css'
 import {ReactComponent as ReportIcon} from "../../icons/flag-regular.svg"
 import ReportModal from "../../components/report_modal/ReportModal";
 
 
-function TransactionsBlock({filteredTransactions, setFilteredTransactions}) {
+function TransactionsBlock({filteredTransactions}) {
 
     const [sortPriceOrder, setSortPriceOrder] = useState('asc');
     const [sortDateOrder, setSortDateOrder] = useState('asc');
     const [sortTitleOrder, setSortTitleOrder] = useState('asc');
     const [sortMarketplaceOrder, setSortMarketplaceOrder] = useState('asc');
+
+    const sortedTrans = useRef(filteredTransactions);
 
     const [amountShown, setAmountShown] = useState(25);
 
@@ -34,7 +36,9 @@ function TransactionsBlock({filteredTransactions, setFilteredTransactions}) {
             }
         })
 
-        setFilteredTransactions(newArr);
+        // setFilteredTransactions(newArr);
+        sortedTrans.current = newArr;
+        console.log(sortedTrans);
         setSortPriceOrder(sortPriceOrder === 'asc' ? 'desc' : 'asc');
     }
 
@@ -47,7 +51,8 @@ function TransactionsBlock({filteredTransactions, setFilteredTransactions}) {
             }
         })
 
-        setFilteredTransactions(newArr)
+        // setFilteredTransactions(newArr)
+        sortedTrans.current = newArr;
         setSortMarketplaceOrder(sortMarketplaceOrder === 'asc' ? 'desc' : 'asc')
     }
 
@@ -60,7 +65,8 @@ function TransactionsBlock({filteredTransactions, setFilteredTransactions}) {
             }
         })
 
-        setFilteredTransactions(newArr)
+        // setFilteredTransactions(newArr)
+        sortedTrans.current = newArr;
         setSortTitleOrder(sortTitleOrder === 'asc' ? 'desc' : 'asc')
         
     }
@@ -68,7 +74,6 @@ function TransactionsBlock({filteredTransactions, setFilteredTransactions}) {
     const handleAmountShown = (event) => {
         setAmountShown(+event.target.value)
     }
-
 
 
     return (
@@ -96,8 +101,8 @@ function TransactionsBlock({filteredTransactions, setFilteredTransactions}) {
             </div>
 
             {
-                filteredTransactions.length > 0 ? 
-                filteredTransactions.slice(0, amountShown).map((tran) => {
+                sortedTrans.current.length > 0 ? 
+                sortedTrans.current.slice(0, amountShown).map((tran) => {
                     return (
                         <div className={styles.transactionComplete}>
                             <div className={styles.tranSoldDate}>
@@ -113,7 +118,7 @@ function TransactionsBlock({filteredTransactions, setFilteredTransactions}) {
                             </div>
 
                             <div className={styles.tranSalePrice}>
-                                <p>${tran.salePrice}</p>
+                                <p>${tran.salePrice.toLocaleString('en-US')}</p>
                             </div>
 
                             <div className={styles.tranReport}>
