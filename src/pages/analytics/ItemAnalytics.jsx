@@ -23,14 +23,14 @@ function ItemAnalytics() {
     // STATES
     const [item, setItem] = useState()
     const [allTransactions, setAllTransactions] = useState()
-    const [filteredTransactions, setFilteredTransactions] = useState([])
+    const [filteredTransactions, setFilteredTransactions] = useState()
     const [similarItems, setSimilarItems] = useState()
 
     const location = useLocation();
     const pathType = location.pathname.split('/')[1]
     const {itemId} = useParams();
 
-    const [datedTransactions, setDatedTransactions] = useState([]);
+    const [datedTransactions, setDatedTransactions] = useState();
 
 
     const filterTimeFrame = (days, arr) => {
@@ -221,9 +221,9 @@ function ItemAnalytics() {
                         </div>
 
                         <div className={styles.analyticsPrices}>
-                            <p className={styles.prices}>{filteredTransactions.length > 0 && "$" + filteredTransactions[0].salePrice.toLocaleString('en-US')}</p>
+                            <p className={styles.prices}>{filteredTransactions && filteredTransactions.length > 0 ? "$" + filteredTransactions[0].salePrice.toLocaleString('en-US') : "N/A"}</p>
                             <p className={styles.prices}>10.23M</p>
-                            <p className={styles.prices}>{filteredTransactions.length > 0 && averagePrice()}</p>
+                            <p className={styles.prices}>{filteredTransactions && filteredTransactions.length > 0 ? averagePrice(): "N/A"}</p>
                             <ChartSelect filterTimeFrame={filterTimeFrame} itemId = {itemId} filteredTransactions = {filteredTransactions}/>
                         </div>
 
@@ -233,7 +233,7 @@ function ItemAnalytics() {
 
                 <div className={styles.analytics}>
                     {
-                        datedTransactions.length > 0 ? 
+                        datedTransactions ? 
                         <LineChart datedTransactions = {datedTransactions} getChildFunc = {'getChildFunc'}/>
                         : <div>Loading...</div>
                     }
@@ -248,8 +248,10 @@ function ItemAnalytics() {
                 <h3>RECENT SALES</h3>
             </div>
             {
+                filteredTransactions ? 
                 filteredTransactions.length > 0 ? 
                 <TransactionsBlock filteredTransactions = {filteredTransactions} setFilteredTransactions = {setFilteredTransactions}/>
+                : <div className={styles.noSales}>No Sales</div>
                 : <div className={styles.noSales}>Loading...</div>
             }
         </div>
@@ -262,22 +264,22 @@ function ItemAnalytics() {
             {
             similarItems ?
             <>
-              {similarItems.map((item) => {
+              {similarItems.map((item, index) => {
                 if (item.itemType === "sports") {
                     return (
-                    <SearchItemSportCard cardImage = {item.imageUrl} cardName = {item.playerName} cardId = {item._id} setName = {item.setName} cardType = {item.cardType} cardNumber = {item.cardNumber}/>
+                    <SearchItemSportCard key={index} cardImage = {item.imageUrl} cardName = {item.playerName} cardId = {item._id} setName = {item.setName} cardType = {item.cardType} cardNumber = {item.cardNumber}/>
                     )
                 } else if (item.itemType === "tcg") {
                     return (
-                    <SearchItemCard cardImage = {item.imageUrl} cardName = {item.cardName} cardId = {item._id} setName = {item.setName} setId = {item.setId} itemType = {item.itemType} cardNumber = {item.cardNumber}/>
+                    <SearchItemCard key={index} cardImage = {item.imageUrl} cardName = {item.cardName} cardId = {item._id} setName = {item.setName} setId = {item.setId} itemType = {item.itemType} cardNumber = {item.cardNumber}/>
                     )
                 } else if (item.itemType === "manga") {
                     return (
-                    <SearchItemCard cardImage = {item.imageUrl} cardName = {item.title} cardId = {item._id} setName = {item.volumeName} setId = {item.volumeId} itemType = {item.itemType}/>
+                    <SearchItemCard key={index} cardImage = {item.imageUrl} cardName = {item.title} cardId = {item._id} setName = {item.volumeName} setId = {item.volumeId} itemType = {item.itemType}/>
                     )
                 } else {
                     return (
-                    <SearchItemCard cardImage = {item.imageUrl} cardName = {item.title} cardId = {item._id} setName = {item.consoleName} setId = {item.consoleId} itemType = {item.itemType}/>
+                    <SearchItemCard key={index} cardImage = {item.imageUrl} cardName = {item.title} cardId = {item._id} setName = {item.consoleName} setId = {item.consoleId} itemType = {item.itemType}/>
                     )
                 }
               })}

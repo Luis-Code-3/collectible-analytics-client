@@ -40,9 +40,9 @@ function GradeSelectDrop({filterGrade, setSelectedGrade, setShowDropdown, showDr
         >
         <div className={styles.dropdownContainer}>
             {
-                gradeArray.map((grade) => {
+                gradeArray.map((grade, index) => {
                     return (
-                        <div onClick={() => clickActions(grade)}>
+                        <div key={index} onClick={() => clickActions(grade)}>
                             <p>{grade}</p>
                         </div>
                     )

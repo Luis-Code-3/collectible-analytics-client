@@ -36,9 +36,9 @@ function ItemSortDrop({handleSortOrder, setSelectedSort, setShowDropdown, showDr
         >
         <div className={styles.dropdownContainer}>
             {
-                sortArray.map((sort) => {
+                sortArray.map((sort, index) => {
                     return (
-                        <div onClick={() => clickActions(sort)}>
+                        <div key={index} onClick={() => clickActions(sort)}>
                             <p>{sort}</p>
                         </div>
                     )

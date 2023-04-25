@@ -108,9 +108,9 @@ function MangaVolumeInfo() {
               {
                 filteredItems.length > 0 ?
                 <div className={styles.bottomDiv}>
-                    {filteredItems.map((item) => {
+                    {filteredItems.map((item, index) => {
                       return (
-                        <SearchItemCard cardImage = {item.imageUrl} cardName = {item.title} cardId = {item._id} setName = {item.volumeName} itemType = {item.itemType} setId = {item.volumeId}/>
+                        <SearchItemCard key={index} cardImage = {item.imageUrl} cardName = {item.title} cardId = {item._id} setName = {item.volumeName} itemType = {item.itemType} setId = {item.volumeId}/>
                       )
                     })}
                 </div>

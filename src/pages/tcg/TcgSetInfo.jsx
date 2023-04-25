@@ -121,9 +121,9 @@ function TcgSetInfo() {
               {
                 filteredItems.length > 0 ? 
                 <div className={styles.bottomDiv}>
-                    {filteredItems.map((item) => {
+                    {filteredItems.map((item, index) => {
                       return (
-                        <SearchItemCard cardImage = {item.imageUrl} cardName = {item.cardName} cardId = {item._id} setName = {item.setName} setId = {item.setId} itemType = {item.itemType} cardNumber = {item.cardNumber}/>
+                        <SearchItemCard key={index} cardImage = {item.imageUrl} cardName = {item.cardName} cardId = {item._id} setName = {item.setName} setId = {item.setId} itemType = {item.itemType} cardNumber = {item.cardNumber}/>
                       )
                     })}
                 </div>

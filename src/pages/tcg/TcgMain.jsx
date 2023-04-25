@@ -91,9 +91,9 @@ function TcgMain() {
               {
                 filteredItems.length > 0 ?
                 <div className={styles.bottomDiv}>
-                    {filteredItems.map((set) => {
+                    {filteredItems.map((set, index) => {
                     return (
-                      <TcgSetCard setLogo = {set.imageUrl} setName = {set.setName} id = {set._id}/>
+                      <TcgSetCard key={index} setLogo = {set.imageUrl} setName = {set.setName} id = {set._id}/>
                     )
                   })}
                 </div>

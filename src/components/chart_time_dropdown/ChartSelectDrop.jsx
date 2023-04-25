@@ -51,9 +51,9 @@ function ChartSelectDrop({filterTimeFrame, setSelectedTime, setShowDropdown, sho
         >
         <div className={styles.dropdownContainer}>
             {
-                timeArray.map((time) => {
+                timeArray.map((time, index) => {
                     return (
-                        <div onClick={() => clickActions(time)}>
+                        <div key={index} onClick={() => clickActions(time)}>
                             <p>{time}</p>
                         </div>
                     )

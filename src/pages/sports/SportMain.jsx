@@ -138,9 +138,9 @@ function SportMain() {
               {
                 filteredItems.length > 0 ?
                 <div className={styles.bottomDiv}>
-                    {filteredItems.map((player) => {
+                    {filteredItems.map((player, index) => {
                       return (
-                        <SportPlayerCard playerImage = {player.imageUrl} playerName = {player.playerName} sport = {player.sport} playerId = {player.playerId}/>
+                        <SportPlayerCard key={index} playerImage = {player.imageUrl} playerName = {player.playerName} sport = {player.sport} playerId = {player.playerId}/>
                       )
                     })}
                 </div>

@@ -117,9 +117,9 @@ function VideoConsoleInfo() {
               {
                 filteredItems.length > 0 ? 
                 <div className={styles.bottomDiv}>
-                    {filteredItems.map((game) => {
+                    {filteredItems.map((game, index) => {
                       return (
-                        <SearchItemCard cardImage = {game.imageUrl} cardName = {game.title} cardId = {game._id} setName = {game.consoleName} setId = {game.consoleId} itemType = {game.itemType}/>
+                        <SearchItemCard key={index} cardImage = {game.imageUrl} cardName = {game.title} cardId = {game._id} setName = {game.consoleName} setId = {game.consoleId} itemType = {game.itemType}/>
                       )
                     })}
                 </div>

@@ -107,9 +107,9 @@ function SportPlayerInfo() {
               {
                 filteredItems.length > 0 ?
                 <div className={styles.bottomDiv}>
-                    {filteredItems.map((item) => {
+                    {filteredItems.map((item, index) => {
                       return (
-                        <SearchItemSportCard cardImage = {item.imageUrl} cardName = {item.playerName} cardId = {item._id} setName = {item.setName} cardType = {item.cardType} itemType = {item.itemType} cardNumber = {item.cardNumber}/>
+                        <SearchItemSportCard key={index} cardImage = {item.imageUrl} cardName = {item.playerName} cardId = {item._id} setName = {item.setName} cardType = {item.cardType} itemType = {item.itemType} cardNumber = {item.cardNumber}/>
                       )
                     })}
                 </div>

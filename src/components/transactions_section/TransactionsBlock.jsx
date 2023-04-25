@@ -111,9 +111,9 @@ function TransactionsBlock({filteredTransactions}) {
 
             {
                 sortedTrans.current.length > 0 ? 
-                sortedTrans.current.slice(0, amountShown).map((tran) => {
+                sortedTrans.current.slice(0, amountShown).map((tran, index) => {
                     return (
-                        <div className={styles.transactionComplete}>
+                        <div key={index} className={styles.transactionComplete}>
                             <div className={styles.tranSoldDate}>
                                 <p>{tran.date_sold}</p>
                             </div>

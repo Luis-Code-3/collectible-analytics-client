@@ -137,9 +137,9 @@ function VideoMain() {
               {
                 filteredItems.length > 0 ?
                 <div className={styles.bottomDiv}>
-                    {filteredItems.map((console) => {
+                    {filteredItems.map((console, index) => {
                       return (
-                        <Link to={`/video-games/${console.consoleName.toLowerCase().replace(/ /g,"-")}`}>{console.consoleName}</Link>
+                        <Link key={index} to={`/video-games/${console.consoleName.toLowerCase().replace(/ /g,"-")}`}>{console.consoleName}</Link>
                       )
                     })}
                 </div>
