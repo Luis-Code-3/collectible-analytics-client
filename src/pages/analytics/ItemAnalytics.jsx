@@ -30,6 +30,19 @@ function ItemAnalytics() {
     const pathType = location.pathname.split('/')[1]
     const {itemId} = useParams();
 
+    const [datedTransactions, setDatedTransactions] = useState([]);
+
+
+    const filterTimeFrame = (days, arr) => {
+        const now = new Date();
+        const cutoff = new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
+        if(arr) {
+            setDatedTransactions(arr.filter(tran => new Date(tran.date_sold) > cutoff));
+        } else {
+            setDatedTransactions([...filteredTransactions].filter(tran => new Date(tran.date_sold) > cutoff));
+        }
+    }
+
     const filterGrade = (grade) => {
         let newArr;
         if (grade === "") {
@@ -41,10 +54,7 @@ function ItemAnalytics() {
         }
 
         setFilteredTransactions(newArr)
-    }
-
-    const timeFrameSort = (event) => {
-        // sort by cutoff date of transactions (6 months, 1 year, etc)
+        filterTimeFrame(30, newArr);
     }
 
     const itemBio = (itemType) => {
@@ -82,6 +92,15 @@ function ItemAnalytics() {
         }
     }
 
+    const averagePrice = () => {
+        let average = 0;
+        filteredTransactions.forEach((item) => {
+            average += item.salePrice
+        })
+        average =  "$" + (average/filteredTransactions.length).toLocaleString('en-US');
+        return average;
+    }
+
     const fetchData = async (itemType) => {
         await axios.get(`${baseUrl}/search/item-details/${itemType}/${itemId}`)
             .then((response) => {
@@ -94,7 +113,7 @@ function ItemAnalytics() {
         await axios.get(`${baseUrl}/search/item-sales/${itemType}/${itemId}`)
             .then((response) => {
                 //console.log(response.data);
-                setAllTransactions(response.data);
+                setAllTransactions(response.data.sort((a,b) => new Date(b.date_sold) - new Date(a.date_sold)));
                 let newArr = response.data.filter((tran) => {
                     //return tran.grade === "PSA 10";
                     switch (itemType) {
@@ -109,8 +128,9 @@ function ItemAnalytics() {
                         default:
                             return false;
                     }
-                })
+                }).sort((a,b) => new Date(b.date_sold) - new Date(a.date_sold))
                 setFilteredTransactions(newArr)
+                filterTimeFrame(30, newArr);
             })
             .catch((err) => {
                 console.log(err);
@@ -201,10 +221,10 @@ function ItemAnalytics() {
                         </div>
 
                         <div className={styles.analyticsPrices}>
-                            <p className={styles.prices}>$120,000</p>
+                            <p className={styles.prices}>{filteredTransactions.length > 0 && "$" + filteredTransactions[0].salePrice.toLocaleString('en-US')}</p>
                             <p className={styles.prices}>10.23M</p>
-                            <p className={styles.prices}>$110,234</p>
-                            <ChartSelect timeFrameSort={timeFrameSort} itemId = {itemId}/>
+                            <p className={styles.prices}>{filteredTransactions.length > 0 && averagePrice()}</p>
+                            <ChartSelect filterTimeFrame={filterTimeFrame} itemId = {itemId} filteredTransactions = {filteredTransactions}/>
                         </div>
 
                     </div>
@@ -213,8 +233,8 @@ function ItemAnalytics() {
 
                 <div className={styles.analytics}>
                     {
-                        filteredTransactions.length > 0 ? 
-                        <LineChart filteredTransactions = {filteredTransactions}/>
+                        datedTransactions.length > 0 ? 
+                        <LineChart datedTransactions = {datedTransactions} getChildFunc = {'getChildFunc'}/>
                         : <div>Loading...</div>
                     }
                 </div>
@@ -230,7 +250,7 @@ function ItemAnalytics() {
             {
                 filteredTransactions.length > 0 ? 
                 <TransactionsBlock filteredTransactions = {filteredTransactions} setFilteredTransactions = {setFilteredTransactions}/>
-                : <div className={styles.noSales}>No Sales...</div>
+                : <div className={styles.noSales}>Loading...</div>
             }
         </div>
 

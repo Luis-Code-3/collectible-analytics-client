@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import styles from './transactionsBlock.module.css'
 import {ReactComponent as ReportIcon} from "../../icons/flag-regular.svg"
 import ReportModal from "../../components/report_modal/ReportModal";
@@ -7,7 +7,7 @@ import ReportModal from "../../components/report_modal/ReportModal";
 function TransactionsBlock({filteredTransactions}) {
 
     const [sortPriceOrder, setSortPriceOrder] = useState('asc');
-    const [sortDateOrder, setSortDateOrder] = useState('asc');
+    const [sortDateOrder, setSortDateOrder] = useState('desc');
     const [sortTitleOrder, setSortTitleOrder] = useState('asc');
     const [sortMarketplaceOrder, setSortMarketplaceOrder] = useState('asc');
 
@@ -24,7 +24,16 @@ function TransactionsBlock({filteredTransactions}) {
     }
 
     const sortDate = () => {
+        let newArr = [...filteredTransactions].sort((a,b) => {
+            if(sortDateOrder === 'asc') {
+                return new Date(b.date_sold) - new Date(a.date_sold);
+            } else {
+                return new Date(a.date_sold) - new Date(b.date_sold);
+            }
+        })
 
+        sortedTrans.current = newArr;
+        setSortDateOrder(sortDateOrder === 'asc' ? 'desc' : 'asc');
     }
 
     const sortSalePrice = () => {
@@ -38,7 +47,7 @@ function TransactionsBlock({filteredTransactions}) {
 
         // setFilteredTransactions(newArr);
         sortedTrans.current = newArr;
-        console.log(sortedTrans);
+        //console.log(sortedTrans);
         setSortPriceOrder(sortPriceOrder === 'asc' ? 'desc' : 'asc');
     }
 

@@ -1,6 +1,7 @@
 import styles from './lineChart.module.css'
 import {Line} from 'react-chartjs-2'
 import {Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Tooltip} from 'chart.js'
+import { useRef, useState, useEffect } from 'react'
 
 ChartJS.register(
     CategoryScale,
@@ -11,7 +12,7 @@ ChartJS.register(
 )
 
 
-function LineChart({filteredTransactions}) {
+function LineChart({datedTransactions}) {
 
     const options = {
         responsive: true,
@@ -56,10 +57,10 @@ function LineChart({filteredTransactions}) {
     return (
         <Line className={styles.analBox}
         data={{
-            labels: filteredTransactions.map(tran => tran.date_sold),
+            labels: datedTransactions.slice().reverse().map(tran => tran.date_sold),
             datasets: [{
                 label: "Sale Price",
-                data: filteredTransactions.map(tran => tran.salePrice),
+                data: datedTransactions.slice().reverse().map(tran => tran.salePrice),
                 backgroundColor: 'rgba(30, 219, 175)',
                 borderColor: 'rgb(30, 219, 175, .8)',
                 pointRadius: 5,
