@@ -144,3 +144,7 @@
     font-weight: 600;
     opacity: .5;
 }
+
+.loadingContainer {
+    margin-top: 2%;
+}

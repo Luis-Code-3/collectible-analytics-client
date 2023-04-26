@@ -133,3 +133,43 @@
     font-weight: 600;
     opacity: .5;
 }
+
+/* ANIMATION SKELETON */
+
+.skeletonImage {
+    animation: skeleton-loading .3s linear infinite alternate;
+    opacity: .2;
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+}
+
+.skeletonText {
+    animation: skeleton-loading .3s linear infinite alternate;
+    opacity: .2;
+    width: 100%;
+    height: 13%;
+    border-radius: 3px;
+}
+
+.skeletonDescription {
+    animation: skeleton-loading .3s linear infinite alternate;
+    opacity: .2;
+    width: 100%;
+    height: 40%;
+    border-radius: 3px;
+}
+
+.loadingContainer {
+    margin-top: 2%;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: hsl(189, 41%, 67%);
+    }
+
+    100% {
+        background-color: hsl(189, 41%, 80%);
+    }
+}

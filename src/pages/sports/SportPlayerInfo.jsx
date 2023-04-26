@@ -5,6 +5,7 @@ import ItemSort from "../../components/item_sort_dropdown/ItemSort";
 import { useParams } from "react-router-dom";
 import { baseUrl } from "../../services/baseUrl";
 import axios from "axios";
+import { BeatLoader } from "react-spinners";
 
 function SportPlayerInfo() {
 
@@ -71,7 +72,7 @@ function SportPlayerInfo() {
             {
               currentPlayer ? 
                 <img src={currentPlayer.imageUrl} alt=""/>
-              : <div>Loading...</div>
+              : <div className={styles.skeletonImage}></div>
             }
           </div>
 
@@ -82,7 +83,7 @@ function SportPlayerInfo() {
                   <h1>{currentPlayer.playerName}</h1>
                   <p className={styles.descriptionText}>{currentPlayer.description}</p>
                 </>
-              : <div>Loading...</div>
+              : <><div className={styles.skeletonText}></div><div className={styles.skeletonDescription}></div></>
             }
           </div>
 
@@ -117,7 +118,7 @@ function SportPlayerInfo() {
               }
             </>
 
-            : <h4> Loading...</h4>
+            : <div className={styles.loadingContainer}><BeatLoader color={"#36d7b7"} /></div>
           }
   
       </section>

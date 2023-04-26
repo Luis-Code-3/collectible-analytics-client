@@ -4,6 +4,7 @@ import styles from "./tcgMain.module.css"
 import headerImage from "../../images/p1.jpg"
 import TcgSetCard from "../../components/tcg_set_card/TcgSetCard";
 import { useState, useEffect } from "react";
+import { BeatLoader } from "react-spinners";
 
 
 function TcgMain() {
@@ -101,7 +102,7 @@ function TcgMain() {
               }
             </>
 
-            : <h4> Loading...</h4>
+            : <div className={styles.loadingContainer}><BeatLoader color={"#36d7b7"} /></div>
           }
           
   

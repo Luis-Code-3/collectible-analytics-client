@@ -4,6 +4,7 @@ import headerImage from "../../images/p4.png"
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { baseUrl } from "../../services/baseUrl";
+import { BeatLoader } from "react-spinners";
 
 
 function VideoMain() {
@@ -147,7 +148,7 @@ function VideoMain() {
               }
             </>
 
-            : <h4> Loading...</h4>
+            : <div className={styles.loadingContainer}><BeatLoader color={"#36d7b7"} /></div>
           }
   
       </section>

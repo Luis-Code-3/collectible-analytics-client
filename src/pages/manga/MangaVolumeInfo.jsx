@@ -5,6 +5,7 @@ import ItemSort from "../../components/item_sort_dropdown/ItemSort";
 import axios from "axios";
 import { baseUrl } from "../../services/baseUrl";
 import { useParams } from "react-router-dom";
+import { BeatLoader } from "react-spinners";
 
 
 function MangaVolumeInfo() {
@@ -69,7 +70,7 @@ function MangaVolumeInfo() {
             {
               currentVolume ? 
               <img src={currentVolume.imageUrl} alt=""/>
-              : <div>Loading...</div>
+              : <div className={styles.skeletonImage}></div>
             }
           </div>
 
@@ -83,7 +84,7 @@ function MangaVolumeInfo() {
                 <p><span>Issues:</span> {currentVolume.issueCount}</p>
                 <p className={styles.descriptionText}>{currentVolume.description}</p>
                 </>
-              : <div>Loading...</div>
+              : <><div className={styles.skeletonText}></div><div className={styles.skeletonText}></div><div className={styles.skeletonText}></div><div className={styles.skeletonText}></div><div className={styles.skeletonDescription}></div></>
             }
           </div>
 
@@ -118,7 +119,7 @@ function MangaVolumeInfo() {
               }
             </>
 
-            : <h4> Loading...</h4>
+            : <div className={styles.loadingContainer}><BeatLoader color={"#36d7b7"} /></div>
           }
   
       </section>

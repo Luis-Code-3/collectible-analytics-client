@@ -5,6 +5,7 @@ import SearchItemSportCard from "../../components/search_and_item_card/SearchIte
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { baseUrl } from "../../services/baseUrl";
+import { BeatLoader } from "react-spinners";
 
 
 function Search() {
@@ -66,7 +67,7 @@ function Search() {
             }
             </>
 
-            : <h4> Loading...</h4>
+            : <div className={styles.loadingContainer}><BeatLoader color={"#36d7b7"} /></div>
           }
         </div>
   

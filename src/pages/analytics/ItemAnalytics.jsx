@@ -11,6 +11,7 @@ import TransactionsBlock from "../../components/transactions_section/Transaction
 import LineChart from "../../components/chart_analytics/LineChart";
 import {ReactComponent as WatchIcon} from "../../icons/eye-solid.svg"
 import {ReactComponent as AddIcon} from "../../icons/plus-solid.svg"
+import { BeatLoader } from "react-spinners";
 
 
 function ItemAnalytics() {
@@ -172,7 +173,7 @@ function ItemAnalytics() {
                     {
                         item ? 
                         <img src={item.imageUrl} alt=""/>
-                        : <div>Loading...</div>
+                        : <div className={styles.skeletonImage}></div>
                     }
                 </div>
 
@@ -204,7 +205,7 @@ function ItemAnalytics() {
                             <>
                             {itemBio(item.itemType)}
                             </>
-                            :<div>Loading...</div>
+                            :<><div className={styles.skeletonText}></div><div className={styles.skeletonText}></div></>
                         }
                     </div>
 
@@ -221,9 +222,9 @@ function ItemAnalytics() {
                         </div>
 
                         <div className={styles.analyticsPrices}>
-                            <p className={styles.prices}>{filteredTransactions && filteredTransactions.length > 0 ? "$" + filteredTransactions[0].salePrice.toLocaleString('en-US') : "N/A"}</p>
+                            <p className={styles.prices}>{filteredTransactions ? filteredTransactions.length > 0 ? "$" + filteredTransactions[0].salePrice.toLocaleString('en-US') : "N/A" : <p className={styles.skeletonPrices}></p>}</p>
                             <p className={styles.prices}>10.23M</p>
-                            <p className={styles.prices}>{filteredTransactions && filteredTransactions.length > 0 ? averagePrice(): "N/A"}</p>
+                            <p className={styles.prices}>{filteredTransactions ? filteredTransactions.length > 0 ? averagePrice(): "N/A": <p className={styles.skeletonPrices}></p>}</p>
                             <ChartSelect filterTimeFrame={filterTimeFrame} itemId = {itemId} filteredTransactions = {filteredTransactions}/>
                         </div>
 
@@ -235,7 +236,7 @@ function ItemAnalytics() {
                     {
                         datedTransactions ? 
                         <LineChart datedTransactions = {datedTransactions} getChildFunc = {'getChildFunc'}/>
-                        : <div>Loading...</div>
+                        : <div className={styles.skeletonImage}></div>
                     }
                 </div>
 
@@ -252,7 +253,7 @@ function ItemAnalytics() {
                 filteredTransactions.length > 0 ? 
                 <TransactionsBlock filteredTransactions = {filteredTransactions} setFilteredTransactions = {setFilteredTransactions}/>
                 : <div className={styles.noSales}>No Sales</div>
-                : <div className={styles.noSales}>Loading...</div>
+                : <div className={styles.noSales}><div className={styles.skeletonTran}></div></div>
             }
         </div>
 
@@ -285,7 +286,7 @@ function ItemAnalytics() {
               })}
             </>
 
-            : <h4> Loading...</h4>
+            : <div><BeatLoader color={"#36d7b7"} /></div>
           }
             
         </div>

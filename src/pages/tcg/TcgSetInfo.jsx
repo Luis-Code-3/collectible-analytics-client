@@ -5,6 +5,7 @@ import styles from "./tcgSetInfo.module.css"
 import SearchItemCard from "../../components/search_and_item_card/SearchItemCard";
 import { useState, useEffect } from "react";
 import ItemSort from "../../components/item_sort_dropdown/ItemSort";
+import { BeatLoader } from "react-spinners";
 
 
 function TcgSetInfo() {
@@ -81,7 +82,7 @@ function TcgSetInfo() {
             {
               currentSet ?
                 <img src={currentSet.imageUrl} alt=""/>
-              : <div>Loading...</div>
+              : <div className={styles.skeletonImage}></div>
             }
           </div>
 
@@ -94,7 +95,7 @@ function TcgSetInfo() {
               <p><span>Total:</span> {currentSet.setCount}</p>
               <p className={styles.descriptionText}>{currentSet.description}</p>
               </>
-              : <div>Loading...</div>
+              : <><div className={styles.skeletonText}></div><div className={styles.skeletonText}></div><div className={styles.skeletonText}></div><div className={styles.skeletonDescription}></div></>
             }
           </div>
 
@@ -131,7 +132,7 @@ function TcgSetInfo() {
               }
             </>
 
-            : <h4> Loading...</h4>
+            : <div className={styles.loadingContainer}><BeatLoader color={"#36d7b7"} /></div>
           }
   
       </section>

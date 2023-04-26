@@ -5,6 +5,7 @@ import SearchItemCard from "../../components/search_and_item_card/SearchItemCard
 import { useState, useEffect } from "react";
 import ItemSort from "../../components/item_sort_dropdown/ItemSort";
 import { useParams } from "react-router-dom";
+import { BeatLoader } from "react-spinners";
 
 function VideoConsoleInfo() {
 
@@ -76,7 +77,7 @@ function VideoConsoleInfo() {
             {
               currentConsole ? 
               <img src={currentConsole.imageUrl} alt=""/>
-              : <div>Loading...</div>
+              : <div className={styles.skeletonImage}></div>
             }
           </div>
 
@@ -90,7 +91,7 @@ function VideoConsoleInfo() {
                 <p><span>Total:</span> {currentConsole.gameCount}</p>
                 <p className={styles.descriptionText}>{currentConsole.description}</p>
                 </>
-              : <div>Loading...</div>
+              : <><div className={styles.skeletonText}></div><div className={styles.skeletonText}></div><div className={styles.skeletonText}></div><div className={styles.skeletonText}></div><div className={styles.skeletonDescription}></div></>
             }
           </div>
 
@@ -127,7 +128,7 @@ function VideoConsoleInfo() {
               }
             </>
 
-            : <h4> Loading...</h4>
+            : <div className={styles.loadingContainer}><BeatLoader color={"#36d7b7"} /></div>
           }
   
       </section>
