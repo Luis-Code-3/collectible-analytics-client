@@ -19,6 +19,8 @@ import ItemAnalytics from './pages/analytics/ItemAnalytics';
 import Collection from './pages/collection/Collection';
 import Watchlist from './pages/watchlist/Watchlist';
 import NotFound from './pages/notFound_page/NotFound';
+import ProtectedRoutes from './utils/ProtectedRoutes';
+import PrivateUserRoutes from './utils/PrivateUserRoutes';
 
 function App() {
 
@@ -60,10 +62,14 @@ function App() {
         <Route path='/manga/:mangaId/:itemId' element={<ItemAnalytics/>}/>
 
         {/* User Pages: */}
-        <Route path='/signup' element={<Signup/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/watchlist' element={<Watchlist/>}/>
-        <Route path='/collection' element={<Collection/>}/>
+        <Route element={<ProtectedRoutes/>}>
+          <Route path='/signup' element={<Signup/>}/>
+          <Route path='/login' element={<Login/>}/>
+        </Route>
+        <Route element={<PrivateUserRoutes/>}>
+          <Route path='/watchlist' element={<Watchlist/>}/>
+          <Route path='/collection' element={<Collection/>}/>
+        </Route>
 
         {/* 404 Route */}
         <Route path='*' element={<NotFound/>}/>

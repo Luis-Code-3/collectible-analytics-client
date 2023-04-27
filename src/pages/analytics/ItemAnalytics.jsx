@@ -222,9 +222,9 @@ function ItemAnalytics() {
                         </div>
 
                         <div className={styles.analyticsPrices}>
-                            <p className={styles.prices}>{filteredTransactions ? filteredTransactions.length > 0 ? "$" + filteredTransactions[0].salePrice.toLocaleString('en-US') : "N/A" : <p className={styles.skeletonPrices}></p>}</p>
+                            <div className={styles.prices}>{filteredTransactions ? filteredTransactions.length > 0 ? "$" + filteredTransactions[0].salePrice.toLocaleString('en-US') : "N/A" : <p className={styles.skeletonPrices}></p>}</div>
                             <p className={styles.prices}>10.23M</p>
-                            <p className={styles.prices}>{filteredTransactions ? filteredTransactions.length > 0 ? averagePrice(): "N/A": <p className={styles.skeletonPrices}></p>}</p>
+                            <div className={styles.prices}>{filteredTransactions ? filteredTransactions.length > 0 ? averagePrice(): "N/A": <p className={styles.skeletonPrices}></p>}</div>
                             <ChartSelect filterTimeFrame={filterTimeFrame} itemId = {itemId} filteredTransactions = {filteredTransactions}/>
                         </div>
 
