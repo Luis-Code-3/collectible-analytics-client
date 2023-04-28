@@ -1,8 +1,8 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { baseUrl } from "../../services/baseUrl";
 import styles from "./itemAnalytics.module.css"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import SearchItemCard from "../../components/search_and_item_card/SearchItemCard";
 import SearchItemSportCard from "../../components/search_and_item_card/SearchItemSportCard";
 import GradeSelect from "../../components/grade_select_dropdown/GradeSelect";
@@ -12,6 +12,9 @@ import LineChart from "../../components/chart_analytics/LineChart";
 import {ReactComponent as WatchIcon} from "../../icons/eye-solid.svg"
 import {ReactComponent as AddIcon} from "../../icons/plus-solid.svg"
 import { BeatLoader } from "react-spinners";
+import { AuthContext } from "../../context/auth.context";
+import WatchingBtn from "../../components/watching_buttons/WatchingBtn";
+import CollectionBtn from "../../components/watching_buttons/CollectionBtn";
 
 
 function ItemAnalytics() {
@@ -25,13 +28,18 @@ function ItemAnalytics() {
     const [item, setItem] = useState()
     const [allTransactions, setAllTransactions] = useState()
     const [filteredTransactions, setFilteredTransactions] = useState()
-    const [similarItems, setSimilarItems] = useState()
+    const [similarItems, setSimilarItems] = useState();
+
+    const navigate = useNavigate();
 
     const location = useLocation();
     const pathType = location.pathname.split('/')[1]
     const {itemId} = useParams();
 
     const [datedTransactions, setDatedTransactions] = useState();
+
+    const {isLoggedIn} = useContext(AuthContext);
+    
 
 
     const filterTimeFrame = (days, arr) => {
@@ -147,6 +155,7 @@ function ItemAnalytics() {
 
 
     useEffect(() => {
+
         switch (pathType) {
             case "trading-cards":
                 fetchData("tcg");
@@ -211,8 +220,18 @@ function ItemAnalytics() {
 
                     <div className={styles.extraBox}>
                         <div className={styles.buttons}>
-                            <div className={styles.watchIcon}>{<WatchIcon/>}</div>
-                            <div className={styles.addIcon}>{<AddIcon/>}</div>
+                            {
+                                isLoggedIn ? 
+                                <>
+                                <WatchingBtn pathType={pathType} itemId = {itemId}/>
+                                <CollectionBtn pathType={pathType} itemId = {itemId}/>
+                                </>
+                                :
+                                <>
+                                    <div className={styles.watchIcon}>{<WatchIcon onClick={() => navigate('/login')}/>}</div>
+                                    <div className={styles.addIcon}>{<AddIcon onClick={() => navigate('/login')}/>}</div>
+                                </>
+                            }
                         </div>
 
                         <div className={styles.analyticsTitles}>

@@ -11,7 +11,7 @@ function Signup() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const {setIsLoggedIn} = useContext(AuthContext);
+    const {setIsLoggedIn, verifyToken} = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -21,9 +21,17 @@ function Signup() {
         // console.log(email);
         // console.log(password);
         axios.post(`${baseUrl}/users/signup`, {username,email,password})
-            .then((response) => {
+            .then(async (response) => {
+                const theToken = response.data.accessToken;
                 localStorage.setItem('accessToken', response.data.accessToken)
-                setIsLoggedIn(true);
+                await (async () => {
+                    const verified = await verifyToken(theToken)
+                    if(!verified.isValid) {
+                        setIsLoggedIn(false);
+                    } else {
+                        setIsLoggedIn(verified.data);
+                    }
+                  })();
                 navigate('/');
                 //console.log(response.data);
             })

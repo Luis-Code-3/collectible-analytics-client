@@ -1,0 +1,23 @@
+.addIcon{
+    border-radius: 50%;
+    background-color: #192a2f;
+    display: flex;
+    padding: 1%;
+    justify-content: center;
+    align-items: center;
+}
+
+.addIcon svg {
+    width: 15px;
+    fill: rgb(255, 255, 255, .5);
+    cursor: pointer;
+    transition: all .1s linear;
+}
+
+.addIcon svg:hover {
+    fill: rgb(255, 255, 255, .8);
+}
+
+.addActive svg {
+    fill: #35dea0;
+}

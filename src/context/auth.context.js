@@ -22,11 +22,11 @@ export const AuthProvider = ({children}) => {
               .then((response) => {
                 console.log(response.data);
                 // console.log("hit");
-                resolve(true); // Resolve the Promise with true if the token is valid
+                resolve({isValid: true, data: response.data}); // Resolve the Promise with true if the token is valid
               })
               .catch((err) => {
                 console.log(err);
-                resolve(false); // Resolve the Promise with false if the token is invalid
+                resolve({isValid: false, data: err.response.data}); // Resolve the Promise with false if the token is invalid
               });
           });
     }
@@ -57,12 +57,12 @@ export const AuthProvider = ({children}) => {
 
         (async () => {
             const verified = await verifyToken(token)
-            //console.log(verified);
-            if(!verified) {
+            //console.log("verified",verified.isValid);
+            if(!verified.isValid) {
                 setIsLoggedIn(false);
                 setIsLoading(false);
             } else {
-                setIsLoggedIn(verified);
+                setIsLoggedIn(verified.data);
                 setIsLoading(false);
             }
           })();

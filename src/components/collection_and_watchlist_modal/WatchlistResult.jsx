@@ -5,11 +5,11 @@ function WatchlistResult({cardName, cardImage, setName, cardId, cardType, modalT
 
     const addItem = () => {
         if (modalType === 'collection') {
-            closeModal();
+            // closeModal();
             setAllItems(null);
             // add to collection of logged in user
         } else {
-            closeModal();
+            // closeModal();
             setAllItems(null);
             // add to watchlist of logged in user
         }

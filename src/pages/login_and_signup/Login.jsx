@@ -10,7 +10,7 @@ function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const {setIsLoggedIn} = useContext(AuthContext)
+    const {setIsLoggedIn, verifyToken} = useContext(AuthContext)
 
     const navigate = useNavigate();
 
@@ -19,9 +19,17 @@ function Login() {
         // console.log(username);
         // console.log(password);
         axios.post(`${baseUrl}/users/login`, {username, password})
-            .then((response) => {
+            .then(async (response) => {
+                const theToken = response.data.accessToken;
                 localStorage.setItem('accessToken', response.data.accessToken)
-                setIsLoggedIn(true);
+                await (async () => {
+                    const verified = await verifyToken(theToken)
+                    if(!verified.isValid) {
+                        setIsLoggedIn(false);
+                    } else {
+                        setIsLoggedIn(verified.data);
+                    }
+                  })();
                 navigate('/');
                 //console.log(response.data);
             })
