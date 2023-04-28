@@ -23,6 +23,13 @@ function Watchlist() {
         document.body.classList.remove(styles.activeModal);
     }
 
+    const handleAddItem = (newItem) => {
+        if(allItems.includes(newItem)) {
+            return;
+        }
+        setAllItems((prevItems) => [...prevItems, newItem]);
+    };
+
 
     useEffect(() => {
         //console.log(isLoggedIn);
@@ -64,7 +71,7 @@ function Watchlist() {
                 </div>
                 </CSSTransition> */}
 
-            <WatchlistAddItem closeModal={() => setOpenModal(false)} openModal = {openModal} modalType={'watchlist'}/>
+            <WatchlistAddItem watchedItems = {allItems} onAddItem={handleAddItem} closeModal={() => setOpenModal(false)} openModal = {openModal} modalType={'watchlist'}/>
         </div>
 
         <div className={styles.bottomDiv}>
@@ -77,7 +84,7 @@ function Watchlist() {
                 {allItems.map((item) => {
                     if (item.itemType === "sports") {
                         return (
-                        <SearchItemSportCard cardImage = {item.imageUrl} cardName = {item.cardName} cardId = {item._id} setName = {item.setName} cardType = {item.cardType} cardNumber = {item.cardNumber}/>
+                        <SearchItemSportCard cardImage = {item.imageUrl} cardName = {item.playerName} cardId = {item._id} setName = {item.setName} cardType = {item.cardType} cardNumber = {item.cardNumber}/>
                         )
                     } else if (item.itemType === "tcg") {
                         return (

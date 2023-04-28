@@ -22,6 +22,13 @@ function Collection() {
         document.body.classList.remove(styles.activeModal);
     }
 
+    const handleAddItem = (newItem) => {
+      if(allItems.includes(newItem)) {
+          return;
+      }
+      setAllItems((prevItems) => [...prevItems, newItem]);
+  };
+
     useEffect(() => {
       //console.log(isLoggedIn);
       axios.get(`${baseUrl}/collection/collection/${isLoggedIn._id}`)
@@ -47,7 +54,7 @@ function Collection() {
             <div onClick={() => setOpenModal(true)} className={styles.addDiv}>
                 NEW ITEM
             </div>
-            <WatchlistAddItem closeModal={() => setOpenModal(false)} openModal = {openModal} modalType={'collection'}/>
+            <WatchlistAddItem watchedItems = {allItems} onAddItem={handleAddItem} closeModal={() => setOpenModal(false)} openModal = {openModal} modalType={'collection'}/>
         </div>
 
         <div className={styles.bottomDiv}>
@@ -58,9 +65,9 @@ function Collection() {
               allItems.length > 0 ? 
               <>
                 {allItems.map((item) => {
-                  if (item.itemType === "sport") {
+                  if (item.itemType === "sports") {
                       return (
-                      <SearchItemSportCard cardImage = {item.imageUrl} cardName = {item.cardName} cardId = {item._id} setName = {item.setName} cardType = {item.cardType} cardNumber={item.cardNumber}/>
+                      <SearchItemSportCard cardImage = {item.imageUrl} cardName = {item.playerName} cardId = {item._id} setName = {item.setName} cardType = {item.cardType} cardNumber={item.cardNumber}/>
                       )
                   } else if (item.itemType === "tcg") {
                       return (
