@@ -1,8 +1,11 @@
 import styles from './itemSortDrop.module.css'
 import { CSSTransition } from 'react-transition-group';
+import { useRef } from 'react';
 
 
 function ItemSortDrop({handleSortOrder, setSelectedSort, setShowDropdown, showDropdown, genreType}) {
+
+    const nodeRef = useRef(null);  
 
     let sortArray = []
 
@@ -24,6 +27,7 @@ function ItemSortDrop({handleSortOrder, setSelectedSort, setShowDropdown, showDr
 
     return (
         <CSSTransition
+        nodeRef={nodeRef}
         in={showDropdown}
         unmountOnExit
         timeout={100}
@@ -34,7 +38,7 @@ function ItemSortDrop({handleSortOrder, setSelectedSort, setShowDropdown, showDr
             exitActive: styles.sortdropdownExitActive,
         }}
         >
-        <div className={styles.dropdownContainer}>
+        <div ref={nodeRef} className={styles.dropdownContainer}>
             {
                 sortArray.map((sort, index) => {
                     return (

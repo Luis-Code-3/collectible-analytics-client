@@ -16,20 +16,20 @@ function WatchingBtn({pathType, itemId}) {
     const toggleWatch = () => {
 
         if(watching) {
-            console.log("hey");
+            //console.log("hey");
             axios.post(`${baseUrl}/watchlist/remove-watchlist/${pathType}/${isLoggedIn._id}`, {itemId})
             .then((response) => {
-                console.log(response.data.message);
+                //console.log(response.data.message);
                 setWatching(false);
             })
             .catch((err) => {
                 console.log(err);
             })
         } else {
-            console.log("bye");
+            //console.log("bye");
             axios.post(`${baseUrl}/watchlist/add-watchlist/${pathType}/${isLoggedIn._id}`, {itemId})
                 .then((response) => {
-                    console.log(response.data.message);
+                    //console.log(response.data.message);
                     setWatching(true);
                 })
                 .catch((err) => {
@@ -43,7 +43,7 @@ function WatchingBtn({pathType, itemId}) {
         axios.get(`${baseUrl}/watchlist/is-watching/${pathType}/${isLoggedIn._id}`, {
             params: {itemId}})
             .then((response) => {
-                console.log(response.data.message);
+                //console.log(response.data.message);
                 if(response.data.message === "Item is already being watched") {
                     setWatching(true);
                 } else {

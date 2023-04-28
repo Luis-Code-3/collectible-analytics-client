@@ -20,7 +20,7 @@ export const AuthProvider = ({children}) => {
                 },
               })
               .then((response) => {
-                console.log(response.data);
+                //console.log(response.data);
                 // console.log("hit");
                 resolve({isValid: true, data: response.data}); // Resolve the Promise with true if the token is valid
               })

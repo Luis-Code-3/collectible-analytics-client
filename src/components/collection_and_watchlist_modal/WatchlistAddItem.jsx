@@ -11,6 +11,8 @@ function WatchlistAddItem({closeModal, openModal, modalType, onAddItem, watchedI
     const [allItems,setAllItems] = useState(null);
 
     const inputRef = useRef();
+    const nodeRef = useRef(null);
+    const nodeRefTwo = useRef(null);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -43,6 +45,7 @@ function WatchlistAddItem({closeModal, openModal, modalType, onAddItem, watchedI
     return (
         <>
         <CSSTransition
+        nodeRef={nodeRefTwo}
         in={openModal}
         mountOnEnter
         unmountOnExit
@@ -54,10 +57,11 @@ function WatchlistAddItem({closeModal, openModal, modalType, onAddItem, watchedI
             exitActive: styles.backdropExitActive,
         }}
         >
-            <ModalBackdrop></ModalBackdrop>
+            <ModalBackdrop ref={nodeRefTwo}></ModalBackdrop>
         </CSSTransition>
 
         <CSSTransition
+        nodeRef={nodeRef}
         in={openModal}
         mountOnEnter
         unmountOnExit
@@ -69,7 +73,7 @@ function WatchlistAddItem({closeModal, openModal, modalType, onAddItem, watchedI
             exitActive: styles.modalExitActive,
         }}
         >
-        <div onClick={handleClose} className={styles.twoContainer}>
+        <div ref={nodeRef} onClick={handleClose} className={styles.twoContainer}>
         <div onClick={(e) => e.stopPropagation()} className={styles.searchBox}>
             <form onSubmit={handleSubmit} className={styles.searchForm}>
                 <div>
@@ -86,22 +90,22 @@ function WatchlistAddItem({closeModal, openModal, modalType, onAddItem, watchedI
                     (
                         allItems.length > 0 ? 
                             <>
-                            {allItems.map((item) => {
+                            {allItems.map((item, index) => {
                                 if (item.itemType === "sports") {
                                     return (
-                                    <WatchlistResult setAllItems = {setAllItems} cardImage = {item.imageUrl} cardName = {item.playerName} cardId = {item._id} setName = {item.setName} cardType = {item.cardType} cardNumber = {item.cardNumber} itemType = {item.itemType} modalType = {modalType} closeModal = {closeModal} onAddItem={onAddItem} item={item}/>
+                                    <WatchlistResult key={index} setAllItems = {setAllItems} cardImage = {item.imageUrl} cardName = {item.playerName} cardId = {item._id} setName = {item.setName} cardType = {item.cardType} cardNumber = {item.cardNumber} itemType = {item.itemType} modalType = {modalType} closeModal = {closeModal} onAddItem={onAddItem} item={item}/>
                                     )
                                 } else if (item.itemType === "tcg") {
                                     return (
-                                    <WatchlistResult setAllItems = {setAllItems}  cardImage = {item.imageUrl} cardName = {item.cardName} cardId = {item._id} setName = {item.setName} modalType = {modalType} cardNumber = {item.cardNumber} itemType = {item.itemType} closeModal = {closeModal} onAddItem={onAddItem} item={item}/>
+                                    <WatchlistResult key={index} setAllItems = {setAllItems}  cardImage = {item.imageUrl} cardName = {item.cardName} cardId = {item._id} setName = {item.setName} modalType = {modalType} cardNumber = {item.cardNumber} itemType = {item.itemType} closeModal = {closeModal} onAddItem={onAddItem} item={item}/>
                                     )
                                 } else if (item.itemType === "manga") {
                                     return (
-                                    <WatchlistResult setAllItems = {setAllItems}  cardImage = {item.imageUrl} cardName = {item.title} cardId = {item._id} setName = {item.volumeName} modalType = {modalType} closeModal = {closeModal} itemType = {item.itemType} onAddItem={onAddItem} item={item}/>
+                                    <WatchlistResult key={index} setAllItems = {setAllItems}  cardImage = {item.imageUrl} cardName = {item.title} cardId = {item._id} setName = {item.volumeName} modalType = {modalType} closeModal = {closeModal} itemType = {item.itemType} onAddItem={onAddItem} item={item}/>
                                     )
                                 } else {
                                     return (
-                                    <WatchlistResult setAllItems = {setAllItems}  cardImage = {item.imageUrl} cardName = {item.title} cardId = {item._id} setName = {item.consoleName} modalType = {modalType} closeModal = {closeModal} itemType = {item.itemType} onAddItem={onAddItem} item={item}/>
+                                    <WatchlistResult key={index} setAllItems = {setAllItems}  cardImage = {item.imageUrl} cardName = {item.title} cardId = {item._id} setName = {item.consoleName} modalType = {modalType} closeModal = {closeModal} itemType = {item.itemType} onAddItem={onAddItem} item={item}/>
                                     )
                                 }
                             })}

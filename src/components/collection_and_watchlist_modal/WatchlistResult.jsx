@@ -26,7 +26,7 @@ function WatchlistResult({cardName, cardImage, setName, cardId, cardType, modalT
             }
             axios.post(`${baseUrl}/collection/add-collect/${pathType}/${isLoggedIn._id}`, {itemId})
                 .then((response) => {
-                    console.log(response.data.message);
+                    //console.log(response.data.message);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -49,13 +49,13 @@ function WatchlistResult({cardName, cardImage, setName, cardId, cardType, modalT
             }
             axios.post(`${baseUrl}/watchlist/add-watchlist/${pathType}/${isLoggedIn._id}`, {itemId})
                 .then((response) => {
-                    console.log(response.data.message);
+                    //console.log(response.data.message);
                 })
                 .catch((err) => {
                     console.log(err);
                 })
             setAllItems((prevItems) => prevItems.filter(prevItem => prevItem._id !== item._id));
-            console.log(item);
+            //console.log(item);
             onAddItem(item);
             // add to watchlist of logged in user
         }

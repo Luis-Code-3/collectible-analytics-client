@@ -10,6 +10,8 @@ import { AuthContext } from '../../context/auth.context';
 function ReportModal({openModal, closeModal, tranId, pathType, itemId}) {
 
     const inputRef = useRef();
+    const nodeRef = useRef(null);
+    const nodeRefTwo = useRef(null);
 
     const {isLoggedIn} = useContext(AuthContext);
 
@@ -22,7 +24,7 @@ function ReportModal({openModal, closeModal, tranId, pathType, itemId}) {
         }
         await axios.post(`${baseUrl}/users/report/${pathType}/${itemId}/${tranId}`, {reason, userId: isLoggedIn._id})
             .then((response) => {
-                console.log(response.data.message);
+                //console.log(response.data.message);
             })
             .catch((err) => {
                 console.log(err);
@@ -37,6 +39,7 @@ function ReportModal({openModal, closeModal, tranId, pathType, itemId}) {
     return (
         <>
         <CSSTransition
+        nodeRef={nodeRefTwo}
         in={openModal}
         mountOnEnter
         unmountOnExit
@@ -48,10 +51,11 @@ function ReportModal({openModal, closeModal, tranId, pathType, itemId}) {
             exitActive: styles.backdropExitActive,
         }}
         >
-            <ModalBackdrop></ModalBackdrop>
+            <ModalBackdrop ref={nodeRefTwo}></ModalBackdrop>
         </CSSTransition>
 
         <CSSTransition
+        nodeRef={nodeRef}
         in={openModal}
         mountOnEnter
         unmountOnExit
@@ -63,14 +67,14 @@ function ReportModal({openModal, closeModal, tranId, pathType, itemId}) {
             exitActive: styles.modalExitActive,
         }}
         >
-        <div onClick={closeModal} className={styles.twoContainer}>
+        <div ref={nodeRef} onClick={closeModal} className={styles.twoContainer}>
         <div onClick={(e) => e.stopPropagation()} className={styles.searchBox}>
             <form onSubmit={handleSubmit} className={styles.searchForm}>
                 <div className={styles.reportDivBox}>
                     <label>Reason</label>
                     <textarea ref={inputRef}></textarea>
                 </div>
-                <button type="submit">SEARCH</button>
+                <button type="submit">REPORT</button>
             </form>
         </div>
         </div>

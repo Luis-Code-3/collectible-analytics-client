@@ -1,8 +1,11 @@
 import styles from './chartSelectDrop.module.css'
 import { CSSTransition } from 'react-transition-group';
+import { useRef } from 'react';
 
 
 function ChartSelectDrop({filterTimeFrame, setSelectedTime, setShowDropdown, showDropdown}) {
+
+    const nodeRef = useRef(null);
 
     const timeArray = ["1 Day", "7 Days", "1 Month", "3 Month", "6 Month", "1 Year", "All-Time" ];
     //const timeArray = [1, 7, 30, 90, 180, 365];
@@ -39,6 +42,7 @@ function ChartSelectDrop({filterTimeFrame, setSelectedTime, setShowDropdown, sho
 
     return (
         <CSSTransition
+        nodeRef={nodeRef}
         in={showDropdown}
         unmountOnExit
         timeout={100}
@@ -49,7 +53,7 @@ function ChartSelectDrop({filterTimeFrame, setSelectedTime, setShowDropdown, sho
             exitActive: styles.charttimeExitActive,
         }}
         >
-        <div className={styles.dropdownContainer}>
+        <div ref={nodeRef} className={styles.dropdownContainer}>
             {
                 timeArray.map((time, index) => {
                     return (

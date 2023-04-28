@@ -1,8 +1,11 @@
 import styles from './/gradeSelectDrop.module.css'
 import { CSSTransition } from 'react-transition-group';
+import { useRef } from 'react';
 
 
 function GradeSelectDrop({filterGrade, setSelectedGrade, setShowDropdown, showDropdown, itemType}) {
+
+    const nodeRef = useRef(null);
 
     let gradeArray = []
 
@@ -28,6 +31,7 @@ function GradeSelectDrop({filterGrade, setSelectedGrade, setShowDropdown, showDr
             itemType === "manga" ? null 
             
         :<CSSTransition
+        nodeRef={nodeRef}
         in={showDropdown}
         unmountOnExit
         timeout={100}
@@ -38,7 +42,7 @@ function GradeSelectDrop({filterGrade, setSelectedGrade, setShowDropdown, showDr
             exitActive: styles.selectdropExitActive,
         }}
         >
-        <div className={styles.dropdownContainer}>
+        <div ref={nodeRef} className={styles.dropdownContainer}>
             {
                 gradeArray.map((grade, index) => {
                     return (

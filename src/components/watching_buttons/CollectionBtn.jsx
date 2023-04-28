@@ -16,20 +16,20 @@ function CollectionBtn({pathType, itemId}) {
     const toggleCollect = () => {
 
         if(collecting) {
-            console.log("hey");
+            //console.log("hey");
             axios.post(`${baseUrl}/collection/remove-collect/${pathType}/${isLoggedIn._id}`, {itemId})
             .then((response) => {
-                console.log(response.data.message);
+                //console.log(response.data.message);
                 setCollecting(false);
             })
             .catch((err) => {
                 console.log(err);
             })
         } else {
-            console.log("bye");
+            //console.log("bye");
             axios.post(`${baseUrl}/collection/add-collect/${pathType}/${isLoggedIn._id}`, {itemId})
                 .then((response) => {
-                    console.log(response.data.message);
+                    //console.log(response.data.message);
                     setCollecting(true);
                 })
                 .catch((err) => {
@@ -43,7 +43,7 @@ function CollectionBtn({pathType, itemId}) {
         axios.get(`${baseUrl}/collection/is-collecting/${pathType}/${isLoggedIn._id}`, {
             params: {itemId}})
             .then((response) => {
-                console.log(response.data.message);
+                //console.log(response.data.message);
                 if(response.data.message === "Item is already collected") {
                     setCollecting(true);
                 } else {
