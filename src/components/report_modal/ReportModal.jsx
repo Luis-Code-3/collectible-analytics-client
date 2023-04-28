@@ -1,19 +1,34 @@
 import styles from './reportModal.module.css'
+import { baseUrl } from '../../services/baseUrl';
+import axios from 'axios';
 import ModalBackdrop from '../backdrop_modal/ModalBackdrop';
 import { CSSTransition } from 'react-transition-group';
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
+import { AuthContext } from '../../context/auth.context';
 
 
-function ReportModal({openModal, closeModal, tranId}) {
+function ReportModal({openModal, closeModal, tranId, pathType, itemId}) {
 
     const inputRef = useRef();
 
-    const handleSubmit = (e) => {
+    const {isLoggedIn} = useContext(AuthContext);
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        const searchValue = inputRef.current.value;
+        //console.log(console.log("tran ID:", tranId));
+        const reason = inputRef.current.value;
+        if(!reason) {
+            return;
+        }
+        await axios.post(`${baseUrl}/users/report/${pathType}/${itemId}/${tranId}`, {reason, userId: isLoggedIn._id})
+            .then((response) => {
+                console.log(response.data.message);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
         inputRef.current.value = '';
         closeModal();
-        //add a report to the the report model
         //add a report to the transaction item (object id array)
     }
 

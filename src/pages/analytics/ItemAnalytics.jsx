@@ -270,7 +270,7 @@ function ItemAnalytics() {
             {
                 filteredTransactions ? 
                 filteredTransactions.length > 0 ? 
-                <TransactionsBlock filteredTransactions = {filteredTransactions} setFilteredTransactions = {setFilteredTransactions}/>
+                <TransactionsBlock filteredTransactions = {filteredTransactions} setFilteredTransactions = {setFilteredTransactions} itemId = {itemId} pathType = {pathType}/>
                 : <div className={styles.noSales}>No Sales</div>
                 : <div className={styles.noSales}><div className={styles.skeletonTran}></div></div>
             }

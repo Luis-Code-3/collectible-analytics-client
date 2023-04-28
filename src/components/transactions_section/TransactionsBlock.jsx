@@ -1,17 +1,23 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 import styles from './transactionsBlock.module.css'
 import {ReactComponent as ReportIcon} from "../../icons/flag-regular.svg"
 import ReportModal from "../../components/report_modal/ReportModal";
+import { AuthContext } from '../../context/auth.context';
+import { useNavigate } from 'react-router-dom';
 
 
-function TransactionsBlock({filteredTransactions}) {
+function TransactionsBlock({filteredTransactions, pathType, itemId}) {
 
     const [sortPriceOrder, setSortPriceOrder] = useState('asc');
     const [sortDateOrder, setSortDateOrder] = useState('desc');
     const [sortTitleOrder, setSortTitleOrder] = useState('asc');
     const [sortMarketplaceOrder, setSortMarketplaceOrder] = useState('asc');
 
+    const navigate = useNavigate();
+
     const sortedTrans = useRef(filteredTransactions);
+    const tranIdRef = useRef(null);
+    const {isLoggedIn} = useContext(AuthContext);
 
     const [amountShown, setAmountShown] = useState(25);
 
@@ -84,6 +90,11 @@ function TransactionsBlock({filteredTransactions}) {
         setAmountShown(+event.target.value)
     }
 
+    const handleOpenModal = (tranId) => {
+        tranIdRef.current = tranId
+        setOpenModal(true)
+    }
+
 
     return (
         <>
@@ -129,11 +140,19 @@ function TransactionsBlock({filteredTransactions}) {
                             <div className={styles.tranSalePrice}>
                                 <p>${tran.salePrice.toLocaleString('en-US')}</p>
                             </div>
-
-                            <div className={styles.tranReport}>
-                                <p onClick={() => setOpenModal(true)} className={styles.reportButton}>{<ReportIcon/>}</p>
-                            </div>
-                            <ReportModal closeModal={() => setOpenModal(false)} openModal={openModal} tranId = {tran._id}/>
+                            {
+                                isLoggedIn ? 
+                                <>
+                                <div className={styles.tranReport}>
+                                    <p onClick={() => handleOpenModal(tran._id)} className={styles.reportButton}>{<ReportIcon/>}</p>
+                                </div>
+                                <ReportModal closeModal={() => setOpenModal(false)} openModal={openModal} tranId = {tranIdRef.current} pathType={pathType} itemId={itemId}/>
+                                </>
+                                :
+                                <div className={styles.tranReport}>
+                                    <p onClick={() => navigate('/login')} className={styles.reportButton}>{<ReportIcon/>}</p>
+                                </div>
+                            }
                         </div>
                     );
                 })   
