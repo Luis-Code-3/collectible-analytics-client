@@ -68,7 +68,7 @@
 }
 
 .rightTopDiv {
-    /* border: 1px solid green; */
+    /* border: 2px solid green; */
     width: 71.5%;
     display: flex;
     flex-direction: column;
@@ -478,5 +478,109 @@
 
     100% {
         background-color: hsl(189, 41%, 80%);
+    }
+}
+
+@media (max-width: 1020px) {
+    .topMiddleDiv {
+        font-size: 90%;
+    }
+
+    .similarTitle {
+        width: 20%;
+    }
+
+    .imageBox {
+        height: 45vh;
+    }
+
+    .topDiv {
+        font-size: 90%;
+        
+    }
+}
+
+@media (max-width: 820px) {
+
+    .topMiddleDiv {
+        font-size: 80%;
+    }
+
+    .imageBox {
+        height: 37vh;
+    }
+
+    .topDiv {
+        font-size: 75%;
+        
+    }
+}
+
+@media (max-width: 650px) {
+    .topMiddleDiv {
+        font-size: 70%;
+    }
+
+    .analyticsPrices {
+        font-size: 60%;
+    }
+
+    .imageBox {
+        height: 30vh;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .topMiddleDiv {
+        font-size: 60%;
+    }
+
+    .prices {
+        padding: 1.4% 0%;
+        border-radius: 2px;
+    }
+
+    .gradePop {
+        font-size:70%;
+    }
+
+    .analyticsTitles {
+        margin-top: .2rem;
+        font-size: 7px;
+    }
+
+    .analyticsPrices {
+        font-size: 7px;
+        margin-top: .2rem;
+    }
+
+    .leftTopDiv {
+        width: 35%;
+        margin-bottom: .5rem;
+    }
+    .imageBox {
+        height: 20vh;
+    }
+    .topDiv {
+        display: block;
+    }
+    .rightTopDiv {
+        width: 100%;
+        gap: .5rem;
+    }
+    .bottomDiv {
+        grid-template-columns: repeat(2, minmax(100px,200px));
+    }
+
+    .nameBox {
+        font-size:70%;
+    }
+
+    .similarTitle {
+        width: 30%;
+        font-size: 70%;
+        padding: 1.5% 0%;
+        border-radius: 2px;
     }
 }

@@ -21,3 +21,19 @@
 .watchActive svg {
     fill: #35dea0;
 }
+
+@media (max-width: 1020px) {
+
+}
+
+@media (max-width: 820px) {
+    .watchIcon svg {
+        width: 10px;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    
+}

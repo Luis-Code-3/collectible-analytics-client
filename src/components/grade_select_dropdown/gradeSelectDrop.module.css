@@ -62,3 +62,9 @@
     transform: translateY(-10px);
     transition: opacity 100ms ease-in, transform 100ms ease-in;
 }
+
+@media (max-width: 550px) {
+    .dropdownContainer {
+        width:70%;
+    }
+}

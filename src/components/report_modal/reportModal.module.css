@@ -126,3 +126,47 @@
 .searchForm button:hover {
     background-color: #982d39;
 }
+
+@media (max-width: 1020px) {
+    .searchBox {
+        width: 40%;
+    }
+}
+
+@media (max-width: 820px) {
+    .searchBox {
+        width: 50%;
+    }
+
+    /* .searchForm button {
+        font-size: 360%;
+    }
+
+    .searchForm label {
+        font-size: 220%;
+    } */
+}
+
+@media (max-width: 650px) {
+    .searchForm button {
+        font-size: 280%;
+    }
+
+    .searchForm label {
+        font-size: 180%;
+    }
+}
+
+@media (max-width: 550px) {
+    .searchBox {
+        width: 100%;
+    }
+
+    .searchForm button {
+        font-size: 360%;
+    }
+
+    .searchForm label {
+        font-size: 220%;
+    }
+}

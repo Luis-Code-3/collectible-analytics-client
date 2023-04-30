@@ -14,3 +14,23 @@
 .timeButton:hover {
     background-color: #25383e;
 }
+
+@media (max-width: 1020px) {
+    .timeButton {
+        font-size: 100%;
+        
+    }
+}
+
+@media (max-width: 820px) {
+    .timeButton {
+
+        
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    
+}
