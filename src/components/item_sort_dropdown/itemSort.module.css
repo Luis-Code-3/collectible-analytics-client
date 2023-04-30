@@ -16,3 +16,17 @@
 .sortButton:hover {
     background-color: rgba(80, 91, 91, 0.5);
 }
+
+@media (max-width: 700px) {
+    .sortButton {
+        width: 150px;
+        font-size: 70%;
+    }
+}
+
+@media (max-width: 550px) {
+    .sortButton {
+        
+        font-size: 40%;
+    }
+}

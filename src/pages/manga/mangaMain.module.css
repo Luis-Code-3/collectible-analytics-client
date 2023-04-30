@@ -97,9 +97,9 @@
 
 .imageBox img {
     position: absolute;
+    object-fit: cover;
     width: 100%;
-    height: auto;
-    top: -10%;
+    height: 100%;
 }
 
 
@@ -127,4 +127,24 @@
 
 .loadingContainer {
     margin-top: 2%;
+}
+
+@media (max-width: 1040px) {
+    .imageBox {
+        height: 20vh;
+    }
+}
+
+@media (max-width: 780px) {
+    .textNav h1 {
+        font-size: 180%;
+    }
+    .imageBox {
+        display: none;
+    }
+
+    .textNav {
+        width: 100%;
+        gap: .6rem;
+    }
 }

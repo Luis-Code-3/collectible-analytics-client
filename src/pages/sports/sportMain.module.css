@@ -35,6 +35,7 @@
     flex-wrap: wrap;
     gap: 2%;
     margin-bottom: -1%;
+    border: 1px solid red;
 }
 
 .buttonBox button {
@@ -132,4 +133,42 @@
 
 .loadingContainer {
     margin-top: 2%;
+}
+
+@media (max-width: 1040px) {
+    .imageBox {
+        height: 20vh;
+    }
+    .buttonBox {
+        width: 90%;
+        font-size: 85%;
+    }
+}
+
+@media (max-width: 780px) {
+    .buttonBox {
+        width: 70%;
+    }
+    .textNav h1 {
+        font-size: 180%;
+    }
+    .imageBox {
+        display: none;
+    }
+
+    .textNav {
+        width: 100%;
+        gap: .6rem;
+    }
+}
+
+@media (max-width: 550px) {
+    .buttonBox {
+        width: 100%;
+        font-size: 85%;
+    }
+
+    .bottomDiv {
+        grid-template-columns: repeat(auto-fill, minmax(175px,1fr));
+    }
 }

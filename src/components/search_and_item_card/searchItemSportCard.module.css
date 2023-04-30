@@ -30,6 +30,7 @@
 .imageBox img {
     position: absolute;
     /* height: 100%; */
+    
     width: 100%;
     /* top: -3%; */
 }
@@ -58,4 +59,17 @@
     font-size: 80%;
     font-weight: 500;
     color: rgb(176, 171, 171);
+}
+
+@media (max-width:550px) {
+    .cardContainer {
+        height: 38vh;
+        font-size: 70%;
+    }
+
+    .imageBox img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+    }
 }

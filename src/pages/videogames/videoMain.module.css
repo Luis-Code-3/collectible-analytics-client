@@ -102,9 +102,9 @@
 
 .imageBox img {
     position: absolute;
+    object-fit: cover;
     width: 100%;
-    height: auto;
-    top: -30%;
+    height: 100%;
 }
 
 
@@ -147,4 +147,39 @@
 
 .loadingContainer {
     margin-top: 2%;
+}
+
+@media (max-width: 1040px) {
+    .imageBox {
+        height: 20vh;
+    }
+    .buttonBox {
+        width: 90%;
+        font-size: 85%;
+    }
+
+}
+
+@media (max-width: 820px) {
+    .buttonBox {
+        width: 70%;
+    }
+    .textNav h1 {
+        font-size: 180%;
+    }
+    .imageBox {
+        display: none;
+    }
+
+    .textNav {
+        width: 100%;
+        gap: .6rem;
+    }
+}
+
+@media (max-width: 550px) {
+    .buttonBox {
+        width: 100%;
+        font-size: 85%;
+    }
 }

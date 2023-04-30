@@ -14,7 +14,7 @@
 
 .logo {
     background-color: #35dea0;
-    width: 2.5%;
+    width: 30px;
     height: 30px;
 }
 
@@ -75,7 +75,7 @@
     cursor: pointer;
     height: 60%;
     border-radius: 5px;
-    width: 4%;
+    width: 50px;
     background-color: rgb(246, 244, 244, .05);
     display: flex;
     justify-content: center;
@@ -97,6 +97,26 @@
 
 .dropLink:hover {
     background-color: rgb(246, 244, 244, .1);
+}
+
+/* DROPDOWN LOGGED OUT ONE */
+
+.dropLinkTwo {
+    transition: all .1s linear;
+    /* border: 1px solid red; */
+    cursor: pointer;
+    height: 60%;
+    border-radius: 5px;
+    width: 50px;
+    background-color: rgb(246, 244, 244, .05);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropLinkTwo p svg {
+    width: 16px;
+    transition: all .1s linear;
 }
 
 /* .specDiv:hover .dropLink {
@@ -133,5 +153,56 @@
 
     100% {
         background-color: hsl(189, 41%, 80%);
+    }
+}
+
+
+@media (max-width: 550px) {
+
+
+    .logo {
+        width: 20px;
+        height: 20px;
+    }
+
+    .logoTitle {
+        font-size: 120%;
+    }
+
+    .searchBar {
+        height: 45%;
+    }
+
+    .dropLink {
+        height: 45%;
+        width: 35px;
+    }
+
+    .dropLink p svg {
+        width: 13px;
+    }
+
+    .dropLinkTwo {
+        height: 45%;
+        width: 35px;
+    }
+
+    .dropLinkTwo p svg {
+        width: 13px;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .dropLinkTwo {
+        display: flex;
+    }
+
+    .regLinks {
+        display: none;
+    }
+
+    .register {
+        display: none;
     }
 }

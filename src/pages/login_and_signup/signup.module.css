@@ -20,9 +20,10 @@
 .signupForm {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     /* border: 1px solid yellow; */
-    height: 47%;
+    gap: 1.5rem;
+    /* height: 35%; */
     width: 100%;
 }
 
@@ -88,6 +89,7 @@
     width: 100%;
     font-size: 85%;
     font-weight: 700;
+    text-align: center;
 }
 
 .login a {
@@ -102,4 +104,52 @@
     /* border: 1px solid white; */
     width: 65%;
     background-image: linear-gradient( to bottom right,#306b56 00%, #0c1314 );
+}
+
+@media(max-width: 1020px) {
+    .leftBox {
+        width: 45%;
+    }
+
+    .imageBox {
+        width: 55%;
+    }
+}
+
+@media(max-width: 720px) {
+    .leftBox {
+        width: 55%;
+    }
+
+    .imageBox {
+        width: 45%;
+    }
+
+    .login {
+        font-size: 75%;
+    }
+}
+
+@media(max-width: 550px) {
+    .mainSection {
+        flex-direction: column-reverse;
+    }
+
+    .leftBox {
+        width: 100%;
+        height: 70%;
+    }
+
+    .imageBox {
+        width: 100%;
+        height: 30%;
+    }
+
+    .signupForm {
+        width: 90%;
+    }
+
+    .login {
+        font-size: 65%;
+    }
 }

@@ -1,14 +1,17 @@
 import { Link } from "react-router-dom";
 import styles from './navbar.module.css'
 import Dropdown from "../user_dropdown/Dropdown";
+import DropdownTwo from "../user_dropdown/DropdownTwo";
 import { useState,useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {ReactComponent as UserIcon} from "../../icons/user-solid.svg"
 import { AuthContext } from "../../context/auth.context";
+import {ReactComponent as BarIcon} from "../../icons/bars-solid.svg"
 
 function Navbar() {
 
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showDropdownTwo, setShowDropdownTwo] = useState(false);
   // const [user, setUser] = useState(true);
   const {isLoggedIn, isLoading} = useContext(AuthContext)
 
@@ -18,6 +21,10 @@ function Navbar() {
 
   const toggleDropdown = () => {
     setShowDropdown((prev) => !prev);
+  }
+
+  const toggleDropdownTwo = () => {
+    setShowDropdownTwo((prev) => !prev);
   }
 
   const inputRef = useRef();
@@ -58,6 +65,8 @@ function Navbar() {
                 </>
               : 
               <>
+                <div onClick={toggleDropdownTwo} className={styles.dropLinkTwo}><p>{<BarIcon className={`${styles.svgDefault} ${showDropdownTwo ? styles.svgActive : ''}`}/>}</p></div>
+                <DropdownTwo currentView = {showDropdownTwo} setShowDropdown={() => setShowDropdownTwo(false)} />
                 <Link to={'/login'} className={styles.regLinks}>Log In</Link>
                 <Link to={'/signup'} className={styles.register}>Register</Link>
               </>
