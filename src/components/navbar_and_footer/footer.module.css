@@ -179,13 +179,27 @@
 @media(max-width: 550px) {
     .footerProfile {
         width: 70%;
+        /* border: 1px solid yellow; */
+        gap: .7rem;
+    }
+    .logo {
+        /* border: 1px solid red; */
+        justify-content: flex-start;
+    }
+
+    .footerFollow {
+        /* border: 1px solid red; */
+        margin-top: 0%;
+        justify-content: flex-start;
     }
     .footerContainer {
         flex-direction: column;
         height: auto;
-        align-items: center;
-        gap: 1rem;
-        text-align: center;
+        /* align-items: center; */
+        gap: 2.0rem;
+        /* text-align: center; */
+        /* border: 1px solid red; */
+        padding: 6%;
     }
 
     .footerRoutes {

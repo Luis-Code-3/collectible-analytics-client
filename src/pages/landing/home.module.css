@@ -21,6 +21,12 @@
     /* margin-top: -1%; */
 }
 
+@media (max-width: 550px) {
+    .secOneBox {
+        padding-bottom: 4%;
+    }
+}
+
 .topSecOne {
     /* border: 1px solid blue; */
     width: 100%;
@@ -75,6 +81,7 @@
     
     .uselessButtons div {
         font-size: 100%;
+        display: none;
     }
 
     .leftbtn {
@@ -453,6 +460,13 @@ ul {
     color: white;
 }
 
+@media (max-width: 550px) {
+    ul li {
+        margin-bottom: 5%;
+        font-size: 100%;
+    }
+}
+
 
 
 
@@ -511,7 +525,11 @@ ul {
 
 @media (max-width: 550px) {
     .sectionFour h1 {
-        font-size: 120%;
+        font-size: 105%;
+    }
+
+    .sectionFour {
+        gap: .3rem;
     }
 }
 
