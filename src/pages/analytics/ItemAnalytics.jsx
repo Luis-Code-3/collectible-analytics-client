@@ -71,7 +71,8 @@ function ItemAnalytics() {
             console.log("FIRE IF ARR");
             console.log("NEW ARR AGAIN:", arr);
             console.log("NEW ARR SORT:", arr.filter(tran => new Date(tran.date_sold).getTime() > cutoff));
-            setDatedTransactions(arr.filter(tran => new Date(tran.date_sold).getTime() > cutoff));
+            // setDatedTransactions(arr.filter(tran => new Date(tran.date_sold).getTime() > cutoff));
+            setDatedTransactions(arr);
             console.log("DATED TRANSACTIONS:", datedTransactions);
         } else {
             console.log("FIRE NOT ARR");
