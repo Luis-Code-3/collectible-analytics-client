@@ -61,11 +61,8 @@ function ItemAnalytics() {
     // }
 
     const filterTimeFrame = (days, arr) => {
-        console.log("NEWARR:", arr);
         const now = new Date().getTime(); // Get Unix timestamp for now
-        console.log("DATE NOW:", now);
         const cutoff = now - days * 24 * 60 * 60 * 1000; // Subtract milliseconds to calculate cutoff
-        console.log("CUTOFF:", cutoff);
 
         const convertToIsoDate = (dateStr) => {
             const [month, day, year] = dateStr.split("-");
