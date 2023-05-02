@@ -83,11 +83,14 @@ function ItemAnalytics() {
                 return new Date(isoDateSold).getTime() > cutoff
             }));
             // setDatedTransactions(arr.filter(tran => new Date(tran.date_sold).getTime() > cutoff));
-            setDatedTransactions(arr);
+            setDatedTransactions(arr.filter((tran) => {
+                const isoDateSold = convertToIsoDate(tran.date_sold);
+                return new Date(isoDateSold).getTime() > cutoff
+            }));
             console.log("DATED TRANSACTIONS:", datedTransactions);
         } else {
             console.log("FIRE NOT ARR");
-            setDatedTransactions([...filteredTransactions].filter(tran => new Date(tran.date_sold).getTime() > cutoff));
+            setDatedTransactions([...filteredTransactions].filter(tran => new Date(convertToIsoDate(tran.date_sold)).getTime() > cutoff));
         }
     }
 
