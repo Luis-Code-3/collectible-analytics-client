@@ -14,6 +14,8 @@ ChartJS.register(
 
 function LineChart({datedTransactions}) {
 
+    console.log(datedTransactions);
+
     const options = {
         responsive: true,
         maintainAspectRatio: false,
