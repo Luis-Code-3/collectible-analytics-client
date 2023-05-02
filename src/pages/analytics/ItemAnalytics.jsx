@@ -86,13 +86,7 @@ function ItemAnalytics() {
             setDatedTransactions(arr.filter((tran) => {
                 const isoDateSold = convertToIsoDate(tran.date_sold);
                 return new Date(isoDateSold).getTime() > cutoff
-            }).sort((a, b) => {
-                const isoDateA = convertToIsoDate(a.date_sold);
-                const isoDateB = convertToIsoDate(b.date_sold);
-            
-                // Sort in descending order (most recent to oldest)
-                return new Date(isoDateB).getTime() - new Date(isoDateA).getTime();
-              }));
+            }));
             console.log("DATED TRANSACTIONS:", datedTransactions);
         } else {
             console.log("FIRE NOT ARR");
