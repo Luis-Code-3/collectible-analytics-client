@@ -73,16 +73,6 @@ function ItemAnalytics() {
           };
         
         if (arr) {
-            // console.log("FIRE IF ARR");
-            // console.log("NEW ARR AGAIN:", arr);
-            // console.log("CUTOFF TWO:", cutoff);
-            // console.log("TRAN DATE BEFORE UNIX CONVERSION", arr[1].date_sold);
-            // console.log("TRAN UNIX DATE", new Date(convertToIsoDate(arr[1].date_sold)).getTime());
-            // console.log("NEW ARR SORT:", arr.filter((tran) => {
-            //     const isoDateSold = convertToIsoDate(tran.date_sold);
-            //     return new Date(isoDateSold).getTime() > cutoff
-            // }));
-            // setDatedTransactions(arr.filter(tran => new Date(tran.date_sold).getTime() > cutoff));
             let filteredArray = arr.filter((tran) => {
                 const isoDateSold = convertToIsoDate(tran.date_sold);
                 return new Date(isoDateSold).getTime() > cutoff
@@ -95,9 +85,7 @@ function ItemAnalytics() {
                 return new Date(isoDateB).getTime() - new Date(isoDateA).getTime();
               });
             setDatedTransactions(sortedArray);
-            // console.log("DATED TRANSACTIONS:", datedTransactions);
         } else {
-            // console.log("FIRE NOT ARR");
             let filteredArray = [...filteredTransactions].filter(tran => new Date(convertToIsoDate(tran.date_sold)).getTime() > cutoff);
             let sortedArray = filteredArray.sort((a, b) => {
                 const isoDateA = convertToIsoDate(a.date_sold);
