@@ -43,11 +43,16 @@ function ItemAnalytics() {
 
 
     const filterTimeFrame = (days, arr) => {
+        console.log("NEWARR:", arr);
         const now = new Date();
+        console.log("DATE NOW:", now);
         const cutoff = new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
+        console.log("CUTOFF:", cutoff);
         if(arr) {
+            console.log("FIRE IF ARR");
             setDatedTransactions(arr.filter(tran => new Date(tran.date_sold) > cutoff));
         } else {
+            console.log("FIRE NOT ARR");
             setDatedTransactions([...filteredTransactions].filter(tran => new Date(tran.date_sold) > cutoff));
         }
     }
