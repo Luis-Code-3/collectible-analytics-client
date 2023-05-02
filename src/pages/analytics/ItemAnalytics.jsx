@@ -50,6 +50,7 @@ function ItemAnalytics() {
         console.log("CUTOFF:", cutoff);
         if(arr) {
             console.log("FIRE IF ARR");
+            console.log("NEW ARR AGAIN:",arr);
             console.log("NEW ARR SORT:" , arr.filter(tran => new Date(tran.date_sold).getTime() > cutoff.getTime()));
             setDatedTransactions(arr.filter(tran => new Date(tran.date_sold).getTime() > cutoff.getTime()));
             console.log("DATED TRANSACTIONS:" , datedTransactions);
