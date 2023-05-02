@@ -42,21 +42,40 @@ function ItemAnalytics() {
     
 
 
+    // const filterTimeFrame = (days, arr) => {
+    //     console.log("NEWARR:", arr);
+    //     const now = new Date();
+    //     console.log("DATE NOW:", now);
+    //     const cutoff = new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
+    //     console.log("CUTOFF:", cutoff);
+    //     if(arr) {
+    //         console.log("FIRE IF ARR");
+    //         console.log("NEW ARR AGAIN:",arr);
+    //         console.log("NEW ARR SORT:" , arr.filter(tran => new Date(tran.date_sold).getTime() > cutoff.getTime()));
+    //         setDatedTransactions(arr.filter(tran => new Date(tran.date_sold).getTime() > cutoff.getTime()));
+    //         console.log("DATED TRANSACTIONS:" , datedTransactions);
+    //     } else {
+    //         console.log("FIRE NOT ARR");
+    //         setDatedTransactions([...filteredTransactions].filter(tran => new Date(tran.date_sold).getTime() > cutoff.getTime()));
+    //     }
+    // }
+
     const filterTimeFrame = (days, arr) => {
         console.log("NEWARR:", arr);
-        const now = new Date();
+        const now = new Date().getTime(); // Get Unix timestamp for now
         console.log("DATE NOW:", now);
-        const cutoff = new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
+        const cutoff = now - days * 24 * 60 * 60 * 1000; // Subtract milliseconds to calculate cutoff
         console.log("CUTOFF:", cutoff);
-        if(arr) {
+        
+        if (arr) {
             console.log("FIRE IF ARR");
-            console.log("NEW ARR AGAIN:",arr);
-            console.log("NEW ARR SORT:" , arr.filter(tran => new Date(tran.date_sold).getTime() > cutoff.getTime()));
-            setDatedTransactions(arr.filter(tran => new Date(tran.date_sold).getTime() > cutoff.getTime()));
-            console.log("DATED TRANSACTIONS:" , datedTransactions);
+            console.log("NEW ARR AGAIN:", arr);
+            console.log("NEW ARR SORT:", arr.filter(tran => new Date(tran.date_sold).getTime() > cutoff));
+            setDatedTransactions(arr.filter(tran => new Date(tran.date_sold).getTime() > cutoff));
+            console.log("DATED TRANSACTIONS:", datedTransactions);
         } else {
             console.log("FIRE NOT ARR");
-            setDatedTransactions([...filteredTransactions].filter(tran => new Date(tran.date_sold).getTime() > cutoff.getTime()));
+            setDatedTransactions([...filteredTransactions].filter(tran => new Date(tran.date_sold).getTime() > cutoff));
         }
     }
 
