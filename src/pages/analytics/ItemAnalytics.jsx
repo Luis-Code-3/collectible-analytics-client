@@ -81,13 +81,7 @@ function ItemAnalytics() {
             console.log("NEW ARR SORT:", arr.filter((tran) => {
                 const isoDateSold = convertToIsoDate(tran.date_sold);
                 return new Date(isoDateSold).getTime() > cutoff
-            }).sort((a, b) => {
-                const isoDateA = convertToIsoDate(a.date_sold);
-                const isoDateB = convertToIsoDate(b.date_sold);
-            
-                // Sort in descending order (most recent to oldest)
-                return new Date(isoDateB).getTime() - new Date(isoDateA).getTime();
-              }));
+            }));
             // setDatedTransactions(arr.filter(tran => new Date(tran.date_sold).getTime() > cutoff));
             setDatedTransactions(arr.filter((tran) => {
                 const isoDateSold = convertToIsoDate(tran.date_sold);
@@ -102,13 +96,7 @@ function ItemAnalytics() {
             console.log("DATED TRANSACTIONS:", datedTransactions);
         } else {
             console.log("FIRE NOT ARR");
-            setDatedTransactions([...filteredTransactions].filter(tran => new Date(convertToIsoDate(tran.date_sold)).getTime() > cutoff).sort((a, b) => {
-                const isoDateA = convertToIsoDate(a.date_sold);
-                const isoDateB = convertToIsoDate(b.date_sold);
-            
-                // Sort in descending order (most recent to oldest)
-                return new Date(isoDateB).getTime() - new Date(isoDateA).getTime();
-              }));
+            setDatedTransactions([...filteredTransactions].filter(tran => new Date(convertToIsoDate(tran.date_sold)).getTime() > cutoff));
         }
     }
 
