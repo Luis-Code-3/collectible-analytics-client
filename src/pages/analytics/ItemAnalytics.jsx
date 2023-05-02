@@ -70,6 +70,9 @@ function ItemAnalytics() {
         if (arr) {
             console.log("FIRE IF ARR");
             console.log("NEW ARR AGAIN:", arr);
+            console.log("CUTOFF TWO:", cutoff);
+            console.log("TRAN DATE BEFORE UNIX CONVERSION", arr[1].date_sold);
+            console.log("TRAN UNIX DATE", new Date(arr[1].date_sold).getTime());
             console.log("NEW ARR SORT:", arr.filter(tran => new Date(tran.date_sold).getTime() > cutoff));
             // setDatedTransactions(arr.filter(tran => new Date(tran.date_sold).getTime() > cutoff));
             setDatedTransactions(arr);
