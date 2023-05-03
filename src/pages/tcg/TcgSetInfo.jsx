@@ -29,11 +29,19 @@ function TcgSetInfo() {
         })
       } else if(sort === "Card # High - Low") {
         newArr.sort((a,b) => {
-          return b.cardNumber - a.cardNumber;
+          if (isNaN(parseInt(a.cardNumber)) || isNaN(parseInt(b.cardNumber))) {
+            // Handle invalid card numbers here
+            return 0;
+          }
+          return parseInt(b.cardNumber) - parseInt(a.cardNumber);
         })
       } else if (sort === "Card # Low - High") {
         newArr.sort((a,b) => {
-          return a.cardNumber - b.cardNumber;
+          if (isNaN(parseInt(a.cardNumber)) || isNaN(parseInt(b.cardNumber))) {
+            // Handle invalid card numbers here
+            return 0;
+          }
+          return parseInt(a.cardNumber) - parseInt(b.cardNumber);
         })
       }
 
@@ -45,7 +53,7 @@ function TcgSetInfo() {
 
     const filterExecute = () => {
       filteredItems = allItems.filter((item) => {
-        const itemName = item.cardName.toLowerCase() + " #" + item.cardNumber.toString().toLowerCase();
+        const itemName = item.cardName.toLowerCase() + " #" + item.cardNumber.toLowerCase();
         // return search.toLowerCase() === '' ? item : item.cardName.toLowerCase().includes(search.toLowerCase()) || item.cardNumber.toString().toLowerCase().includes(search.toLowerCase())
         return search.toLowerCase() === '' ? item : itemName.toLowerCase().includes(search.toLowerCase());
       })
