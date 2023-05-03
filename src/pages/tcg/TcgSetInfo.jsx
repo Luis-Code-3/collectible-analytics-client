@@ -29,19 +29,33 @@ function TcgSetInfo() {
         })
       } else if(sort === "Card # High - Low") {
         newArr.sort((a,b) => {
-          if (isNaN(parseInt(a.cardNumber)) || isNaN(parseInt(b.cardNumber))) {
-            // Handle invalid card numbers here
-            return 0;
+          const numA = parseInt(a.cardNumber);
+          const numB = parseInt(b.cardNumber);
+
+          if (!isNaN(numA) && !isNaN(numB)) {
+              return numB - numA;
+          } else if (!isNaN(numA)) {
+              return 1;
+          } else if (!isNaN(numB)) {
+              return -1;
+          } else {
+              return b.cardNumber.localeCompare(a.cardNumber);
           }
-          return parseInt(b.cardNumber) - parseInt(a.cardNumber);
         })
       } else if (sort === "Card # Low - High") {
         newArr.sort((a,b) => {
-          if (isNaN(parseInt(a.cardNumber)) || isNaN(parseInt(b.cardNumber))) {
-            // Handle invalid card numbers here
-            return 0;
+          const numA = parseInt(a.cardNumber);
+          const numB = parseInt(b.cardNumber);
+
+          if (!isNaN(numA) && !isNaN(numB)) {
+              return numA - numB;
+          } else if (!isNaN(numA)) {
+              return -1;
+          } else if (!isNaN(numB)) {
+              return 1;
+          } else {
+              return a.cardNumber.localeCompare(b.cardNumber);
           }
-          return parseInt(a.cardNumber) - parseInt(b.cardNumber);
         })
       }
 
@@ -55,13 +69,7 @@ function TcgSetInfo() {
       filteredItems = allItems.filter((item) => {
         // console.log(item.cardNumber);
         // console.log(typeof item.cardNumber);
-        let itemName;
-        if (typeof item.cardNumber === 'number'){
-          itemName = item.cardName.toLowerCase() + " #" + item.cardNumber.toString().toLowerCase();
-        } else {
-
-          itemName = item.cardName.toLowerCase() + " #" + item.cardNumber.toLowerCase();
-        }
+        const itemName = item.cardName.toLowerCase() + " #" + item.cardNumber.toLowerCase();
         // return search.toLowerCase() === '' ? item : item.cardName.toLowerCase().includes(search.toLowerCase()) || item.cardNumber.toString().toLowerCase().includes(search.toLowerCase())
         return search.toLowerCase() === '' ? item : itemName.toLowerCase().includes(search.toLowerCase());
       })
