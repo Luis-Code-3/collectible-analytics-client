@@ -53,9 +53,15 @@ function TcgSetInfo() {
 
     const filterExecute = () => {
       filteredItems = allItems.filter((item) => {
-        console.log(item.cardNumber);
-        console.log(typeof item.cardNumber);
-        const itemName = item.cardName.toLowerCase() + " #" + item.cardNumber.toLowerCase();
+        // console.log(item.cardNumber);
+        // console.log(typeof item.cardNumber);
+        let itemName;
+        if (typeof item.cardNumber === 'number'){
+          itemName = item.cardName.toLowerCase() + " #" + item.cardNumber.toString().toLowerCase();
+        } else {
+
+          itemName = item.cardName.toLowerCase() + " #" + item.cardNumber.toLowerCase();
+        }
         // return search.toLowerCase() === '' ? item : item.cardName.toLowerCase().includes(search.toLowerCase()) || item.cardNumber.toString().toLowerCase().includes(search.toLowerCase())
         return search.toLowerCase() === '' ? item : itemName.toLowerCase().includes(search.toLowerCase());
       })
