@@ -53,6 +53,8 @@ function TcgSetInfo() {
 
     const filterExecute = () => {
       filteredItems = allItems.filter((item) => {
+        console.log(item.cardNumber);
+        console.log(typeof item.cardNumber);
         const itemName = item.cardName.toLowerCase() + " #" + item.cardNumber.toLowerCase();
         // return search.toLowerCase() === '' ? item : item.cardName.toLowerCase().includes(search.toLowerCase()) || item.cardNumber.toString().toLowerCase().includes(search.toLowerCase())
         return search.toLowerCase() === '' ? item : itemName.toLowerCase().includes(search.toLowerCase());
