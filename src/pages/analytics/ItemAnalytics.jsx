@@ -198,7 +198,7 @@ function ItemAnalytics() {
             .catch((err) => {
                 console.log(err);
             })
-        await axios.get(`${baseUrl}/search/similar-items/${itemType}`)
+        await axios.get(`${baseUrl}/search/similar-items/${itemType}/${itemId}`)
             .then((response) => {
                 setSimilarItems(response.data)
             })
