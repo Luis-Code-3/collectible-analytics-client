@@ -32,11 +32,24 @@ function TransactionsBlock({filteredTransactions, pathType, itemId}) {
     }
 
     const sortDate = () => {
+        const convertToIsoDate = (dateStr) => {
+            const [month, day, year] = dateStr.split("-");
+            return `${year}-${month}-${day}`;
+        };
+
         let newArr = [...filteredTransactions].sort((a,b) => {
             if(sortDateOrder === 'asc') {
-                return new Date(b.date_sold) - new Date(a.date_sold);
+                const isoDateA = convertToIsoDate(a.date_sold);
+                const isoDateB = convertToIsoDate(b.date_sold);
+            
+                // Sort in descending order (most recent to oldest)
+                return new Date(isoDateB).getTime() - new Date(isoDateA).getTime();
             } else {
-                return new Date(a.date_sold) - new Date(b.date_sold);
+                const isoDateA = convertToIsoDate(a.date_sold);
+                const isoDateB = convertToIsoDate(b.date_sold);
+            
+                // Sort in descending order (most recent to oldest)
+                return new Date(isoDateA).getTime() - new Date(isoDateB).getTime();
             }
         })
 

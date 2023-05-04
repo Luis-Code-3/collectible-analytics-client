@@ -59,15 +59,15 @@ function ItemAnalytics() {
     //         setDatedTransactions([...filteredTransactions].filter(tran => new Date(tran.date_sold).getTime() > cutoff.getTime()));
     //     }
     // }
+    const convertToIsoDate = (dateStr) => {
+        const [month, day, year] = dateStr.split("-");
+        return `${year}-${month}-${day}`;
+    };
 
     const filterTimeFrame = (days, arr) => {
         const now = new Date().getTime(); // Get Unix timestamp for now
         const cutoff = now - days * 24 * 60 * 60 * 1000; // Subtract milliseconds to calculate cutoff
 
-        const convertToIsoDate = (dateStr) => {
-            const [month, day, year] = dateStr.split("-");
-            return `${year}-${month}-${day}`;
-          };
         
         if (arr) {
             let filteredArray = arr.filter((tran) => {
@@ -185,7 +185,14 @@ function ItemAnalytics() {
                             return false;
                     }
                 }).sort((a,b) => new Date(b.date_sold) - new Date(a.date_sold))
-                setFilteredTransactions(newArr)
+                let ascMobileArray = newArr.sort((a, b) => {
+                    const isoDateA = convertToIsoDate(a.date_sold);
+                    const isoDateB = convertToIsoDate(b.date_sold);
+            
+                    // Sort in descending order (most recent to oldest)
+                    return new Date(isoDateB).getTime() - new Date(isoDateA).getTime();
+                })
+                setFilteredTransactions(ascMobileArray)
                 filterTimeFrame(30, newArr);
             })
             .catch((err) => {
