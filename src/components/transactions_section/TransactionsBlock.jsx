@@ -144,7 +144,8 @@ function TransactionsBlock({filteredTransactions, pathType, itemId}) {
 
             {
                 sortedTrans ? 
-                sortedTrans.slice(0, amountShown).map((tran, index) => {
+                <>
+                {sortedTrans.slice(0, amountShown).map((tran, index) => {
                     return (
                         <div key={index} className={styles.transactionComplete}>
                             <div className={styles.tranSoldDate}>
@@ -168,7 +169,7 @@ function TransactionsBlock({filteredTransactions, pathType, itemId}) {
                                 <div className={styles.tranReport}>
                                     <p onClick={() => handleOpenModal(tran._id)} className={styles.reportButton}>{<ReportIcon/>}</p>
                                 </div>
-                                <ReportModal closeModal={() => setOpenModal(false)} openModal={openModal} tranId = {tranIdRef.current} pathType={pathType} itemId={itemId}/>
+                                
                                 </>
                                 :
                                 <div className={styles.tranReport}>
@@ -177,7 +178,9 @@ function TransactionsBlock({filteredTransactions, pathType, itemId}) {
                             }
                         </div>
                     );
-                })   
+                })}
+                <ReportModal closeModal={() => setOpenModal(false)} openModal={openModal} tranId = {tranIdRef.current} pathType={pathType} itemId={itemId}/>
+                </>
 
                 : <div className={styles.noSales}>NO SALES</div>
             }
