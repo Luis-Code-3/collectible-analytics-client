@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from 'react';
+import { useState, useRef, useContext, useEffect } from 'react';
 import styles from './transactionsBlock.module.css'
 import {ReactComponent as ReportIcon} from "../../icons/flag-regular.svg"
 import ReportModal from "../../components/report_modal/ReportModal";
@@ -7,15 +7,17 @@ import { useNavigate } from 'react-router-dom';
 
 
 function TransactionsBlock({filteredTransactions, pathType, itemId}) {
+    // console.log("render here");
 
     const [sortPriceOrder, setSortPriceOrder] = useState('asc');
     const [sortDateOrder, setSortDateOrder] = useState('desc');
     const [sortTitleOrder, setSortTitleOrder] = useState('asc');
     const [sortMarketplaceOrder, setSortMarketplaceOrder] = useState('asc');
+    const [sortedTrans, setSortedTrans] = useState()
 
     const navigate = useNavigate();
 
-    const sortedTrans = useRef(filteredTransactions);
+    // const sortedTrans = useRef(filteredTransactions);
     const tranIdRef = useRef(null);
     const {isLoggedIn} = useContext(AuthContext);
 
@@ -38,7 +40,8 @@ function TransactionsBlock({filteredTransactions, pathType, itemId}) {
             }
         })
 
-        sortedTrans.current = newArr;
+        // sortedTrans.current = newArr;
+        setSortedTrans(newArr);
         setSortDateOrder(sortDateOrder === 'asc' ? 'desc' : 'asc');
     }
 
@@ -52,8 +55,8 @@ function TransactionsBlock({filteredTransactions, pathType, itemId}) {
         })
 
         // setFilteredTransactions(newArr);
-        sortedTrans.current = newArr;
-        //console.log(sortedTrans);
+        // sortedTrans.current = newArr;
+        setSortedTrans(newArr);
         setSortPriceOrder(sortPriceOrder === 'asc' ? 'desc' : 'asc');
     }
 
@@ -67,7 +70,8 @@ function TransactionsBlock({filteredTransactions, pathType, itemId}) {
         })
 
         // setFilteredTransactions(newArr)
-        sortedTrans.current = newArr;
+        // sortedTrans.current = newArr;
+        setSortedTrans(newArr);
         setSortMarketplaceOrder(sortMarketplaceOrder === 'asc' ? 'desc' : 'asc')
     }
 
@@ -81,7 +85,8 @@ function TransactionsBlock({filteredTransactions, pathType, itemId}) {
         })
 
         // setFilteredTransactions(newArr)
-        sortedTrans.current = newArr;
+        // sortedTrans.current = newArr;
+        setSortedTrans(newArr);
         setSortTitleOrder(sortTitleOrder === 'asc' ? 'desc' : 'asc')
         
     }
@@ -94,6 +99,10 @@ function TransactionsBlock({filteredTransactions, pathType, itemId}) {
         tranIdRef.current = tranId
         setOpenModal(true)
     }
+
+    useEffect(() => {
+        setSortedTrans(filteredTransactions);
+      }, [filteredTransactions]);
 
 
     return (
@@ -121,8 +130,8 @@ function TransactionsBlock({filteredTransactions, pathType, itemId}) {
             </div>
 
             {
-                sortedTrans.current.length > 0 ? 
-                sortedTrans.current.slice(0, amountShown).map((tran, index) => {
+                sortedTrans ? 
+                sortedTrans.slice(0, amountShown).map((tran, index) => {
                     return (
                         <div key={index} className={styles.transactionComplete}>
                             <div className={styles.tranSoldDate}>

@@ -1,6 +1,6 @@
 .selectButton {
     padding: 5% 0%;
-    width: 51.5%;
+    width: 100%;
     border: none;
     border-radius: 5px;
     background-color: #192a2f;
@@ -11,6 +11,7 @@
     cursor: pointer;
     transition: all .1s linear;
     outline: none;
+    /* border: 1px solid red; */
 }
 
 .selectButton:hover {

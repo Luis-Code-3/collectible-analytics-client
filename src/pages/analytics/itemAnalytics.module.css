@@ -38,12 +38,13 @@
 .gradePop {
     margin-top: 3%;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     width: 100%;
     position: relative;
+    /* border: 1px solid red; */
 }
 
-.gradePop select {
+/* .gradePop select {
     padding: 5% 0%;
     width: 51.5%;
     border: none;
@@ -53,7 +54,7 @@
     font-size: 120%;
     font-weight: 700;
     text-align: center;
-}
+} */
 
 .gradeAmount {
     padding: 5% 0%;

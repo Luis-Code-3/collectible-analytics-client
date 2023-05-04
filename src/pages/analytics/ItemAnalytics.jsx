@@ -98,11 +98,15 @@ function ItemAnalytics() {
     const filterGrade = (grade) => {
         let newArr;
         if (grade === "") {
+            // console.log("HIT HERE");
             newArr = [...allTransactions];
         } else {
+            // console.log("HIT ");
+            // console.log([...allTransactions].length);
             newArr = [...allTransactions].filter((tran) => {
                 return tran.grade === grade;
             })
+            // console.log("AFTER FILTER",newArr.length);
         }
 
         setFilteredTransactions(newArr)
@@ -149,7 +153,7 @@ function ItemAnalytics() {
         filteredTransactions.forEach((item) => {
             average += item.salePrice
         })
-        average =  "$" + (average/filteredTransactions.length).toLocaleString('en-US');
+        average =  "$" + parseInt(average/filteredTransactions.length).toLocaleString('en-US');
         return average;
     }
 
@@ -243,9 +247,9 @@ function ItemAnalytics() {
                         : null
                     }
 
-                    <div className={styles.gradeAmount}>
+                    {/* <div className={styles.gradeAmount}>
                         1,352
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
@@ -285,7 +289,7 @@ function ItemAnalytics() {
 
                         <div className={styles.analyticsPrices}>
                             <div className={styles.prices}>{filteredTransactions ? filteredTransactions.length > 0 ? "$" + filteredTransactions[0].salePrice.toLocaleString('en-US') : "N/A" : <p className={styles.skeletonPrices}></p>}</div>
-                            <p className={styles.prices}>10.23M</p>
+                            <p className={styles.prices}>N/A</p>
                             <div className={styles.prices}>{filteredTransactions ? filteredTransactions.length > 0 ? averagePrice(): "N/A": <p className={styles.skeletonPrices}></p>}</div>
                             <ChartSelect filterTimeFrame={filterTimeFrame} itemId = {itemId} filteredTransactions = {filteredTransactions}/>
                         </div>
